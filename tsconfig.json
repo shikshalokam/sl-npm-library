@@ -23,6 +23,12 @@
       ],
       "shikshalokamcoremodule/*": [
         "dist/shikshalokamcoremodule/*"
+      ],
+      "shikshalokamsharedmodule": [
+        "dist/shikshalokamsharedmodule"
+      ],
+      "shikshalokamsharedmodule/*": [
+        "dist/shikshalokamsharedmodule/*"
       ]
     }
   }

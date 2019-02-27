@@ -1,0 +1,11 @@
+{
+  "name": "shikshalokamsharedmodule",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^7.1.0",
+    "@angular/core": "^7.1.0",
+    "shikshalokamcoremodule": "^0.1.0",
+    "ngx-spinner": "^6.1.2",
+    "rxjs": "^6.3.3"
+  }
+}

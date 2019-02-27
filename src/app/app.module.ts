@@ -6,9 +6,7 @@ import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { TranslateService } from './core/services/translate-service/translate.service';
 import { MatDividerModule } from '@angular/material/divider';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
@@ -17,6 +15,7 @@ import { MatToolbarModule, MatCardModule, MatSidenavModule } from '@angular/mate
 import { AuthService } from './modules/private-modules/auth-service/auth.service';
 // import { CookieService } from 'angular2-cookie';
 import { CookieService } from 'ngx-cookie-service';
+import { CoreModule,TranslateService } from 'shikshalokamcoremodule';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -37,7 +36,7 @@ export function authFactory(authService: AuthService) {
     SharedModule,
     CoreModule,
     MatDividerModule,
-    CoreModule.forRoot(),
+    CoreModule,
     HttpClientModule,
     BrowserAnimationsModule,
     CommonModule,

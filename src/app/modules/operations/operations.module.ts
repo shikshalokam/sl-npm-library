@@ -4,7 +4,7 @@ import { OperationsComponent } from './operations.component';
 import { OperationsRoutingModule } from './operations-routing.module';
 import { UploadingCsvComponent } from './uploading-csv/uploading-csv.component';
 import { MatInputModule,MatSelectModule, MatButtonModule, MatPaginatorModule, MatExpansionModule, MatTableModule } from '@angular/material';
-import { CoreModule } from 'src/app/core';
+import { CoreModule } from 'shikshalokamcoremodule';;
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProgressBarModule} from "angular-progress-bar"
 import { SharedModule } from 'src/app/shared/shared.module';

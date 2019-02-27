@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TransitionCheckState, MatTableDataSource } from '@angular/material';
 import { OperationsService } from '../operations-service/operations.service';
-import { UtilityService } from 'src/app/core';
+import { UtilityService } from 'shikshalokamcoremodule';;
 
 @Component({
   selector: 'app-view-assessors',

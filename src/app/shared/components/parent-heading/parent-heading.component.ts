@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Inject, Output, EventEmitter } from '@angular/core';
 import { MatDialog, } from '@angular/material';
 import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
-import { UtilityService } from 'src/app/core/services/utility-service/utility.service';
+import { UtilityService } from 'shikshalokamcoremodule';;
 export interface DialogData {
 }
 @Component({
