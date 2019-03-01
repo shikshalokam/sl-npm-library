@@ -1,21 +1,19 @@
 {
-  "name": "shikshalokamcoremodule",
+  "name": "shikshalokam",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^7.1.0",
-    "@angular/core": "^7.1.0",
-    "@angular/material": "^7.0.4",
-    "ngx-spinner": "^6.1.2"
+    "@angular/core": "^7.1.0"
   },
-  "main": "bundles/shikshalokamcoremodule.umd.js",
-  "module": "fesm5/shikshalokamcoremodule.js",
-  "es2015": "fesm2015/shikshalokamcoremodule.js",
-  "esm5": "esm5/shikshalokamcoremodule.js",
-  "esm2015": "esm2015/shikshalokamcoremodule.js",
-  "fesm5": "fesm5/shikshalokamcoremodule.js",
-  "fesm2015": "fesm2015/shikshalokamcoremodule.js",
-  "typings": "shikshalokamcoremodule.d.ts",
-  "metadata": "shikshalokamcoremodule.metadata.json",
+  "main": "bundles/shikshalokam.umd.js",
+  "module": "fesm5/shikshalokam.js",
+  "es2015": "fesm2015/shikshalokam.js",
+  "esm5": "esm5/shikshalokam.js",
+  "esm2015": "esm2015/shikshalokam.js",
+  "fesm5": "fesm5/shikshalokam.js",
+  "fesm2015": "fesm2015/shikshalokam.js",
+  "typings": "shikshalokam.d.ts",
+  "metadata": "shikshalokam.metadata.json",
   "sideEffects": false,
   "dependencies": {
     "tslib": "^1.9.0"
