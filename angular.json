@@ -211,6 +211,41 @@
           }
         }
       }
+    },
+    "shikshalokam": {
+      "root": "projects/shikshalokam",
+      "sourceRoot": "projects/shikshalokam/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/shikshalokam/tsconfig.lib.json",
+            "project": "projects/shikshalokam/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/shikshalokam/src/test.ts",
+            "tsConfig": "projects/shikshalokam/tsconfig.spec.json",
+            "karmaConfig": "projects/shikshalokam/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/shikshalokam/tsconfig.lib.json",
+              "projects/shikshalokam/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "sl-programs-portal"

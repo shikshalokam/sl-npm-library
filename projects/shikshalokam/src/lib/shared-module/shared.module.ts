@@ -11,7 +11,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { RouterModule } from '@angular/router';
 import { ParentHeadingComponent } from './components/parent-heading/parent-heading.component';
-import { CoreModule } from 'shikshalokamcoremodule';;
+import { CoreModule } from '../core-module/core.module';
 import { DialogBoxComponent } from './components/dialog-box/dialog-box.component'
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';

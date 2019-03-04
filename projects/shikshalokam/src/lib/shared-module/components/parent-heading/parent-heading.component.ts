@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialog, } from '@angular/material';
 import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
-import { UtilityService } from 'shikshalokamcoremodule';;
+import { UtilityService } from '../../../core-module/services/utility-service/utility.service';;
 
 @Component({
   selector: 'app-parent-heading',

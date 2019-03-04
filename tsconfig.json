@@ -29,6 +29,12 @@
       ],
       "shikshalokamsharedmodule/*": [
         "dist/shikshalokamsharedmodule/*"
+      ],
+      "shikshalokam": [
+        "dist/shikshalokam"
+      ],
+      "shikshalokam/*": [
+        "dist/shikshalokam/*"
       ]
     }
   }
