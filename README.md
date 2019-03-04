@@ -158,5 +158,6 @@ get(url : string){
         
           components :-
           
-            dahsboard-blocks :- <dashboard-block>
+            dahsboard-blocks :- <dashboard-block [list]="List">
+            
                               
