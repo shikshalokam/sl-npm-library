@@ -18,18 +18,7 @@
       "dom"
     ],
     "paths": {
-      "shikshalokamcoremodule": [
-        "dist/shikshalokamcoremodule"
-      ],
-      "shikshalokamcoremodule/*": [
-        "dist/shikshalokamcoremodule/*"
-      ],
-      "shikshalokamsharedmodule": [
-        "dist/shikshalokamsharedmodule"
-      ],
-      "shikshalokamsharedmodule/*": [
-        "dist/shikshalokamsharedmodule/*"
-      ],
+      
       "shikshalokam": [
         "dist/shikshalokam"
       ],

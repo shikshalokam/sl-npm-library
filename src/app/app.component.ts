@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from 'shikshalokamcoremodule';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +10,7 @@ export class AppComponent implements OnInit {
  
  
 
-  constructor(private translate: TranslateService) {
-    translate.use('en').then(() => {
-      
-    });
-  }
+  
   ngOnInit(){
   
   }

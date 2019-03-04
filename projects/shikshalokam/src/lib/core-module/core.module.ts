@@ -1,23 +1,21 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
+import {   HttpClientModule } from '@angular/common/http';
 import { MatDividerModule,MatCardModule,MatButtonModule,MatMenuModule ,MatIconModule,MatTooltipModule } from '@angular/material';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ResponsiveNavbarComponent } from './components/responsive-navbar/responsive-navbar.component';
 import { RouterModule } from '@angular/router';
-import { HttpModule } from '@angular/http';
 import { ProgramSidenavComponent } from './components/program-sidenav/program-sidenav.component';
 import { TranslatePipe } from './pipes/translate-pipe/translate.pipe';
 import { CamelCasePipe } from './pipes/camelcase-pipe/camelcase.pipe';
 import { NoValuePipe } from './pipes/no-value-pipe/no-value.pipe';
-import { ApiInterceptor } from './services/interceptor-service/interceptor.service';
 import { TranslateService } from './services/translate-service/translate.service';
 import { UtilityService } from './services/utility-service/utility.service';
 import { ApiService } from './services/api-service/api.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ApiInterceptor } from './services/interceptor-service/interceptor.service';
 @NgModule({
   declarations: [
     TranslatePipe,
@@ -32,13 +30,11 @@ import { ApiService } from './services/api-service/api.service';
     NgxSpinnerModule,
     CommonModule,
     RouterModule,
-    HttpClientModule,
     MatButtonModule,
+    HttpClientModule,
     MatMenuModule,
     MatIconModule,
-    HttpModule,
     MatCardModule,
-    HttpClientModule,
     MatDividerModule,
     MatTooltipModule
   ],
@@ -48,6 +44,7 @@ import { ApiService } from './services/api-service/api.service';
       useClass: ApiInterceptor,
       multi: true
     },
+    
   ],
   exports: [
     TranslatePipe,
@@ -64,7 +61,7 @@ export class CoreModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: CoreModule,
-      providers: [TranslateService,UtilityService,ApiInterceptor,ApiService]
+      providers: [TranslateService,UtilityService,ApiService]
     };
   }
 }

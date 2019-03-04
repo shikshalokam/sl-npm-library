@@ -19,7 +19,6 @@ export * from './lib/core-module/pipes/camelcase-pipe/camelcase.pipe';
 export * from './lib/core-module/pipes/no-value-pipe/no-value.pipe';
 export * from './lib/core-module/pipes/translate-pipe/translate.pipe';
 export * from './lib/core-module/services/api-service/api.service';
-export * from './lib/core-module/services/interceptor-service/interceptor.service';
 export * from './lib/core-module/services/translate-service/translate.service';
 export * from './lib/core-module/services/utility-service/utility.service';
 export * from './lib/core-module/components/navbar/navbar.component';

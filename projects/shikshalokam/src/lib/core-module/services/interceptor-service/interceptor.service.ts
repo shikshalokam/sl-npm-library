@@ -6,7 +6,11 @@ import {
   HttpInterceptor,
 } from "@angular/common/http";
 
-@Injectable()
+@Injectable(
+  {
+    providedIn: 'root',
+  }
+)
 export class ApiInterceptor implements HttpInterceptor {
 
 

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "sl-programs-portal": {
+    "sl-portal-library": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/sl-programs-portal",
+            "outputPath": "dist/sl-portal-library",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,18 +68,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sl-programs-portal:build"
+            "browserTarget": "sl-portal-library:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sl-programs-portal:build:production"
+              "browserTarget": "sl-portal-library:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sl-programs-portal:build"
+            "browserTarget": "sl-portal-library:build"
           }
         },
         "test": {
@@ -114,7 +114,7 @@
         }
       }
     },
-    "sl-programs-portal-e2e": {
+    "sl-portal-library-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -123,11 +123,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "sl-programs-portal:serve"
+            "devServerTarget": "sl-portal-library:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "sl-programs-portal:serve:production"
+              "devServerTarget": "sl-portal-library:serve:production"
             }
           }
         },
@@ -135,76 +135,6 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "shikshalokamcoremodule": {
-      "root": "projects/shikshalokamcoremodule",
-      "sourceRoot": "projects/shikshalokamcoremodule/src",
-      "projectType": "library",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/shikshalokamcoremodule/tsconfig.lib.json",
-            "project": "projects/shikshalokamcoremodule/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/shikshalokamcoremodule/src/test.ts",
-            "tsConfig": "projects/shikshalokamcoremodule/tsconfig.spec.json",
-            "karmaConfig": "projects/shikshalokamcoremodule/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/shikshalokamcoremodule/tsconfig.lib.json",
-              "projects/shikshalokamcoremodule/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "shikshalokamsharedmodule": {
-      "root": "projects/shikshalokamsharedmodule",
-      "sourceRoot": "projects/shikshalokamsharedmodule/src",
-      "projectType": "library",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/shikshalokamsharedmodule/tsconfig.lib.json",
-            "project": "projects/shikshalokamsharedmodule/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/shikshalokamsharedmodule/src/test.ts",
-            "tsConfig": "projects/shikshalokamsharedmodule/tsconfig.spec.json",
-            "karmaConfig": "projects/shikshalokamsharedmodule/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/shikshalokamsharedmodule/tsconfig.lib.json",
-              "projects/shikshalokamsharedmodule/tsconfig.spec.json"
-            ],
             "exclude": [
               "**/node_modules/**"
             ]
@@ -248,5 +178,5 @@
       }
     }
   },
-  "defaultProject": "sl-programs-portal"
+  "defaultProject": "sl-portal-library"
 }
