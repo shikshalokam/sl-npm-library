@@ -1,8 +1,8 @@
 <div class="footer">
     <ul class="list">
-      <li *ngFor="let link of footerLink let last=last">
+      <li *ngFor="let link of footerLink; let last=last">
           <a>{{link.name}}
-          <span *ngIf="last==false" class="pipe">|</span>
+          <span *ngIf="!last" class="pipe">|</span>
           </a>
       </li>
     </ul>
