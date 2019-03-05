@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -6,28 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-  footerLink;
+  @Input() footerLink: any ;
+
   constructor() {
-    this.footerLink =[
-      {
-        name: "Copyright @2019 Shikshalokam",
-        line:"|"
-      },
-      {
-        name: "Terms of Service",
-        line:"|"
-      },
-      {
-        name: "Privacy Policy",
-        line:"|"
-      },
-      {
-        name: "Contact Us",
-      }
-   ];
   }
 
   ngOnInit() {
+    console.log(this.footerLink,"footer link");
   }
 
 }
