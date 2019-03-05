@@ -22,6 +22,7 @@ export * from './lib/core-module/services/api-service/api.service';
 export * from './lib/core-module/services/translate-service/translate.service';
 export * from './lib/core-module/services/utility-service/utility.service';
 export * from './lib/core-module/components/navbar/navbar.component';
+export * from './lib/core-module/components/footer/footer.component';
 export * from './lib/core-module/components/program-sidenav/program-sidenav.component';
 export * from './lib/core-module/components/responsive-navbar/responsive-navbar.component';
 export * from './lib/core-module/components/sidenav/sidenav.component';
