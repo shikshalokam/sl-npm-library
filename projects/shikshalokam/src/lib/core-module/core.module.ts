@@ -16,6 +16,7 @@ import { UtilityService } from './services/utility-service/utility.service';
 import { ApiService } from './services/api-service/api.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from './services/interceptor-service/interceptor.service';
+import { GlobalConfigurationService } from './services/global-configuration-service/global-configuration.service';
 @NgModule({
   declarations: [
     TranslatePipe,
@@ -61,7 +62,7 @@ export class CoreModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: CoreModule,
-      providers: [TranslateService,UtilityService,ApiService]
+      providers: [TranslateService,UtilityService,ApiService,GlobalConfigurationService]
     };
   }
 }
