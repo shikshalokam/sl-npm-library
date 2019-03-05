@@ -10,19 +10,16 @@ export class FooterComponent implements OnInit {
   constructor() {
     this.footerLink =[
       {
-        name: "Copyright @2019 Shikshalokam",
-        line:"|"
+        name: "Copyright @2019 Shikshalokam"
       },
       {
-        name: "Terms of Service",
-        line:"|"
+        name: "Terms of Service"
       },
       {
-        name: "Privacy Policy",
-        line:"|"
+        name: "Privacy Policy"
       },
       {
-        name: "Contact Us",
+        name: "Contact Us"
       }
    ];
   }
