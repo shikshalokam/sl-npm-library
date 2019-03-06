@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./dashboard-blocks.component.scss']
 })
 export class DashboardBlocksComponent implements OnInit {
- 
+ canAcess = localStorage.getItem('canAcess');
   constructor() { 
   }
   @Input() list: any;

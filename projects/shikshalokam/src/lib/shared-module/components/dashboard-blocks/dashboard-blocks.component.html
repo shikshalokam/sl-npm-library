@@ -3,7 +3,7 @@
 
   <div class="_full-width ">
     <div *ngFor="let dashBoard of list" >
-      <div class=" col-lg-3 col-md-4 col-sm-6 col-xs-12 margin-top _justify-content-center flex-box" routerLink="{{dashBoard.anchorLink}}" title="{{dashBoard.tooltip|translate}}">
+      <div class=" col-lg-3 col-md-4 col-sm-6 col-xs-12 margin-top _justify-content-center flex-box" routerLink="{{dashBoard.anchorLink}}" title="{{dashBoard.tooltip|translate}}" *ngIf="canAcess.includes(dashBoard.id)">
         <div class=" box iconBox">
           <i class="material-icons folderIcon">
             reorder
