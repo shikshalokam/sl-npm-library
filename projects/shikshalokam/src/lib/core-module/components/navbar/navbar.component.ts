@@ -13,10 +13,9 @@ export class NavbarComponent implements OnInit {
   @Input() dropdownLabel;
   @Input() currentUser: any;
   @Input() logo;
-  @Input() isLoggedIn: boolean=true;
+  @Input() isLoggedIn: boolean;
   @Output() Logout = new EventEmitter();
-  @Output() Login = new EventEmitter();
-
+  
   constructor() {
   }
   ngOnInit() {

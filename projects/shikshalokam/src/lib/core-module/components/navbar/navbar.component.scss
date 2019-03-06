@@ -122,7 +122,7 @@
     // cursor: pointer;
 }
 #whiteIcon{
-    color: #ffffff;
+    color: var(--white-color);
     font-size : 45px;
     line-height: 1;
 }
@@ -176,7 +176,7 @@
     padding-left:40px; 
 }
 .black{
-    color:#4c4c4c;
+    color:var(--grey-color);
 }
 ._primary-btn{
     font-size: 14px;
