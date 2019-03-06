@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { isLContainer } from '@angular/core/src/render3/util';
+import { HighlightDelayBarrier } from 'blocking-proxy/built/lib/highlight_delay_barrier';
 
 @Component({
   selector: 'app-navbar',
@@ -7,22 +9,36 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   showDropdown = false;
-  @Input() dropdownLabel ;
+ 
+  @Input() dropdownLabel;
   @Input() currentUser: any;
-  @Input() logo ;
-  @Output() Logout = new EventEmitter ();
+  @Input() logo;
+  @Input() isLoggedIn: boolean=true;
+  @Output() Logout = new EventEmitter();
+  @Output() Login = new EventEmitter();
+
   constructor() {
   }
   ngOnInit() {
+    console.log(this.isLoggedIn)
   }
   openDropdown() {
+
     this.showDropdown = !this.showDropdown;
+
   }
-  onSignout()
-  {
+  onSignout() {
     this.Logout.emit(true);
   }
+  onLogin() {
+    this.isLoggedIn=!this.isLoggedIn;
+    this.onSignout();
+  
 }
+}
+
+
+
 
 
 
