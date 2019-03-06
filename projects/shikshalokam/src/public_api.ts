@@ -26,3 +26,4 @@ export * from './lib/core-module/components/program-sidenav/program-sidenav.comp
 export * from './lib/core-module/components/responsive-navbar/responsive-navbar.component';
 export * from './lib/core-module/components/sidenav/sidenav.component';
 export * from './lib/core-module/services/global-configuration-service/global-configuration.service';
+export * from './lib/shared-module/components/programs-dashboard/programsDashboard.component'
