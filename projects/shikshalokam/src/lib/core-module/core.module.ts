@@ -16,12 +16,14 @@ import { UtilityService } from './services/utility-service/utility.service';
 import { ApiService } from './services/api-service/api.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from './services/interceptor-service/interceptor.service';
+import { FooterComponent } from './components/footer/footer.component';
 @NgModule({
   declarations: [
     TranslatePipe,
     CamelCasePipe,
     NoValuePipe,
     NavbarComponent,
+    FooterComponent,
     SidenavComponent,
     ResponsiveNavbarComponent,
     ProgramSidenavComponent
@@ -49,6 +51,7 @@ import { ApiInterceptor } from './services/interceptor-service/interceptor.servi
   exports: [
     TranslatePipe,
     NavbarComponent,
+    FooterComponent,
     SidenavComponent,
     ResponsiveNavbarComponent,
     CamelCasePipe,

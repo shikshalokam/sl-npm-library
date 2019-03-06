@@ -20,7 +20,7 @@
 
     <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6 ">
       <span class="right _flex-box alingCenterline">
-        
+
         <div>
           <button mat-icon-button (click)="openDropdown()">
             <i class="material-icons">
@@ -43,47 +43,47 @@
             </div>
           </div>
         </div>
-        <div class="pri-btn" *ngIf="isLoggedIn" >
-            <button mat-raised-button class="_primary-btn"(click)="onLogin()">Login</button>
-          </div>
+        <div class="pri-btn" *ngIf="isLoggedIn">
+          <button mat-raised-button class="_primary-btn" (click)="onLogin()">Login</button>
+        </div>
 
         <span *ngIf="!isLoggedIn" mat-button [matMenuTriggerFor]="menu" class="alingCenterline _cursor-pointer">
-           <i class="material-icons brand dropdownIcon">
-              person
-            </i>
+          <i class="material-icons brand dropdownIcon">
+            person
+          </i>
           <!-- <span class="brand ">{{currentUser?.name}}</span> -->
           <i class="material-icons brand icon">
             keyboard_arrow_down
           </i>
-    </span>
-    <mat-menu #menu="matMenu">
-      <span mat-menu-item class="matmenuIcon">
-        <i class="material-icons">
-          supervised_user_circle
-        </i>
-        <span class="padding">{{currentUser?.email}}</span>
-      </span>
-      <mat-divider></mat-divider>
-      <span mat-menu-item class="matmenuIcon black">
-        <div> <i class="material-icons">
-            done
-          </i></div>
-        <span class="padding">{{currentUser?.name}}</span>
-      </span>
-      <mat-divider></mat-divider>
-      <span mat-menu-item class="padding" (click)="onSignout()">
-        <span class="bigPadding black">
-          {{'menuDropdown.signOut' | translate}}
         </span>
-      </span>
-    </mat-menu>
-    <!-- <div class="right horizontalLine">
+        <mat-menu #menu="matMenu">
+          <span mat-menu-item class="matmenuIcon">
+            <i class="material-icons">
+              supervised_user_circle
+            </i>
+            <span class="padding">{{currentUser?.email}}</span>
+          </span>
+          <mat-divider></mat-divider>
+          <span mat-menu-item class="matmenuIcon black">
+            <div> <i class="material-icons">
+                done
+              </i></div>
+            <span class="padding">{{currentUser?.name}}</span>
+          </span>
+          <mat-divider></mat-divider>
+          <span mat-menu-item class="padding" (click)="onSignout()">
+            <span class="bigPadding black">
+              {{'menuDropdown.signOut' | translate}}
+            </span>
+          </span>
+        </mat-menu>
+        <!-- <div class="right horizontalLine">
         <i class="material-icons brand helpIcon">
           help_outline
         </i>
       </div> -->
-    </span>
+      </span>
 
-</div>
-</nav>
+    </div>
+  </nav>
 </div>
