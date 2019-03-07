@@ -31,6 +31,7 @@ import { GlobalConfigurationService } from './services/global-configuration-serv
   ],
   imports: [
     NgxSpinnerModule,
+    
     CommonModule,
     RouterModule,
     MatButtonModule,
