@@ -43,11 +43,13 @@
             </div>
           </div>
         </div>
-        <div class="pri-btn" *ngIf="isLoggedIn">
+        <!-- <div *ngIf="!isLoggedIn ? '!isLoggedIn':'isLoggedIn'"> -->
+        <div class="pri-btn" *ngIf="!isLoggedIn">
           <button mat-raised-button class="_primary-btn" (click)="onLogin()">Login</button>
         </div>
+      <!-- </div> -->
 
-        <span *ngIf="!isLoggedIn" mat-button [matMenuTriggerFor]="menu" class="alingCenterline _cursor-pointer">
+        <span *ngIf="isLoggedIn" mat-button [matMenuTriggerFor]="menu" class="alingCenterline _cursor-pointer">
           <i class="material-icons brand dropdownIcon">
             person
           </i>

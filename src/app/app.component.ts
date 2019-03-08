@@ -42,7 +42,6 @@ export class AppComponent implements OnInit {
   ] 
 
   constructor(private route : ActivatedRoute,private authService :AuthService ,private translate: TranslateService) {
-    this.isLoggedIn =! this.authService.isLoggedIn;
     translate.use('en').then(() => {
     
     });
@@ -52,8 +51,9 @@ export class AppComponent implements OnInit {
     }
     this.currentUser = this.authService.getCurrentUserDetails();
     console.log(this.isLoggedIn +"islogin");
-   }
-
+    this.isLoggedIn = this.currentUser ? true: false;
+    console.log(this.isLoggedIn)
+  }
   ngOnInit() {
 
   }
