@@ -6,6 +6,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  apps;
+  urlLocation
+
+  @Input() url;
   showDropdown = false;
   @Input() dropdownLabel ;
   @Input() currentUser: any;
@@ -13,8 +17,35 @@ export class NavbarComponent implements OnInit {
   @Output() Logout = new EventEmitter ();
   constructor() {
   }
-  ngOnInit() {
+
+  navigate(url){
+    console.log(url,"url123")
+    if(url)
+    window.open(url, "_blank");
   }
+
+
+  ngOnInit() {
+    if(this.url){
+    this.apps=[
+      {    
+        icon:" assignment_turned_in",
+        tooltip:"Assessments",
+        url:this.url
+      },
+      {    
+        icon:"school",
+        tooltip:"Learning",
+        url:this.url+"/assessments/learning"
+      },
+      {    
+        icon:"dashboard",
+        tooltip:"Programs",
+        url:this.url+"/assessments/programs"
+      }
+    ]
+  }
+}
   openDropdown() {
     this.showDropdown = !this.showDropdown;
   }
@@ -22,6 +53,17 @@ export class NavbarComponent implements OnInit {
   {
     this.Logout.emit(true);
   }
+
+  getClass(name){
+    let currentUrl =window.location.href;
+    if(currentUrl.includes(name.toLowerCase())){
+      return 'active'
+    }else{
+      return 'inactive'
+    }
+  }
+
+  
 }
 
 
