@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'dashboard-blocks',
@@ -6,12 +6,16 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./dashboard-blocks.component.scss']
 })
 export class DashboardBlocksComponent implements OnInit {
- 
+ canAcess = localStorage.getItem('canAcess');
   constructor() { 
   }
   @Input() list: any;
-
+  @Output()sendNavigationLink = new EventEmitter();
    ngOnInit() {
    }
 
+   navigateLink(nav){
+     console.log(nav)
+     this.sendNavigationLink.emit(nav);
+   }
 }

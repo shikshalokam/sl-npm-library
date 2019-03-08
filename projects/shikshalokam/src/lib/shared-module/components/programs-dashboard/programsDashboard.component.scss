@@ -1,0 +1,37 @@
+.noMarginPadding {
+    margin: 0px;
+    padding: 0px;
+}
+.marginTop{
+    margin : 10px 10px;
+}
+.flex-box-justify-content-center{
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+.margin{
+    margin: 20px;
+}
+.iconSize{
+    font-size: 40px !important;
+    color:var(--grey-color);
+}
+.example-header-image {
+    background-size: cover;
+  }
+  ._flex-column{
+      flex-direction: column;
+  }
+.cardHeading{
+    font-size:18px;
+    width : 100%;
+}
+.description{
+    font-size: 15px;
+    color : var(--grey-color);
+    
+}
+
+
+
