@@ -1,4 +1,4 @@
-<div *ngIf="currentUser">
+<div *ngIf="currentUser && url">
 
   <nav class="navbar noMarginPadding ">
 
@@ -8,8 +8,12 @@
       <!-- <mat-card-title class="pageBrand">
         <strong>{{ 'brand' | translate }}</strong>
       </mat-card-title> -->
+
     </div>
 
+
+      <!-- </div> -->
+  
     <!-- <div class="col-sm-4 mod ">
          <mat-card-title style="font-size:18px; color:gray; text-align: center;" >
           Sikhshalocham Samikhsa 
@@ -20,29 +24,30 @@
 
     <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6 ">
       <span class="right _flex-box alingCenterline">
+        <button mat-icon-button (click)="openDropdown()">
+              <i class="material-icons">apps</i>
+        </button>
 
-        <div>
-          <button mat-icon-button (click)="openDropdown()">
-            <i class="material-icons">
-              apps
-            </i>
-          </button></div>
-        <div id="overlay" (click)="openDropdown()" *ngIf="showDropdown">
-          <div class="dropdownDiv">
-            <div class="col-sm-3 dropdownFeature">
-              <div class="verticalCenteralign">
-                <div class="apple">
-                  <i class="material-icons" id="whiteIcon">
-                    create
-                  </i>
-                </div>
-                <div class="active">
-                  {{'menuDropdown.myApps' | translate}}
-                </div>
+            <div id="overlay" (click)="openDropdown()" *ngIf="showDropdown">
+              <div class="dropdownDiv">
+                    <ul class="dropdownFeature">
+                      <li class="verticalCenteralign" *ngFor="let app of apps">
+                        <a (click)="navigate(app.url)">
+                          <div class="apple">
+                           <i class="material-icons" id="whiteIcon">
+                              {{app.icon}}
+                            </i>
+                          </div>
+                          <div [class]="getClass(app.tooltip)">
+                            {{app.tooltip}}
+                          </div>
+                        </a>
+                       </li>
+                </ul>
               </div>
             </div>
-          </div>
-        </div>
+          <!-- </div> -->
+        <!-- </div> -->
         <!-- <div *ngIf="!isLoggedIn ? '!isLoggedIn':'isLoggedIn'"> -->
         <div class="pri-btn" *ngIf="!isLoggedIn">
           <button mat-raised-button class="_primary-btn" (click)="onLogin()">Login</button>
