@@ -11,10 +11,13 @@ export class NavbarComponent implements OnInit {
 
   @Input() url;
   showDropdown = false;
-  @Input() dropdownLabel ;
+ 
+  @Input() dropdownLabel;
   @Input() currentUser: any;
-  @Input() logo ;
-  @Output() Logout = new EventEmitter ();
+  @Input() logo;
+  @Input() isLoggedIn: boolean;
+  @Output() Logout = new EventEmitter();
+  
   constructor() {
   }
 
@@ -47,12 +50,14 @@ export class NavbarComponent implements OnInit {
   }
 }
   openDropdown() {
+
     this.showDropdown = !this.showDropdown;
+
   }
-  onSignout()
-  {
+  onSignout() {
     this.Logout.emit(true);
   }
+
 
   getClass(name){
     let currentUrl =window.location.href;
@@ -64,7 +69,16 @@ export class NavbarComponent implements OnInit {
   }
 
   
+
+  onLogin() {
+    this.isLoggedIn=!this.isLoggedIn;
+    this.onSignout();
+  
 }
+}
+
+
+
 
 
 

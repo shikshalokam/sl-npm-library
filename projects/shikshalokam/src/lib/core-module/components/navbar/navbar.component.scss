@@ -11,6 +11,17 @@
 .logo{
     height: 50px;
 }
+// .mat-raised-button{F
+//     border-radius: inherit;
+//     background-color: #bb292d;
+//     color: white;
+//     text-transform: uppercase;
+//     border: 1px solid #bb292d;
+// }
+// .mat-raised-button:hover{
+//     background-color: #F37121;
+//     border:1px solid #F37121;
+// }
 .apple{
     background-image: linear-gradient(to bottom,#1cdffe 10%,#2462e9 90%);
     height: 80px;
@@ -49,6 +60,7 @@
     display: flex;
     align-items: center;
 }
+
 .line{
     line-height: 12px;
 }
@@ -117,7 +129,7 @@
     // cursor: pointer;
 }
 #whiteIcon{
-    color: white;
+    color: var(--white-color);
     font-size : 45px;
     line-height: 1;
 }
@@ -184,5 +196,13 @@
     padding-left:40px; 
 }
 .black{
-    color:#4c4c4c;
+    color:var(--grey-color);
+}
+._primary-btn{
+    font-size: 14px;
+    padding-bottom: 2px;
+    height:30px;
+    line-height: 0px;
+    margin-bottom: 6px;
+    color: var(--white-color);
 }

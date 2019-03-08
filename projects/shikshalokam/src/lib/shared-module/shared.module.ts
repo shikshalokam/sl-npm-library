@@ -4,7 +4,7 @@ import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.com
 import { TextFieldComponent } from './components/text-field/text-field.component';
 import { DropdownFieldComponent } from './components/dropdown-field/dropdown-field.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule, MatRadioModule, MatDividerModule, MatCheckboxModule } from '@angular/material';
+import { MatInputModule, MatRadioModule, MatDividerModule, MatCheckboxModule, MatCardMdImage, MatCardModule } from '@angular/material';
 import { NumberFieldComponent } from './components/number-field/number-field.component';
 import { TextareaFieldComponent } from './components/textarea-field/textarea-field.component';
 import {MatSelectModule} from '@angular/material/select';
@@ -25,8 +25,10 @@ import { FormArrayFieldComponent } from './components/form-array-field/form-arra
 import { SearchDirective } from './directives/search-directive/search.directive';
 import { DashboardBlocksComponent } from './components/dashboard-blocks/dashboard-blocks.component';
 import { ResourceService } from './services/resource-service/resource.service';
+import { ProgramsDashboardComponent } from './components/programs-dashboard/programsDashboard.component'
+import { from } from 'rxjs';
 @NgModule({
-  declarations: [DynamicFormComponent,DialogBoxComponent, TextFieldComponent, DropdownFieldComponent, NumberFieldComponent, TextareaFieldComponent, BreadcrumbComponent,ParentHeadingComponent, ImageCardComponent, LoaderComponent, SelectFieldComponent, FormArrayFieldComponent, SearchDirective, DashboardBlocksComponent ],
+  declarations: [ProgramsDashboardComponent,DynamicFormComponent,DialogBoxComponent, TextFieldComponent, DropdownFieldComponent, NumberFieldComponent, TextareaFieldComponent, BreadcrumbComponent,ParentHeadingComponent, ImageCardComponent, LoaderComponent, SelectFieldComponent, FormArrayFieldComponent, SearchDirective, DashboardBlocksComponent ],
   imports: [
     CommonModule,
     FormsModule,
@@ -42,10 +44,11 @@ import { ResourceService } from './services/resource-service/resource.service';
     RouterModule,
     CoreModule,
     MatSnackBarModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    MatCardModule
   ],
   entryComponents: [DialogBoxComponent],
-  exports : [DynamicFormComponent,NgxSpinnerModule,BreadcrumbComponent,ParentHeadingComponent, MatSnackBarModule,ImageCardComponent,LoaderComponent,SearchDirective,DashboardBlocksComponent]
+  exports : [DynamicFormComponent,NgxSpinnerModule,BreadcrumbComponent,ParentHeadingComponent, MatSnackBarModule,ImageCardComponent,LoaderComponent,SearchDirective,DashboardBlocksComponent,ProgramsDashboardComponent]
 
 })
 export class SharedModule {

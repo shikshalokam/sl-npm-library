@@ -17,6 +17,7 @@ import { ApiService } from './services/api-service/api.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from './services/interceptor-service/interceptor.service';
 import { FooterComponent } from './components/footer/footer.component';
+import { GlobalConfigurationService } from './services/global-configuration-service/global-configuration.service';
 @NgModule({
   declarations: [
     TranslatePipe,
@@ -30,6 +31,7 @@ import { FooterComponent } from './components/footer/footer.component';
   ],
   imports: [
     NgxSpinnerModule,
+    
     CommonModule,
     RouterModule,
     MatButtonModule,
@@ -64,7 +66,7 @@ export class CoreModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: CoreModule,
-      providers: [TranslateService,UtilityService,ApiService]
+      providers: [TranslateService,UtilityService,ApiService,GlobalConfigurationService]
     };
   }
 }
