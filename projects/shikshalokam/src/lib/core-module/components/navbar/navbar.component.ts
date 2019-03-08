@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { isLContainer } from '@angular/core/src/render3/util';
 import { HighlightDelayBarrier } from 'blocking-proxy/built/lib/highlight_delay_barrier';
 
 @Component({
@@ -60,12 +59,6 @@ export class NavbarComponent implements OnInit {
     this.Logout.emit(true);
   }
 
-  onLogin() {
-    this.isLoggedIn=!this.isLoggedIn;
-    this.onSignout();
-  
-}
-
 
   getClass(name){
     let currentUrl =window.location.href;
@@ -76,6 +69,12 @@ export class NavbarComponent implements OnInit {
     }
   }
   
+
+  onLogin() {
+    this.isLoggedIn=!this.isLoggedIn;
+    this.onSignout();
+  
+}
 }
 
 

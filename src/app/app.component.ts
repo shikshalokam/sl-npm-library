@@ -40,6 +40,7 @@ export class AppComponent implements OnInit {
       ]
       }
   ] 
+<<<<<<< HEAD
 
   constructor(private route : ActivatedRoute,private authService :AuthService ,private translate: TranslateService) {
     translate.use('en').then(() => {
@@ -57,6 +58,25 @@ export class AppComponent implements OnInit {
   ngOnInit() {
 
   }
+=======
+
+  constructor(private route : ActivatedRoute,private authService :AuthService ,private translate: TranslateService) {
+    this.isLoggedIn =! this.authService.isLoggedIn;
+    translate.use('en').then(() => {
+    
+    });
+    if (window.screen.width < 760) { // 768px portrait
+      this.opened = false;
+      this.pushMode = 'push';
+    }
+    this.currentUser = this.authService.getCurrentUserDetails();
+    console.log(this.isLoggedIn +"islogin");
+   }
+
+  ngOnInit() {
+
+  }
+>>>>>>> resolved conficts
    
   onLogout(){
     this.authService.getLogout();
