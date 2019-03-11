@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { HighlightDelayBarrier } from 'blocking-proxy/built/lib/highlight_delay_barrier';
 
 @Component({
   selector: 'app-navbar',
@@ -68,6 +67,7 @@ export class NavbarComponent implements OnInit {
       return 'inactive'
     }
   }
+
   
 
   onLogin() {
