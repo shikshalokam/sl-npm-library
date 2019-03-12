@@ -6,12 +6,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  apps;
-  urlLocation
-
   @Input() url;
   showDropdown = false;
- 
   @Input() dropdownLabel;
   @Input() currentUser: any;
   @Input() logo;
@@ -29,25 +25,7 @@ export class NavbarComponent implements OnInit {
 
 
   ngOnInit() {
-    if(this.url){
-    this.apps=[
-      {    
-        icon:" assignment_turned_in",
-        tooltip:"Assessments",
-        url:this.url
-      },
-      {    
-        icon:"school",
-        tooltip:"Learning",
-        url:this.url+"/assessments/learning"
-      },
-      {    
-        icon:"dashboard",
-        tooltip:"Programs",
-        url:this.url+"/assessments/programs"
-      }
-    ]
-  }
+    
 }
   openDropdown() {
 
@@ -59,21 +37,12 @@ export class NavbarComponent implements OnInit {
   }
 
 
-  getClass(name){
-    let currentUrl =window.location.href;
-    if(currentUrl.includes(name.toLowerCase())){
-      return 'active'
-    }else{
-      return 'inactive'
-    }
-  }
 
   
 
   onLogin() {
     this.isLoggedIn=!this.isLoggedIn;
     this.onSignout();
-  
 }
 }
 

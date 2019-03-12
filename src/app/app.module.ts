@@ -5,13 +5,15 @@ import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule} from '@angular/common/http';
-import { CoreModule ,TranslateService , SharedModule} from '../../dist/shikshalokam';
+// import { CoreModule ,TranslateService , SharedModule} from '../../dist/shikshalokam';
 import { AuthService } from './modules/private-modules/auth-service/auth.service';
 import { MatDividerModule } from '@angular/material/divider';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { JwtModule } from '@auth0/angular-jwt';
 import { MatToolbarModule, MatSidenavModule } from '@angular/material';
+import { CoreModule, TranslateService, SharedModule } from 'projects/shikshalokam/src/public_api';
+
 export function tokenGetter() {
   return localStorage.getItem('access_token');
 }
