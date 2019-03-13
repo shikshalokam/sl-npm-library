@@ -1,6 +1,6 @@
 .dropdownDiv{
-    color: #000;
-    background-color: #fff;
+    color: var(--app-black-color);
+    background-color: var(--white-color);
     position: absolute ;
     width:500px !important;
     height:350px;
@@ -33,7 +33,7 @@
     border-left: 12px solid transparent;
     border-right: 12px solid transparent;
     border-top: 12px solid transparent;
-    border-bottom:12px solid #fff;
+    border-bottom:12px solid var(--white-color);
   }
 
   #overlay {
@@ -73,8 +73,7 @@
 }
 
 .apple{
-    background-image: linear-gradient(to bottom,#1cdffe 10%,#2462e9 90%);
-    // background-color: linear-gradient(to bottom, var(--app-blue-color) 10%, var(--app-darkBlue-color) 90%);
+    background: linear-gradient(to bottom, var(--app-blue-color) 10%, var(--app-darkBlue-color) 90%);
     height: 80px;
     width: 80px;
     border: 1px solid var(--primary-color);
@@ -94,9 +93,9 @@
 .active{
     margin-top:10px;
     border-radius: 12px; 
-    border:1px solid  #46a9ff; 
+    border:1px solid  var(--primary-color); 
     padding:0px 8px; 
-    background-color: #e5f2fe; 
+    background-color: var(--button-background-color); 
     width : fit-content;
     white-space: nowrap;
     font-size:11px;
@@ -105,21 +104,8 @@
 }
 
 .inactive{
-    color: black;
+    color: var(--darkBlack-color);
     text-align: center;
     padding-top: 10px;
     font-size: 12px;
 }
-
-
-// 
-
-// .alingCenterline{
-//     display:flex; 
-//     align-items:center;
-// }
-
-// .right{
-//     display: flex;
-//     justify-content: flex-end;
-// }

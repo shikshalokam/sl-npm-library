@@ -13,12 +13,10 @@ export class ResponsiveNavbarComponent implements OnInit {
   @Input() logo ;
   @Output() Logout = new EventEmitter ();
   @Input() url;
-  // apps;
   constructor() {
   }
   ngOnInit() {
     this.openSideNav();
-    console.log(this.url, "url in resposive navbar")
   }
   onSignout(){
     this.Logout.emit(true);
@@ -28,14 +26,9 @@ export class ResponsiveNavbarComponent implements OnInit {
   }
 
   openDropdown() {
-    console.log("dropdown click");
-
     this.showDropdown = !this.showDropdown;
-
   }
   navigate(url){
-    console.log(url,"url123")
-    if(url)
     window.open(url, "_blank");
   }
  

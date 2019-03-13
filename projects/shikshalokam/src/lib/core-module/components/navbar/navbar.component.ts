@@ -17,33 +17,20 @@ export class NavbarComponent implements OnInit {
   constructor() {
   }
 
-  navigate(url){
-    console.log(url,"url123")
-    if(url)
-    window.open(url, "_blank");
-  }
-
 
   ngOnInit() {
     
-}
+  }
   openDropdown() {
-
     this.showDropdown = !this.showDropdown;
-
   }
   onSignout() {
     this.Logout.emit(true);
   }
-
-
-
-  
-
   onLogin() {
     this.isLoggedIn=!this.isLoggedIn;
     this.onSignout();
-}
+   }
 }
 
 

@@ -30,68 +30,7 @@ export class AppContainerComponent implements OnInit{
               icon:"dashboard",
               tooltip:"Programs",
               url:this.url+"/assessments/programs"
-            },
-            {    
-              icon:" assignment_turned_in",
-              tooltip:"Assessments",
-              url:this.url
-            },
-            {    
-              icon:"school",
-              tooltip:"Learning",
-              url:this.url+"/assessments/learning"
-            },
-            {    
-              icon:"dashboard",
-              tooltip:"Programs",
-              url:this.url+"/assessments/programs"
-            },
-            {    
-              icon:" assignment_turned_in",
-              tooltip:"Assessments",
-              url:this.url
-            },
-            {    
-              icon:"school",
-              tooltip:"Learning",
-              url:this.url+"/assessments/learning"
-            },
-            {    
-              icon:"dashboard",
-              tooltip:"Programs",
-              url:this.url+"/assessments/programs"
-            },
-            {    
-              icon:" assignment_turned_in",
-              tooltip:"Assessments",
-              url:this.url
-            },
-            {    
-              icon:"school",
-              tooltip:"Learning",
-              url:this.url+"/assessments/learning"
-            },
-            {    
-              icon:"dashboard",
-              tooltip:"Programs",
-              url:this.url+"/assessments/programs"
-            },
-            {    
-              icon:" assignment_turned_in",
-              tooltip:"Assessments",
-              url:this.url
-            },
-            {    
-              icon:"school",
-              tooltip:"Learning",
-              url:this.url+"/assessments/learning"
-            },
-            {    
-              icon:"dashboard",
-              tooltip:"Programs",
-              url:this.url+"/assessments/programs"
             }
-            
           ]
     }
 
@@ -100,8 +39,6 @@ export class AppContainerComponent implements OnInit{
       }
 
       navigate(url){
-        console.log(url,"url123")
-        if(url)
         window.open(url, "_blank");
       }
       
