@@ -1,4 +1,4 @@
-export * from './lib/shared-module/components/breadcrumb/breadcrumb.component';
+export * from './lib/shared-module/components/breadcrumb/breadcrumbs.component';
 export * from './lib/shared-module/components/dashboard-blocks/dashboard-blocks.component';
 export * from './lib/shared-module/components/dialog-box/dialog-box.component';
 export * from './lib/shared-module/components/dropdown-field/dropdown-field.component';
@@ -28,4 +28,5 @@ export * from './lib/core-module/components/responsive-navbar/responsive-navbar.
 export * from './lib/core-module/components/sidenav/sidenav.component';
 export * from './lib/core-module/services/global-configuration-service/global-configuration.service';
 export * from './lib/shared-module/components/programs-dashboard/programsDashboard.component';
-export * from './lib/core-module/pipes/min-character-pipe/min-character.pipe'
+export * from './lib/core-module/pipes/min-character-pipe/min-character.pipe';
+export * from './lib/shared-module/services/breadcrumb-service/breadcrumbs.service';

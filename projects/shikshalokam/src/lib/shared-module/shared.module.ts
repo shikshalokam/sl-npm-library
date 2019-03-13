@@ -8,7 +8,6 @@ import { MatInputModule, MatRadioModule, MatDividerModule, MatCheckboxModule, Ma
 import { NumberFieldComponent } from './components/number-field/number-field.component';
 import { TextareaFieldComponent } from './components/textarea-field/textarea-field.component';
 import {MatSelectModule} from '@angular/material/select';
-import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { RouterModule } from '@angular/router';
 import { ParentHeadingComponent } from './components/parent-heading/parent-heading.component';
 import { CoreModule } from '../core-module/core.module';
@@ -27,8 +26,26 @@ import { DashboardBlocksComponent } from './components/dashboard-blocks/dashboar
 import { ResourceService } from './services/resource-service/resource.service';
 import { ProgramsDashboardComponent } from './components/programs-dashboard/programsDashboard.component'
 import { from } from 'rxjs';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumbs.component';
+import { BreadcrumbsService } from './services/breadcrumb-service/breadcrumbs.service';
 @NgModule({
-  declarations: [ProgramsDashboardComponent,DynamicFormComponent,DialogBoxComponent, TextFieldComponent, DropdownFieldComponent, NumberFieldComponent, TextareaFieldComponent, BreadcrumbComponent,ParentHeadingComponent, ImageCardComponent, LoaderComponent, SelectFieldComponent, FormArrayFieldComponent, SearchDirective, DashboardBlocksComponent ],
+  declarations: [
+    ProgramsDashboardComponent,
+    DynamicFormComponent,
+    DialogBoxComponent,
+    TextFieldComponent, 
+    DropdownFieldComponent, 
+    NumberFieldComponent, 
+    TextareaFieldComponent,
+    ParentHeadingComponent, 
+    ImageCardComponent, 
+    LoaderComponent, 
+    SelectFieldComponent, 
+    FormArrayFieldComponent, 
+    SearchDirective, 
+    DashboardBlocksComponent,
+    BreadcrumbComponent
+   ],
   imports: [
     CommonModule,
     FormsModule,
@@ -49,14 +66,25 @@ import { from } from 'rxjs';
     MatTooltipModule
   ],
   entryComponents: [DialogBoxComponent],
-  exports : [DynamicFormComponent,NgxSpinnerModule,BreadcrumbComponent,ParentHeadingComponent, MatSnackBarModule,ImageCardComponent,LoaderComponent,SearchDirective,DashboardBlocksComponent,ProgramsDashboardComponent]
+  exports : [
+    DynamicFormComponent,
+    NgxSpinnerModule,
+    ParentHeadingComponent, 
+    MatSnackBarModule,
+    ImageCardComponent,
+    LoaderComponent,
+    SearchDirective,
+    DashboardBlocksComponent,
+    ProgramsDashboardComponent,
+    BreadcrumbComponent
+  ]
 
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [ResourceService]
+      providers: [ResourceService,BreadcrumbsService]
     };
   }
  }
