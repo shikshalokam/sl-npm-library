@@ -22,17 +22,7 @@
 //     background-color: #F37121;
 //     border:1px solid #F37121;
 // }
-.apple{
-    background-image: linear-gradient(to bottom,#1cdffe 10%,#2462e9 90%);
-    height: 80px;
-    width: 80px;
-    border: 1px solid var(--primary-color);
-    border-radius: 15px;
-    padding: 10px;
-    display:  flex;
-    align-items: center;
-    justify-content: center;
-}
+
 
 .horizontalLine{
     position: relative;
@@ -64,50 +54,11 @@
 .line{
     line-height: 12px;
 }
-.navicon{
-    font-size: 80px; 
-    color:linear-gradient(to bottom,from var(--primary-color)  100%, to var(--blue-gradient) 100%);
-}
-.dropdownDiv{
-    // cursor: pointer;
-    color: #000;
-    background-color: #fff;
-    position: absolute ;
-    min-width: 500px;
-    height:350px;
-    right: 8px;
-    top:35px;
-    z-index:105;
-    border-radius: 2px;
-    box-shadow: 0px 0px 3px 3px  rgba(0,0,0,0.08);
-    margin:20px;
-    padding: 20px 0px;
-}
 
-  .dropdownDiv:before {
-    content: "";
-    position: absolute;
-    top: -27px;  
-    right: 60px;
-    border-left: 13px solid transparent;
-    border-right: 13px solid transparent;
-    border-top: 13px solid transparent;
-    border-bottom: 13px solid rgba(0,0,0,0.08);
-  }
-  .dropdownDiv:after {
-    content: "";
-    position: absolute;
-    top: -24px;
-    right: 60px;
-    border-left: 12px solid transparent;
-    border-right: 12px solid transparent;
-    border-top: 12px solid transparent;
-    border-bottom:12px solid #fff;
-  }
+
+
   
-.dropdownFeature{
-    padding: 20px;
-}
+
 #overlay {
     position: fixed;
     display: hidden;
@@ -121,18 +72,7 @@
     z-index: 101;
     // cursor: pointer;
 }
-#whiteIcon{
-    color: var(--white-color);
-    font-size : 45px;
-    line-height: 1;
-}
 
-.verticalCenteralign{
-    display:flex; 
-    flex-direction :column;
-    align-items: center;
-    cursor: pointer;
-}
 .pageBrand{
     font-size :18px;
     padding: 0px 10px;
@@ -150,16 +90,7 @@
     top:1px;
     line-height:2;
 }
-.active{
-    margin-top:10px;
-    border-radius: 12px; 
-    border:1px solid  #46a9ff; 
-    padding:5px 10px; 
-    background-color: #e5f2fe; 
-    width : fit-content;;
-    white-space: nowrap;
-    font-size:11px;
-}
+
 .right{
     display: flex;
     justify-content: flex-end;

@@ -18,6 +18,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from './services/interceptor-service/interceptor.service';
 import { FooterComponent } from './components/footer/footer.component';
 import { GlobalConfigurationService } from './services/global-configuration-service/global-configuration.service';
+import { AppContainerComponent } from './components/app-container/app-container.component';
 @NgModule({
   declarations: [
     TranslatePipe,
@@ -25,6 +26,7 @@ import { GlobalConfigurationService } from './services/global-configuration-serv
     NoValuePipe,
     NavbarComponent,
     FooterComponent,
+    AppContainerComponent,
     SidenavComponent,
     ResponsiveNavbarComponent,
     ProgramSidenavComponent
@@ -54,6 +56,7 @@ import { GlobalConfigurationService } from './services/global-configuration-serv
     TranslatePipe,
     NavbarComponent,
     FooterComponent,
+    AppContainerComponent,
     SidenavComponent,
     ResponsiveNavbarComponent,
     CamelCasePipe,
