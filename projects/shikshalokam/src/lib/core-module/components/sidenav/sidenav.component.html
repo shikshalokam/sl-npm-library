@@ -10,10 +10,8 @@
   
           
 <span *ngFor="let option of link?.options"  >
-  <!-- <div [routerLink]="[option.anchorLink ]"  routerLinkActive="active" class="subHeading" *ngIf="permissionAssignedRole.includes(option.id)">
-     -->
-  <div [routerLink]="[option.anchorLink ]"  routerLinkActive="active" class="subHeading">
-
+  <div [routerLink]="[option.anchorLink ]"  routerLinkActive="active" class="subHeading" *ngIf="permissionAssignedRole.includes(option.id)">
+  <!-- <div [routerLink]="[option.anchorLink ]"  routerLinkActive="active" class="subHeading"> -->
     <span class="sideNavSubheading"> 
         {{ option.value | translate }}
       </span>

@@ -43,12 +43,19 @@ export class AppContainerComponent implements OnInit{
       }
       
       getClass(name){
-        let currentUrl =window.location.href;
-        if(currentUrl.includes(name.toLowerCase())){
+        // let currentUrl =window.location.href;
+        // if(currentUrl.includes(name.toLowerCase())){
+        //   return 'active'
+        // }else{
+        //   return 'inactive'
+        // }
+        
+        if(name == localStorage.getItem("portalName")){
           return 'active'
         }else{
           return 'inactive'
         }
+        
       }
 
 }
