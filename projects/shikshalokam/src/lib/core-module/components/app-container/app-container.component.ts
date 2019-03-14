@@ -9,6 +9,7 @@ import { Component, OnInit, Input } from "@angular/core";
 export class AppContainerComponent implements OnInit{
     showDropdown = false;
     @Input() url;
+    @Input() portal;
     apps;
 
     constructor(){
@@ -42,15 +43,7 @@ export class AppContainerComponent implements OnInit{
         window.open(url, "_blank");
       }
       
-      getClass(name){
-        let currentUrl =window.location.href;
-        if(currentUrl.includes(name.toLowerCase())){
-          return 'active'
-        }else{
-          return 'inactive'
-        }
-      }
-
+    
 }
 
 

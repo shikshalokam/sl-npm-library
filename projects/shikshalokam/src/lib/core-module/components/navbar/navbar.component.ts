@@ -13,13 +13,13 @@ export class NavbarComponent implements OnInit {
   @Input() logo;
   @Input() isLoggedIn: boolean;
   @Output() Logout = new EventEmitter();
+  @Input() portal;
   
   constructor() {
   }
 
 
   ngOnInit() {
-    
   }
   openDropdown() {
     this.showDropdown = !this.showDropdown;

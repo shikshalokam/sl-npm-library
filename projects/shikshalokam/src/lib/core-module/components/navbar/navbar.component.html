@@ -1,5 +1,4 @@
-<div >
-
+<div *ngIf="currentUser && url">
   <nav class="navbar noMarginPadding ">
 
     <div class="col-sm-6  col-md-6 col-xs-6 col-lg-6 alingCenterline noMarginPadding">
@@ -28,7 +27,7 @@
         </button>
 
         <div id="overlay" (click)="openDropdown()" *ngIf="showDropdown">
-          <app-container [url]="url"></app-container>
+          <app-container [url]="url" [portal]="portal"></app-container>
         </div>
 
 

@@ -1,20 +1,19 @@
-        
-        <div class="dropdownDiv">
-          <ul class="dropdownFeature">
-            <li class="verticalCenteralign" *ngFor="let app of apps">
-              <a (click)="navigate(app.url)">
-                <div class="apple">
-                  <i class="material-icons" id="whiteIcon">
-                    {{app.icon}}
-                  </i>
-                </div>
-                <div class="title">
-                <div [class]="getClass(app.tooltip)">
-                  {{app.tooltip}}
-                </div>
-              </div>
-              </a>
-            </li>
-          </ul>
+<div class="dropdownDiv">
+  <ul class="dropdownFeature">
+    <li class="verticalCenteralign" *ngFor="let app of apps">
+      <a (click)="navigate(app.url)">
+        <div class="apple">
+          <i class="material-icons" id="whiteIcon">
+            {{app.icon}}
+          </i>
         </div>
+        <div class="title">
+        <div [ngClass]="{'active':app.tooltip==portal, 'inactive':app.tooltip!==portal}">
+          {{app.tooltip}}
+        </div>
+      </div>
+      </a>
+    </li>
+  </ul>
+</div>
 
