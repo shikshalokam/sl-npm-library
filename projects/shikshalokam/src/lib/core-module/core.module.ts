@@ -19,10 +19,12 @@ import { ApiInterceptor } from './services/interceptor-service/interceptor.servi
 import { FooterComponent } from './components/footer/footer.component';
 import { GlobalConfigurationService } from './services/global-configuration-service/global-configuration.service';
 import { AppContainerComponent } from './components/app-container/app-container.component';
+import { MinCharacterPipe } from './pipes/min-character-pipe/min-character.pipe';
 @NgModule({
   declarations: [
     TranslatePipe,
     CamelCasePipe,
+    MinCharacterPipe,
     NoValuePipe,
     NavbarComponent,
     FooterComponent,
@@ -63,6 +65,7 @@ import { AppContainerComponent } from './components/app-container/app-container.
     NoValuePipe,
     ProgramSidenavComponent,
     CommonModule,
+    MinCharacterPipe
   ]
 })
 export class CoreModule {

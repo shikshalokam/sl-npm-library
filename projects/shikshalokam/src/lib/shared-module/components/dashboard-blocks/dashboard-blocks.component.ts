@@ -15,7 +15,6 @@ export class DashboardBlocksComponent implements OnInit {
    }
 
    navigateLink(nav){
-     console.log(nav)
      this.sendNavigationLink.emit(nav);
    }
 }
