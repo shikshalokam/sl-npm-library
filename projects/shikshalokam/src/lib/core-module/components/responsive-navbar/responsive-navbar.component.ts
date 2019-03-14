@@ -13,6 +13,8 @@ export class ResponsiveNavbarComponent implements OnInit {
   @Input() logo ;
   @Output() Logout = new EventEmitter ();
   @Input() url;
+  @Input() portal;
+
   constructor() {
   }
   ngOnInit() {
