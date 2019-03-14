@@ -31,6 +31,10 @@ export class AppContainerComponent implements OnInit{
               icon:"dashboard",
               tooltip:"Programs",
               url:this.url+"/programs"
+            },
+            {    
+              icon:"work_outline",
+              tooltip:"Workshop",
             }
           ]
     }

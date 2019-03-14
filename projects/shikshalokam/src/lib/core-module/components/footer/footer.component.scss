@@ -9,7 +9,7 @@
         margin:0px;
         padding:0px;
         display:flex;
-        font-size:12px;
+        // font-size:12px;
         justify-content: center;
         li{
             display:inline-block;
@@ -19,4 +19,7 @@
             }
         }
     }
+}
+.footerName{
+    font-size:12px;
 }

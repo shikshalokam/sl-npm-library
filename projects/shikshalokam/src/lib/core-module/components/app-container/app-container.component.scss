@@ -62,7 +62,7 @@
     align-items: center;
     cursor: pointer;
     padding:0px 30px 20px 30px;
-    a{
+    .appName{
         text-decoration: none;
     }
 }
@@ -108,4 +108,5 @@
 .title{
     height:20px;
     line-height: 20px;
+    width:80px;
 }
