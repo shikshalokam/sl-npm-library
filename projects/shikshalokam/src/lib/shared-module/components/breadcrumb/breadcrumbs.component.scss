@@ -12,22 +12,22 @@
     
     padding : 0 5px;
 }
-ol{
+.orderedList{
     padding: 0;
     list-style: none;
     margin: 0;
 }
-li {
+.breadcrumbList{
    
     color : var(--dark-blue-color);
-    a {
+    breadcrumbLink {
         color : var(--dark-blue-color);
         text-decoration: none;
         font-size: 18px;
     }
     
      
-      a:hover   {
+      breadcrumbLink:hover   {
         text-decoration:  none;
         font-weight:      bold;
         } 
