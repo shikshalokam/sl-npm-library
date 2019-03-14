@@ -29,6 +29,7 @@ export class BreadcrumbComponent implements OnInit {
     breadcrumbService.get().subscribe((breadcrumbs: IBreadcrumb[]) => {
       this.breadcrumbs = breadcrumbs as IBreadcrumb[];
     });
+
   }
 
   public hasParams(breadcrumb: IBreadcrumb) {
@@ -78,7 +79,7 @@ export class BreadcrumbComponent implements OnInit {
           } else if (route.snapshot.data.hasOwnProperty(this.ROUTE_DATA_BREADCRUMB)) {
             breadCrumbLabel = route.snapshot.data[this.ROUTE_DATA_BREADCRUMB];
           }
-          let routeURL: string = route.snapshot.url.map(segment => segment.path).join(">");
+          let routeURL: string = route.snapshot.url.map(segment => segment.path).join("/");
           url += `/${routeURL}`;
           if (routeURL.length === 0) {
             route.snapshot.params = {};
