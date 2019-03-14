@@ -10,9 +10,7 @@ export class ProgramsDashboardComponent implements OnInit {
 @Output() emitCurrentProgram = new EventEmitter ();
     constructor(){}
     ngOnInit() {
-      
     }
-    
     programClick(currentProgram){
       this.emitCurrentProgram.emit(currentProgram);
     }
