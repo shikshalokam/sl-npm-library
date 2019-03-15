@@ -49,11 +49,10 @@
 .dropdownFeature{
     padding: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     flex-wrap: wrap;
     width:483px;
     list-style: none;
-
 }
 
 .verticalCenteralign{
@@ -96,6 +95,9 @@
     font-size:11px;
     width:100%;
     text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;    
 }
 
 .inactive{
@@ -103,10 +105,13 @@
     text-align: center;
     padding-top: 10px;
     font-size: 12px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .title{
     height:20px;
     line-height: 20px;
-    width:80px;
+    width:80px;   
 }
