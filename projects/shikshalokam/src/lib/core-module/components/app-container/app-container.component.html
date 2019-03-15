@@ -7,7 +7,7 @@
             {{app.icon}}
           </i>
         </div>
-        <div class="title">
+        <div class="title" matTooltip={{app.tooltip}}>
         <div [ngClass]="{'active':app.tooltip==portal, 'inactive':app.tooltip!==portal}">
           {{app.tooltip}}
         </div>
