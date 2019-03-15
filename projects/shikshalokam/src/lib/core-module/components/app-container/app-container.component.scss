@@ -12,7 +12,6 @@
     margin:20px;
     padding: 20px 0px;
     overflow-y: auto;
-
 }
 
   .dropdownDiv:before {
@@ -20,7 +19,10 @@
     position: absolute;
     top: -27px;  
     right: 60px;
-    border: 13px 13px 0 13px solid transparent;
+    // border: 13px 13px 0 13px solid transparent;
+    border-left:13px solid transparent;
+    border-right:13px solid transparent;
+    border-top:13px solid transparent;
     border-bottom: 13px solid rgba(0,0,0,0.08);
   }
   .dropdownDiv:after {
@@ -28,8 +30,12 @@
     position: absolute;
     top: -24px;
     right: 60px;
-    border: 13px 13px 0 13px solid transparent;
+    // border: 12px 12px 0 12px solid transparent;
+    border-left:12px solid transparent;
+    border-right:12px solid transparent;
+    border-top:12px solid transparent;
     border-bottom:12px solid var(--white-color);
+
   }
 
   #overlay {
@@ -41,7 +47,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: transperent;
+    background-color: transparent;
     z-index: 101;
     // cursor: pointer;
 }

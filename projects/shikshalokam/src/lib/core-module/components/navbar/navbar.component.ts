@@ -21,6 +21,10 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
   }
+  homePage(url){
+    window.open(url, "_self");
+  }
+
   openDropdown() {
     this.showDropdown = !this.showDropdown;
   }
