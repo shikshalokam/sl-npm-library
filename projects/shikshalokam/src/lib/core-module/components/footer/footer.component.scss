@@ -1,6 +1,6 @@
 .footer{
     height:30px;
-    border-top:1px solid var(--light-grey-color);
+    // border-top:1px solid var(--light-grey-color);
     background-color: var(--white-color);
     width:100%;
     line-height: 30px;
@@ -11,6 +11,7 @@
         display:flex;
         // font-size:12px;
         justify-content: center;
+        border-top:1px solid var(--light-grey-color);
         li{
             display:inline-block;
             margin:5px;
