@@ -13,7 +13,9 @@
   <div [routerLink]="[option.anchorLink ]"  routerLinkActive="active" class="subHeading" *ngIf="permissionAssignedRole.includes(option.id)">
   <!-- <div [routerLink]="[option.anchorLink ]"  routerLinkActive="active" class="subHeading"> -->
     <span class="sideNavSubheading"> 
-        {{ option.value | translate }}
+      <i class="material-icons">
+        {{option.icon}}
+        </i> {{ option.value | translate }}
       </span>
   </div>
 </span>
