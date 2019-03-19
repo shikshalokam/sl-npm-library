@@ -78,7 +78,8 @@ import { BreadcrumbsService } from './services/breadcrumb-service/breadcrumbs.se
     DashboardBlocksComponent,
     ProgramsDashboardComponent,
     BreadcrumbComponent,
-    PaginationComponent
+    PaginationComponent,
+    MatTooltipModule
   ]
 
 })

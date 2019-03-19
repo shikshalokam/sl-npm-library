@@ -1,21 +1,25 @@
 <div class="_flex-box  _flex-end" *ngIf="paginationFlag">
 
-    <div >
-        <!-- <mat-form-field  >
-            <mat-select formControlName="pageLimit" >
-                      <mat-option *ngFor="let items of itemsPerPage" value="{{items}}" >{{items}}</mat-option>
-            </mat-select>
-        </mat-form-field> -->
-    <app-dropdown-field [genericData]="data" [genericForm]="pageSize" (emitResponseType) ="setPageLimit($event)"></app-dropdown-field>
+    <div [formGroup]="pageSize" class="_flex-box">
+
+        <span class="label">Items per page :</span>
+        <mat-form-field class="width" *ngIf="data.input == 'dropdown'">
+          <mat-select [disabled]="!data.editable" placeholder="{{data.label}}" formControlName="{{data.field}}" required >
+              <mat-option *ngFor="let opt of data.options" [value]="opt.value" (click)="setPageLimit(opt.value)" >
+                {{opt.label}}
+              </mat-option>
+          </mat-select>
+        </mat-form-field>
+    <!-- <app-dropdown-field [genericData]="data" [genericForm]="pageSize" (emitResponseType) ="setPageLimit($event)"></app-dropdown-field> -->
                   
     </div>
     <div>
-        <button mat-icon-button (click)="page('first')" [disabled]="pagination.currentPageIndex === 0">
+        <button mat-icon-button (click)="page('first')" [disabled]="pagination.pageIndex === 0" matTooltip="First Page">
             <i class="material-icons">
                 first_page
             </i>
         </button>
-        <button mat-icon-button (click)="page('back')" [disabled]="pagination.currentPageIndex === 0">
+        <button mat-icon-button (click)="page('back')" [disabled]="pagination.pageIndex === 0" matTooltip="Previous Page">
             <i class="material-icons">
                 keyboard_arrow_left
             </i>
@@ -23,15 +27,15 @@
 
     </div>
     <div>
-        label
+        {{label}}
     </div>
     <div>
-        <button mat-icon-button (click)="page('next')" [disabled]="pagination.currentPageIndex === last">
+        <button mat-icon-button (click)="page('next')" [disabled]="pagination.pageIndex === last" matTooltip="Next Page">
             <i class="material-icons">
                 keyboard_arrow_right
             </i>
         </button>
-        <button mat-icon-button (click)="page('last')" [disabled]="pagination.currentPageIndex === last">
+        <button mat-icon-button (click)="page('last')" [disabled]="pagination.pageIndex === last" matTooltip="Last Page">
             <i class="material-icons">
                 last_page
             </i>
