@@ -20,14 +20,14 @@
 .breadcrumbList{
    
     color : var(--dark-blue-color);
-    breadcrumbLink {
+    .breadcrumbLink {
         color : var(--dark-blue-color);
         text-decoration: none;
         font-size: 18px;
     }
     
      
-      breadcrumbLink:hover   {
+      .breadcrumbLink:hover   {
         text-decoration:  none;
         font-weight:      bold;
         } 

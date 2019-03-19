@@ -1,0 +1,41 @@
+<div class="_flex-box  _flex-end" *ngIf="paginationFlag">
+
+    <div >
+        <!-- <mat-form-field  >
+            <mat-select formControlName="pageLimit" >
+                      <mat-option *ngFor="let items of itemsPerPage" value="{{items}}" >{{items}}</mat-option>
+            </mat-select>
+        </mat-form-field> -->
+    <app-dropdown-field [genericData]="data" [genericForm]="pageSize" (emitResponseType) ="setPageLimit($event)"></app-dropdown-field>
+                  
+    </div>
+    <div>
+        <button mat-icon-button (click)="page('first')" [disabled]="pagination.currentPageIndex === 0">
+            <i class="material-icons">
+                first_page
+            </i>
+        </button>
+        <button mat-icon-button (click)="page('back')" [disabled]="pagination.currentPageIndex === 0">
+            <i class="material-icons">
+                keyboard_arrow_left
+            </i>
+        </button>
+
+    </div>
+    <div>
+        label
+    </div>
+    <div>
+        <button mat-icon-button (click)="page('next')" [disabled]="pagination.currentPageIndex === last">
+            <i class="material-icons">
+                keyboard_arrow_right
+            </i>
+        </button>
+        <button mat-icon-button (click)="page('last')" [disabled]="pagination.currentPageIndex === last">
+            <i class="material-icons">
+                last_page
+            </i>
+        </button>
+
+    </div>
+</div>

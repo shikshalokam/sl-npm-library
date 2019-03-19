@@ -30,3 +30,4 @@ export * from './lib/core-module/services/global-configuration-service/global-co
 export * from './lib/shared-module/components/programs-dashboard/programsDashboard.component';
 export * from './lib/core-module/pipes/min-character-pipe/min-character.pipe';
 export * from './lib/shared-module/services/breadcrumb-service/breadcrumbs.service';
+export * from './lib/shared-module/components/pagination/pagination.component';
