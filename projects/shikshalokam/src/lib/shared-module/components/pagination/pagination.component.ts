@@ -64,24 +64,46 @@ export class PaginationComponent implements OnInit {
   }
 
   page(event) {
-    if (event === 'back') {
-      this.pagination.previousPageIndex = this.pagination.pageIndex;
-      this.pagination.pageIndex -= 1;
-    }
-    else if (event === 'next') {
-      this.pagination.previousPageIndex = this.pagination.pageIndex;
+    switch(event){
+      case 'back':{
+        this.pagination.previousPageIndex = this.pagination.pageIndex;
+        this.pagination.pageIndex -= 1;
+        break;
+      }
+      case 'next':{
+        this.pagination.previousPageIndex = this.pagination.pageIndex;
       this.pagination.pageIndex += 1;
-    }
-    else if (event === 'first') {
-      this.pagination.previousPageIndex = 0;
-      this.pagination.pageIndex = 0;
-    }
-    else if (event === 'last') {
-      this.pagination.previousPageIndex = this.last;
+      break;
+      }
+      case 'first':{
+        this.pagination.previousPageIndex = 0;
+        this.pagination.pageIndex = 0;
+        break;
+      }
+      case 'last':{
+        this.pagination.previousPageIndex = this.last;
       this.pagination.pageIndex = this.pagination.previousPageIndex;
+      break;
+      }
     }
+    // if (event === 'back') {
+    //   this.pagination.previousPageIndex = this.pagination.pageIndex;
+    //   this.pagination.pageIndex -= 1;
+    // }
+    // else if (event === 'next') {
+    //   this.pagination.previousPageIndex = this.pagination.pageIndex;
+    //   this.pagination.pageIndex += 1;
+    // }
+    // else if (event === 'first') {
+    //   this.pagination.previousPageIndex = 0;
+    //   this.pagination.pageIndex = 0;
+    // }
+    // else if (event === 'last') {
+    //   this.pagination.previousPageIndex = this.last;
+    //   this.pagination.pageIndex = this.pagination.previousPageIndex;
+    // }
     this.startList = ( this.pagination.pageIndex )* this.pagination.pageLimit + 1;
-    if(this.length - this.startList === this.pagination.pageLimit)
+    if(this.length - this.startList > this.pagination.pageLimit)
          this.endList = this.startList + this.pagination.pageLimit -1;
     else {
       this.endList = this.startList + (this.length - this.startList );
