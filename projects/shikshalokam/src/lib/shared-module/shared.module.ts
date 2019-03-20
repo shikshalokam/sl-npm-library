@@ -25,7 +25,7 @@ import { SearchDirective } from './directives/search-directive/search.directive'
 import { DashboardBlocksComponent } from './components/dashboard-blocks/dashboard-blocks.component';
 import { ResourceService } from './services/resource-service/resource.service';
 import { ProgramsDashboardComponent } from './components/programs-dashboard/programsDashboard.component'
-import { from } from 'rxjs';
+import { PaginationComponent } from './components/pagination/pagination.component'
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumbs.component';
 import { BreadcrumbsService } from './services/breadcrumb-service/breadcrumbs.service';
 @NgModule({
@@ -44,7 +44,8 @@ import { BreadcrumbsService } from './services/breadcrumb-service/breadcrumbs.se
     FormArrayFieldComponent, 
     SearchDirective, 
     DashboardBlocksComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    PaginationComponent
    ],
   imports: [
     CommonModule,
@@ -76,7 +77,9 @@ import { BreadcrumbsService } from './services/breadcrumb-service/breadcrumbs.se
     SearchDirective,
     DashboardBlocksComponent,
     ProgramsDashboardComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    PaginationComponent,
+    MatTooltipModule
   ]
 
 })
