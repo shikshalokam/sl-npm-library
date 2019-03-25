@@ -27,7 +27,7 @@ export class SearchDirective implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  @HostListener('click', ['$event'])
+  @HostListener('keyup', ['$event'])
   clickEvent(event) {
     event.preventDefault();
     event.stopPropagation();
