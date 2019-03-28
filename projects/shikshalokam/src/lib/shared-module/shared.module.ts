@@ -30,6 +30,7 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumbs.compone
 import { BreadcrumbsService } from './services/breadcrumb-service/breadcrumbs.service';
 import { DatePickerComponent } from './components/date-picker/date-picker.component';
 import { AutoCompeteComponent } from './components/auto-complete/auto-complete.component';
+import { IndividualLoaderComponent } from './components/individual-loader/individual-loader.component';
 @NgModule({
   declarations: [
     ProgramsDashboardComponent,
@@ -45,6 +46,7 @@ import { AutoCompeteComponent } from './components/auto-complete/auto-complete.c
     SelectFieldComponent, 
     FormArrayFieldComponent, 
     SearchDirective, 
+    IndividualLoaderComponent,
     DashboardBlocksComponent,
     BreadcrumbComponent,
     PaginationComponent,
@@ -83,6 +85,7 @@ import { AutoCompeteComponent } from './components/auto-complete/auto-complete.c
     LoaderComponent,
     SearchDirective,
     DashboardBlocksComponent,
+    IndividualLoaderComponent,
     ProgramsDashboardComponent,
     BreadcrumbComponent,
     PaginationComponent,
