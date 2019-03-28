@@ -11,8 +11,8 @@ export class PaginationComponent implements OnInit {
   @Input() length;
   @Input() paginationLabel;
   @Input() itemsPerPage;
-  @Input() pageLimit;
-  @Input() pageIndex;
+  @Input() pageLimit = 10;
+  @Input() pageIndex = 0;
   pagination;
   last;
   selected;

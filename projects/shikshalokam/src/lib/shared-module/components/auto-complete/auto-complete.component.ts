@@ -39,16 +39,7 @@ export class AutoCompeteComponent implements OnInit {
       this.autoCompleteData = [];
     });
   }
-  displayFn(user?): string | undefined {
-    return user ? user.name : undefined;
-  }
-
-  private _filter(name: string) {
-    const filterValue = name.toLowerCase();
-
-    return this.autoCompleteData.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
-  }
-  inputChange(event){
+   inputChange(event){
     this.id=event.target.value;
     console.log(event)
   }
