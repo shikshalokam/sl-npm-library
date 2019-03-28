@@ -4,7 +4,7 @@ import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.com
 import { TextFieldComponent } from './components/text-field/text-field.component';
 import { DropdownFieldComponent } from './components/dropdown-field/dropdown-field.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule, MatRadioModule, MatDividerModule, MatCheckboxModule, MatCardMdImage, MatCardModule, MatTooltipModule } from '@angular/material';
+import { MatInputModule, MatRadioModule, MatDividerModule, MatCheckboxModule, MatCardMdImage, MatCardModule, MatTooltipModule, MatDatepickerModule, MatAutocompleteModule } from '@angular/material';
 import { NumberFieldComponent } from './components/number-field/number-field.component';
 import { TextareaFieldComponent } from './components/textarea-field/textarea-field.component';
 import {MatSelectModule} from '@angular/material/select';
@@ -28,6 +28,8 @@ import { ProgramsDashboardComponent } from './components/programs-dashboard/prog
 import { PaginationComponent } from './components/pagination/pagination.component'
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumbs.component';
 import { BreadcrumbsService } from './services/breadcrumb-service/breadcrumbs.service';
+import { DatePickerComponent } from './components/date-picker/date-picker.component';
+import { AutoCompeteComponent } from './components/auto-complete/auto-complete.component';
 @NgModule({
   declarations: [
     ProgramsDashboardComponent,
@@ -45,7 +47,9 @@ import { BreadcrumbsService } from './services/breadcrumb-service/breadcrumbs.se
     SearchDirective, 
     DashboardBlocksComponent,
     BreadcrumbComponent,
-    PaginationComponent
+    PaginationComponent,
+    AutoCompeteComponent,
+    DatePickerComponent
    ],
   imports: [
     CommonModule,
@@ -64,7 +68,10 @@ import { BreadcrumbsService } from './services/breadcrumb-service/breadcrumbs.se
     MatSnackBarModule,
     NgxSpinnerModule,
     MatCardModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDatepickerModule,
+    MatAutocompleteModule,
+
   ],
   entryComponents: [DialogBoxComponent],
   exports : [
@@ -79,7 +86,7 @@ import { BreadcrumbsService } from './services/breadcrumb-service/breadcrumbs.se
     ProgramsDashboardComponent,
     BreadcrumbComponent,
     PaginationComponent,
-    MatTooltipModule
+    MatTooltipModule,
   ]
 
 })

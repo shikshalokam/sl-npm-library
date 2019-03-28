@@ -1,0 +1,19 @@
+<div [formGroup]= "genericForm" *ngIf="genericForm">
+    <mat-form-field  class="col-sm-6 fixSize _halfWidth">
+            <input [disabled]="!genericData.editable" matInput   type="text" 
+            placeholder="{{genericData.label}} " formControlName="{{genericData.field}}" 
+            (keyup)="inputChange($event)"
+            [matAutocomplete]="auto" appDebounceSearch (debounceSearch)="searchSchoolIdInApi($event)"
+            [debounceTime]="2000" [searchValue]="id"
+             [required]="genericData.validation.required"
+             >
+
+            <mat-autocomplete  #auto="matAutocomplete" >
+                <mat-option *ngFor="let option of autoCompleteData " [value]="option.externalId" matTooltip="{{option.name}}">
+                                {{option.externalId}}-{{option.name}}
+                </mat-option>
+            </mat-autocomplete>
+    </mat-form-field>
+</div>
+
+

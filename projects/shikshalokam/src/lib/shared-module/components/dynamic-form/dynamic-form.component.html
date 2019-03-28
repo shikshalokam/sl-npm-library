@@ -1,8 +1,8 @@
 <div class="col-sm-12 " [formGroup]= "genericForm"  *ngIf=" genericForm" >
   <div *ngFor="let data of genericData ; let i  = index" >
-    <app-dropdown-field *ngIf="(data.input == 'radio'|| data.input == 'dropdown' || data.input == 'multiselect' ) && data.visible " [genericData]="data" [genericForm]="genericForm" (emitResponseType)="changeResponseType($event,i)"></app-dropdown-field>
+    <app-dropdown-field *ngIf="(data.input == 'radio'|| data.input == 'dropdown' || data.input == 'multiselect' || data.input == 'select'  ) && data.visible " [genericData]="data" [genericForm]="genericForm" (emitResponseType)="changeResponseType($event,i)"></app-dropdown-field>
   
-    <app-text-field *ngIf="data.input == 'text'  && data.visible " [genericData]="data" [genericForm]="genericForm" [genericEdit]= "genericEdit"></app-text-field>
+    <app-text-field *ngIf="data.input == 'text' && !data.autocomplete  && data.visible " [genericData]="data" [genericForm]="genericForm" [genericEdit]= "genericEdit"></app-text-field>
     
     <app-textarea-field *ngIf="data.input == 'textarea'  && data.visible " [genericData]="data" [genericForm]="genericForm" [genericEdit]= "genericEdit"></app-textarea-field>
    
@@ -12,7 +12,10 @@
 
     <app-form-array-field (editquestion)="editquestion($event)" *ngIf="data.input == 'array'  && data.visible " [genericData]="data" [genericForm]="genericForm" [genericEdit]= "genericEdit"></app-form-array-field>
 
-    <br>
+    <app-date-picker  *ngIf="data.input == 'date' && data.visible" [genericData]="data" [genericForm]="genericForm" [genericEdit]= "genericEdit"></app-date-picker>
+
+    <app-auto-complete  *ngIf="data.input == 'text'&& data.autocomplete && data.visible" [genericData]="data" [genericForm]="genericForm" [genericEdit]= "genericEdit"></app-auto-complete>
+
   </div> 
 
 
