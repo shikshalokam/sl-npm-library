@@ -1,9 +1,9 @@
 <div [formGroup]="genericForm" >
   
   <mat-form-field class=" col-sm-6 fixSize _halfWidth" >
-    <input *ngIf="genericData.label === 'end date'"  placeholder="{{genericData.label | camelcase}} "  matInput [matDatepicker]="picker" formControlName="{{genericData.field}}" [max]="genericData.max" [min]="genericForm.controls.fromDate.value"
+    <input *ngIf="genericData.label === 'end date'"  placeholder="{{genericData.label | camelcase}} "  matInput [matDatepicker]="picker" formControlName="{{genericData.field}}" [max]="genericData.max" [min]="genericForm.controls.fromDate.value" [value]="genericData.value"
       (focus)="picker.open()" (click)="picker.open()" [required]="genericData.validation.required" [disabled]="! genericForm.controls.fromDate.valid">
-    <input *ngIf="genericData.label !== 'end date'"  placeholder="{{genericData.label | camelcase}} "  matInput [matDatepicker]="picker" formControlName="{{genericData.field}}" [max]="genericData.max" [min]="genericForm.controls.fromDate.value"
+    <input *ngIf="genericData.label !== 'end date'"  placeholder="{{genericData.label | camelcase}} "  matInput [matDatepicker]="picker" formControlName="{{genericData.field}}" [max]="genericData.max" [min]="genericForm.controls.fromDate.value" [value]="genericData.value"
       (focus)="picker.open()" (click)="picker.open()" [required]="genericData.validation.required">  
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
