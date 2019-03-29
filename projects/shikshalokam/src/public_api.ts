@@ -32,3 +32,4 @@ export * from './lib/core-module/pipes/min-character-pipe/min-character.pipe';
 export * from './lib/shared-module/services/breadcrumb-service/breadcrumbs.service';
 export * from './lib/shared-module/components/pagination/pagination.component';
 export * from './lib/shared-module/components/date-picker/date-picker.component';
+export * from './lib/shared-module/components/individual-loader/individual-loader.component';

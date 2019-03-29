@@ -11,8 +11,8 @@ export class PaginationComponent implements OnInit {
   @Input() length;
   @Input() paginationLabel;
   @Input() itemsPerPage;
-  @Input() pageLimit = 10;
-  @Input() pageIndex = 0;
+  @Input() pageLimit ;
+  @Input() pageIndex ;
   pagination;
   last;
   selected;
@@ -38,7 +38,13 @@ export class PaginationComponent implements OnInit {
     }
    else{
      this.startList = 1;
-     this.endList = this.startList + this.pageLimit -1;
+     if(this.pageLimit){
+     this.endList = this.startList + this.pageLimit  -1;
+     }
+     else {
+       this.endList = this.startList + this.itemsPerPage[0]  -1;
+     }
+
    }
     this.label = "Showing "+this.startList + ' - '+this.endList +" out of "+this.length +" "+this.paginationLabel;
     this.last = this.length / this.pageLimit  -1 ;
@@ -50,7 +56,8 @@ export class PaginationComponent implements OnInit {
       previousPageIndex: 0,
       pageIndex: this.pageIndex ,
       pageLimit: this.selected,
-      length: this.length
+      length: this.length,
+      label : this.paginationLabel
     }
    
     this.data = {
