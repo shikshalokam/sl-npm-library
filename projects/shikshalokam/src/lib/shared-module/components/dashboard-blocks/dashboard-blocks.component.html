@@ -3,7 +3,7 @@
 
   <div class="_full-width ">
     <div *ngFor="let dashBoard of list" >
-      <div class=" col-lg-3 col-md-4 col-sm-6 col-xs-12 margin-top _justify-content-center flex-box"  title="{{dashBoard.tooltip|translate}}" *ngIf="canAcess.includes(dashBoard.id)"  (click)="navigateLink(dashBoard.anchorLink)">
+      <div class=" col-lg-3 col-md-4 col-sm-6 col-xs-12 margin-top _justify-content-center flex-box"  title="{{dashBoard.tooltip|translate}}" *ngIf="canAcess.includes(dashBoard.id)"  (click)="dashBoard.disabled ?  navigateLink(dashBoard.anchorLink) : showMessage()">
         <div class=" box iconBox">
           <i class="material-icons folderIcon">
            {{dashBoard.icon}}
