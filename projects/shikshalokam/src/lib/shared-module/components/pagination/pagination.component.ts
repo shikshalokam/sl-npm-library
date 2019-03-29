@@ -92,7 +92,7 @@ export class PaginationComponent implements OnInit {
         break;
       }
       case 'next':{
-        this.pagination.previousPageIndex = this.pagination.pageIndex;
+      this.pagination.previousPageIndex = this.pagination.pageIndex;
       this.pagination.pageIndex += 1;
       this.pageIndex = this.pagination.pageIndex ;
       break;
@@ -104,14 +104,14 @@ export class PaginationComponent implements OnInit {
         break;
       }
       case 'last':{
-        this.pagination.previousPageIndex = this.last;
+      this.pagination.previousPageIndex = this.last;
       this.pagination.pageIndex = this.pagination.previousPageIndex;
       this.pageIndex = this.pagination.pageIndex ;
       break;
       }
     }
    
-    this.startList = ( this.pageIndex ) * this.pageLimit + 1;
+    this.startList = ( this.pagination.pageIndex ) * this.pageLimit + 1;
     if(this.length - this.startList > this.pageLimit)
          this.endList = this.startList + this.pageLimit -1;
     else {
