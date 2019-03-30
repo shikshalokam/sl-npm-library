@@ -1,4 +1,4 @@
-<div *ngIf="currentUser && url">
+<div *ngIf="url">
   <nav class="navbar noMarginPadding ">
 
     <div class="col-sm-6  col-md-6 col-xs-6 col-lg-6 alingCenterline noMarginPadding">
@@ -21,7 +21,7 @@
 
 
     <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
-      <span class="right _flex-box alingCenterline" *ngIf="currentUser">
+      <span class="right _flex-box alingCenterline">
         <button mat-icon-button (click)="openDropdown()">
           <i class="material-icons">apps</i>
         </button>
@@ -33,7 +33,7 @@
 
 
 
-        <span mat-button [matMenuTriggerFor]="menu" class="alingCenterline _cursor-pointer">
+        <span mat-button [matMenuTriggerFor]="menu" class="alingCenterline _cursor-pointer" *ngIf="currentUser">
           <i class="material-icons brand dropdownIcon">
             person
           </i>
