@@ -32,8 +32,15 @@ export class PaginationComponent implements OnInit {
       this.startList = ( this.pageIndex ) * this.pageLimit + 1;
       if(this.length - this.startList > this.pageLimit)
       this.endList = this.startList + this.pageLimit -1;
+      if(this.endList > this.length){
+        this.endList = this.length;
+      }
       else {
+        
       this.endList = this.startList + (this.length - this.startList );
+      if(this.endList > this.length){
+        this.endList = this.length;
+      }
       }
     }
    else{
@@ -43,10 +50,20 @@ export class PaginationComponent implements OnInit {
      }
      else {
        this.endList = this.startList + this.itemsPerPage[0]  -1;
+       if(this.endList > this.length){
+        this.endList = this.length;
+      }
      }
 
    }
+   if(this.length == 0){
+    this.label = "Showing "+0+ ' - '+ 0 +" out of "+this.length +" "+this.paginationLabel;
+
+    }
+    else{
     this.label = "Showing "+this.startList + ' - '+this.endList +" out of "+this.length +" "+this.paginationLabel;
+
+    }
     this.last = this.length / this.pageLimit  -1 ;
     if( (this.length % this.pageLimit)  !== 0   ){
      this.last =  Math.floor(this.last) +1 ;
@@ -92,7 +109,7 @@ export class PaginationComponent implements OnInit {
         break;
       }
       case 'next':{
-        this.pagination.previousPageIndex = this.pagination.pageIndex;
+      this.pagination.previousPageIndex = this.pagination.pageIndex;
       this.pagination.pageIndex += 1;
       this.pageIndex = this.pagination.pageIndex ;
       break;
@@ -104,21 +121,31 @@ export class PaginationComponent implements OnInit {
         break;
       }
       case 'last':{
-        this.pagination.previousPageIndex = this.last;
+      this.pagination.previousPageIndex = this.last;
       this.pagination.pageIndex = this.pagination.previousPageIndex;
       this.pageIndex = this.pagination.pageIndex ;
       break;
       }
     }
    
-    this.startList = ( this.pageIndex ) * this.pageLimit + 1;
+    this.startList = ( this.pagination.pageIndex ) * this.pageLimit + 1;
     if(this.length - this.startList > this.pageLimit)
          this.endList = this.startList + this.pageLimit -1;
     else {
       this.endList = this.startList + (this.length - this.startList );
+      if(this.endList > this.length){
+        this.endList = this.length;
+      }
 
     }
+    if(this.length == 0){
+    this.label = "Showing "+0+ ' - '+ 0 +" out of "+this.length +" "+this.paginationLabel;
+
+    }
+    else{
     this.label = "Showing "+this.startList + ' - '+this.endList +" out of "+this.length +" "+this.paginationLabel;
+
+    }
 
     this.sendPaginationResponse();
   }
@@ -136,6 +163,11 @@ export class PaginationComponent implements OnInit {
     this.pagination.pageLimit = event;
     this.startList = 1;
     this.endList = this.startList + this.pagination.pageLimit -1;
+    if(this.endList > this.length){
+      this.endList = this.length;
+    this.label = "Showing "+this.startList + ' - '+this.endList +" out of "+this.length +" "+this.paginationLabel;
+
+    }
     this.label = "Showing "+this.startList + ' - '+this.endList +" out of "+this.length +" "+this.paginationLabel;
     this.sendPaginationResponse();
   }

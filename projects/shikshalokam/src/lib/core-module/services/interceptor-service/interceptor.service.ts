@@ -4,7 +4,10 @@ import {
   HttpRequest,
   HttpHandler,
   HttpInterceptor,
+  HttpErrorResponse,
 } from "@angular/common/http";
+import { catchError } from "rxjs/operators";
+import { throwError } from "rxjs";
 
 @Injectable(
   {
@@ -23,6 +26,20 @@ export class ApiInterceptor implements HttpInterceptor {
         return next.handle(authReq);
       }
       const authReq = req.clone({ setHeaders: { "X-authenticated-user-token": authToken } })
-        return next.handle(authReq);
-  }
+        return next.handle(authReq) .pipe(
+          catchError( (error: HttpErrorResponse) => { 
+             let errMsg = '';
+             // Client Side Error
+             if (error.error instanceof ErrorEvent) {        
+               errMsg = `Error: ${error.error.message}`;
+             } 
+             else {  // Server Side Error
+               errMsg = `Error Code: ${error.status},  Message: ${error.message}`;
+             }
+             
+             return throwError(errMsg);
+           })
+        )
+  } 
+  
 }
