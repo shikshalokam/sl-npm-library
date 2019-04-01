@@ -14,6 +14,23 @@
     </mat-card-title>
 
     <span class="col-xs-4 noMarginPadding _flexEnd">
+
+     <!-- Responsive nav -->
+
+
+        <span class="right _flex-box alingCenterline app-box">
+            <button mat-icon-button (click)="openDropdown()">
+                  <i class="material-icons">apps</i>
+            </button>
+            
+            <div id="overlay" (click)="openDropdown()" *ngIf="showDropdown">
+             <app-container [url]="url" [portal]="portal"></app-container>
+              </div>
+          </span>
+
+
+
+
         <button mat-icon-button [matMenuTriggerFor]="menu" class=" _cursor-pointer">
           <i class="material-icons dropdownIcon">
               person

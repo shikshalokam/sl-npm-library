@@ -25,6 +25,7 @@
     .navbar{
         display : none !important;
     }
+    
     .responsiveNavbar{
         display: flex !important;
     }
@@ -110,6 +111,11 @@
     .navbar{
         display : none !important;
     }
+
+    // .navbar{
+    //     display: flex !important;
+    // }
+    
     .responsiveNavbar{
         display: flex !important;
     }
@@ -171,11 +177,14 @@
         display : flex!important;
         // width: 100% !important;
     }
+
         
     .nextButton{
         width: 100 !important;
             right: 20px;
         }
+
+        
 }
 
 @media only screen and (min-width: 992px) {
