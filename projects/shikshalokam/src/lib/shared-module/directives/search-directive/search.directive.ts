@@ -1,23 +1,36 @@
-import { Directive, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { fromEvent } from 'rxjs';
+import { Directive, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+
 @Directive({
-  selector: '[appSearch]'
+  selector: '[appDebounceSearch]'
 })
-export class SearchDirective implements OnInit {
-  @Input() searchValue: string;
-  @Output()sendSearchValue= new EventEmitter();
+export class SearchDirective implements OnInit, OnDestroy {
+  @Input() debounceTime = 5000;
+  @Input() searchValue ;
+  @Output() debounceSearch = new EventEmitter();
+  private clicks = new Subject();
+  private subscription: Subscription;
 
   constructor() { }
-  ngOnInit(){
-    this.search();
+
+  ngOnInit() {
+    this.subscription = this.clicks.pipe(
+      debounceTime(this.debounceTime)
+    ).subscribe(e =>
+   { 
+     this.debounceSearch.emit(this.searchValue);
+   });
   }
-  search(){
-    const input = document.getElementById('search');
-    const example = fromEvent(input, 'keyup');
-    const debouncedInput = example.pipe(debounceTime(1000));
-    const subscribe = debouncedInput.subscribe(val => {
-      this.sendSearchValue.emit(this.searchValue);
-    });
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  @HostListener('keyup', ['$event'])
+  clickEvent(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.clicks.next(event);
   }
 }
