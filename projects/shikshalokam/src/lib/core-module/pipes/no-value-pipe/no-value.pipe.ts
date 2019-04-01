@@ -7,9 +7,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class NoValuePipe implements PipeTransform {
   constructor() {}
   transform(value: any): any {
-        
+   
       if (value == null || value == "") {
-        return "NA";
+        return "-NA-";
       }
       return value;
     }

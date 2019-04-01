@@ -7,14 +7,13 @@ import { Component, OnInit, Input } from '@angular/core';
 export class SidenavComponent implements OnInit {
   @Input() link: any;
   @Input() programsShow;
-  permissionAssignedRole;
   programId;
   assessmentId;
   constructor() { 
   }
 
   ngOnInit() {
-    this.permissionAssignedRole = JSON.parse(localStorage.getItem('canAcess'));
+    console.log(this.programsShow)
   }
 
 }

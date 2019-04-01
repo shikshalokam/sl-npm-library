@@ -7,17 +7,11 @@
     <!-- <div [routerLink]="['assessments/:programId/:assessmentId/'+option.link?.anchorLink,option.link.programId,option.link.assessmentId ]" routerLinkActive="active" *ngFor="let option of link?.options"  class="subHeading"> -->
         <!-- <div [routerLink]="[option.link.anchorLink ]"  [queryParamsHandling]="preserve" [queryParams]="{ programId : option.link.programId , assessmentId : option.link.assessmentId}" routerLinkActive="active" *ngFor="let option of link?.options"  class="subHeading"> -->
 
-  
-          
-<span *ngFor="let option of link?.options"  >
-  <div [routerLink]="[option.anchorLink ]"  routerLinkActive="active" class="subHeading" *ngIf="permissionAssignedRole.includes(option.id)">
-  <!-- <div [routerLink]="[option.anchorLink ]"  routerLinkActive="active" class="subHeading"> -->
-    <span class="sideNavSubheading"> 
-      <i class="material-icons">
-        {{option.icon}}
-        </i> {{ option.value | translate }}
-      </span>
-  </div>
-</span>
-    
+
+
+    <div [routerLink]="[option.anchorLink ]"  routerLinkActive="active" *ngFor="let option of link?.options"  class="subHeading">
+        <span class="sideNavSubheading"> 
+            {{ option.value | translate }}
+          </span>
+      </div>
    
