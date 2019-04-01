@@ -31,6 +31,11 @@ import { BreadcrumbsService } from './services/breadcrumb-service/breadcrumbs.se
 import { DatePickerComponent } from './components/date-picker/date-picker.component';
 import { AutoCompeteComponent } from './components/auto-complete/auto-complete.component';
 import { IndividualLoaderComponent } from './components/individual-loader/individual-loader.component';
+import { GraphTableChartComponent } from './components/graph-table-chart/graph-table-chart.component';
+import { TableComponentComponent } from './components/graph-table-chart/table-component/table-component.component';
+import { ColumnGraphComponent } from './components/graph-table-chart/column-graph/column-graph.component';
+import { GoogleChartsModule } from 'angular-google-charts';
+
 @NgModule({
   declarations: [
     ProgramsDashboardComponent,
@@ -51,7 +56,11 @@ import { IndividualLoaderComponent } from './components/individual-loader/indivi
     BreadcrumbComponent,
     PaginationComponent,
     AutoCompeteComponent,
-    DatePickerComponent
+    DatePickerComponent,
+    TableComponentComponent,
+    ColumnGraphComponent,
+    GraphTableChartComponent
+
    ],
   imports: [
     CommonModule,
@@ -73,10 +82,13 @@ import { IndividualLoaderComponent } from './components/individual-loader/indivi
     MatTooltipModule,
     MatDatepickerModule,
     MatAutocompleteModule,
+    GoogleChartsModule.forRoot(),
+
 
   ],
   entryComponents: [DialogBoxComponent],
   exports : [
+    GraphTableChartComponent,
     DynamicFormComponent,
     NgxSpinnerModule,
     ParentHeadingComponent, 
