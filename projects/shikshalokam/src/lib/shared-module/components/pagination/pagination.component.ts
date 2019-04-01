@@ -30,10 +30,11 @@ export class PaginationComponent implements OnInit {
   ngOnInit() {
     if(this.pageIndex){
       this.startList = ( this.pageIndex ) * this.pageLimit + 1;
-      if(this.length - this.startList > this.pageLimit)
+      if(this.length - this.startList > this.pageLimit) {
       this.endList = this.startList + this.pageLimit -1;
       if(this.endList > this.length){
         this.endList = this.length;
+      }
       }
       else {
         
