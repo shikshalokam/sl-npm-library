@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+// import { TranslateService } from '../../dist/shikshalokam';
+import { AuthService } from './modules/private-modules/auth-service/auth.service';
+import { TranslateService } from 'projects/shikshalokam/src/public_api';
 
 @Component({
   selector: 'app-root',
@@ -6,15 +10,94 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  apps;
 
+  isLoggedIn :boolean;
  
  
+  programId;
+  assessmentId;
 
-  
-  ngOnInit(){
-  
+  // links ;
+  opened = true;
+  pushMode = 'side';
+  currentUser;
+  logo =" ./assets/shikshalokam.png";
+  links = [  
+    { 
+      linkHeading : "headings.features",
+      options:[
+        {
+          value : "headings.parentInterview",
+          
+            anchorLink : "parent"
+        },
+        {
+          value :"headings.reports",
+            anchorLink:"report"
+        },
+        {
+          value :"headings.configurations",
+            anchorLink:"configuration"
+        }
+      ]
+      }
+  ] 
+
+  constructor(private route : ActivatedRoute,private authService :AuthService ,private translate: TranslateService) {
+    translate.use('en').then(() => {
+    
+    });
+    if (window.screen.width < 760) { // 768px portrait
+      this.opened = false;
+      this.pushMode = 'push';
+    }
+    this.currentUser = this.authService.getCurrentUserDetails();
+    console.log(this.isLoggedIn +"islogin");
+    this.isLoggedIn = this.currentUser ? true: false;
+    console.log(this.isLoggedIn)
   }
+  ngOnInit() {
+  }
+
+  // constructor(private route : ActivatedRoute,private authService :AuthService ,private translate: TranslateService) {
+  //   this.isLoggedIn =! this.authService.isLoggedIn;
+  //   translate.use('en').then(() => {
+    
+  //   });
+  //   if (window.screen.width < 760) { // 768px portrait
+  //     this.opened = false;
+  //     this.pushMode = 'push';
+  //   }
+  //   this.currentUser = this.authService.getCurrentUserDetails();
+  //   console.log(this.isLoggedIn +"islogin");
+  //  }
+
+  // ngOnInit() {
+
+  // }
+
  
-      
+   
+  onLogout(){
+    this.authService.getLogout();
+  }
+  onLogin(){
+    console.log("hiii");
+    this.authService.getLogin();
+  }
+  onResize(event)
+  {
+    if(event.target.innerWidth < 760)
+    {
+      this.opened = false;
+      this.pushMode = 'push';
+    }
+    else{
+      this.opened = true;
+      this.pushMode = 'side';
+
+    }
+  } 
 }
 

@@ -1,0 +1,141 @@
+<app-loader></app-loader>
+
+<div *ngIf="!error " >
+    <app-parent-heading [genericHeading]="headings" [atleastOneComplete]="atleastOneComplete" [schoolName]="schoolName"
+        (sendMarkAsComplete)="parentInterviewSubmit($event)"></app-parent-heading>
+    <div *ngIf="result != 0 && !smallScreen" class="bigTabel" (window:resize)="onResize($event)">
+        <mat-form-field [floatLabel]="'never'" class="_contentMiddle _full-width">
+            <input class="filterInput" matInput (keyup)="applyFilter($event.target.value)" placeholder="{{'search'| translate}}">
+        </mat-form-field>
+        <div class="example-container mat-elevation-z8">
+            <div class="tableContainer">
+                <table mat-table [dataSource]="dataSource" class="_contentMiddle">
+
+                    <ng-container matColumnDef="studentName">
+                        <th mat-header-cell *matHeaderCellDef><div class="capitalise"> {{'tableLabel.studentName'| translate}}</div></th>
+                        <td mat-cell *matCellDef="let element"><div class="capitalise "> {{element.studentName | blank}} </div></td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef><div class="capitalise">{{'tableLabel.name'| translate}}</div></th>
+                        <td mat-cell *matCellDef="let element"><div class="capitalise"> {{element.name | blank}} </div></td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="phone1">
+                        <th mat-header-cell *matHeaderCellDef><div class="capitalise">{{'tableLabel.phone'| translate}}</div></th>
+                        <td mat-cell *matCellDef="let element"> <div class="capitalise">{{element.phone1 | blank}}</div>  </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="gender">
+                        <th mat-header-cell *matHeaderCellDef><div class="capitalise">{{'tableLabel.gender'| translate}}</div></th>
+                        <td mat-cell *matCellDef="let element">
+                            <div  class="capitalise" *ngIf=" element.gender == 'M'">Male</div >
+                            <div   class="capitalise" *ngIf=" element.gender == 'F'">Female</div >
+                            <div   class="capitalise" *ngIf=" element.gender == ''"> - </div >
+
+                        </td>
+                    </ng-container>
+
+                    <!-- <ng-container matColumnDef="address">
+                            <th mat-header-cell *matHeaderCellDef>{{'tableLabel.address'| translate}}</th>
+                            <td mat-cell *matCellDef="let element"><div class="capitalise _text-overflow-ellipsis"> {{element.address}} </div></td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="grade">
+                        <th mat-header-cell *matHeaderCellDef>{{'tableLabel.grade'| translate}}</th>
+                        <td mat-cell *matCellDef="let element">
+                            <div class="capitalise">{{element.grade}}</div>
+                        </td>
+                    </ng-container> -->
+
+                    <ng-container matColumnDef="typeLabel">
+                            <th mat-header-cell *matHeaderCellDef><div class="capitalise">{{'tableLabel.typeLabel'| translate}}</div></th>
+                            <td mat-cell *matCellDef="let element">
+                                        <span class="flex-wrap">
+                                                <span *ngFor="let type of element.type" class="chipSize">
+                                                        <span class=" noWrap">{{type}}</span>   
+                                                    </span>
+                                        </span>
+                                     
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="callResponse">
+                            <th mat-header-cell *matHeaderCellDef><div class="capitalise">{{'tableLabel.callResponse'| translate}}</div></th>
+                            <td mat-cell *matCellDef="let element">
+                                <div class="capitalise">
+                                    {{element.callResponse | blank}}
+                                    </div>
+                            </td>
+                        </ng-container>
+                    <ng-container matColumnDef="programId">
+                        <th mat-header-cell *matHeaderCellDef></th>
+                        <td mat-cell *matCellDef="let element"> <div class="active" [routerLink]="['/parent/parent-edit' ,schoolName, element._id ]">
+                                {{'tableLabel.buttons.edit'| translate}}
+
+                        </div></td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="type">
+                        <th mat-header-cell *matHeaderCellDef></th>
+                        <td mat-cell *matCellDef="let element">
+                            <div *ngIf=" !(element.callResponse == 'Completed') ; else complete" class="active" [routerLink]="['/parent/survey' , schoolName, schoolId , element._id ]">
+                                {{'tableLabel.buttons.startSurvey'| translate}}
+                            </div>
+                            <ng-template #complete>
+                                <div class="complete">
+                                    {{'tableLabel.buttons.complete'| translate}}
+                                </div>
+                            </ng-template>
+                        </td>
+                    </ng-container>
+
+
+
+                    <tr mat-header-row class=" mat-header-sticky" *matHeaderRowDef="displayedColumns ; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+            <mat-paginator class=" mat-paginator-sticky" [pageSizeOptions]="[100,50,500]" showFirstLastButtons></mat-paginator>
+
+        </div>
+    </div>
+    <div *ngIf=" result > 0  && parentList && smallScreen " class="_responsiveTabel " (window:resize)="onResize($event)">
+        <div *ngFor="let parent of parentList" class=" margin">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="textOverflow">
+                        Name : {{parent.name}}
+                    </mat-panel-title>
+                    <mat-panel-description class="textOverflow">
+                        Student Name: {{parent.studentName}}
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div *ngFor="let key of objectKeys(parent)">
+                    <div *ngIf="key == 'phone1' || key == 'address' || key == 'grade'">
+                        {{key | camelcase}} : {{parent[key]}}
+                    </div>
+                </div>
+                <div class="flexRight">
+                        <div class="active" [routerLink]="['/parent/parent-edit' ,schoolName, parent._id ]">
+                            {{'tableLabel.buttons.edit'| translate}}
+                        </div>
+
+                    <div *ngIf=" !(parent.callResponse == 'R7') ; else complete" class="active" [routerLink]="['/parent/survey' , schoolName, schoolId , parent._id ]">
+                        {{'tableLabel.buttons.startSurvey'| translate}}
+                    </div>
+                    <ng-template #complete>
+                        <div class="complete">
+                            {{'tableLabel.buttons.complete'| translate}}
+                        </div>
+                    </ng-template>
+                </div>
+            </mat-expansion-panel>
+        </div>
+    </div>
+
+    <div *ngIf="!result">
+        <div class="middle">
+            {{'message.noData' | translate}}
+        </div>
+    </div>
+</div>
