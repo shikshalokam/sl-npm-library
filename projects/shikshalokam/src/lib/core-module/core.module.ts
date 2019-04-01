@@ -16,26 +16,18 @@ import { UtilityService } from './services/utility-service/utility.service';
 import { ApiService } from './services/api-service/api.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from './services/interceptor-service/interceptor.service';
-import { FooterComponent } from './components/footer/footer.component';
-import { GlobalConfigurationService } from './services/global-configuration-service/global-configuration.service';
-import { AppContainerComponent } from './components/app-container/app-container.component';
-import { MinCharacterPipe } from './pipes/min-character-pipe/min-character.pipe';
 @NgModule({
   declarations: [
     TranslatePipe,
     CamelCasePipe,
-    MinCharacterPipe,
     NoValuePipe,
     NavbarComponent,
-    FooterComponent,
-    AppContainerComponent,
     SidenavComponent,
     ResponsiveNavbarComponent,
     ProgramSidenavComponent
   ],
   imports: [
     NgxSpinnerModule,
-    
     CommonModule,
     RouterModule,
     MatButtonModule,
@@ -57,22 +49,19 @@ import { MinCharacterPipe } from './pipes/min-character-pipe/min-character.pipe'
   exports: [
     TranslatePipe,
     NavbarComponent,
-    FooterComponent,
-    AppContainerComponent,
     SidenavComponent,
     ResponsiveNavbarComponent,
     CamelCasePipe,
     NoValuePipe,
     ProgramSidenavComponent,
     CommonModule,
-    MinCharacterPipe
   ]
 })
 export class CoreModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: CoreModule,
-      providers: [TranslateService,UtilityService,ApiService,GlobalConfigurationService]
+      providers: [TranslateService,UtilityService,ApiService]
     };
   }
 }

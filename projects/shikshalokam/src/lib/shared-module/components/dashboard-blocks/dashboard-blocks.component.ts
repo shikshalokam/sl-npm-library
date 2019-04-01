@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'dashboard-blocks',
@@ -7,18 +6,12 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./dashboard-blocks.component.scss']
 })
 export class DashboardBlocksComponent implements OnInit {
- canAcess = localStorage.getItem('canAcess');
-  constructor(private snackBar : MatSnackBar) { 
+ 
+  constructor() { 
   }
   @Input() list: any;
-  @Output()sendNavigationLink = new EventEmitter();
+
    ngOnInit() {
    }
 
-   navigateLink(nav){
-     this.sendNavigationLink.emit(nav);
-   }
-   showMessage(){
-    this.snackBar.open( "Comming Soon.","Ok", { duration: 9000 })
-   }
 }

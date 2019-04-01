@@ -6,39 +6,23 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  @Input() url;
   showDropdown = false;
-  @Input() dropdownLabel;
+  @Input() dropdownLabel ;
   @Input() currentUser: any;
-  @Input() logo;
-  @Input() isLoggedIn: boolean;
-  @Output() Logout = new EventEmitter();
-  @Input() portal;
-  
+  @Input() logo ;
+  @Output() Logout = new EventEmitter ();
   constructor() {
   }
-
-
   ngOnInit() {
   }
-  homePage(url){
-    window.open(url, "_self");
-  }
-
   openDropdown() {
     this.showDropdown = !this.showDropdown;
   }
-  onSignout() {
+  onSignout()
+  {
     this.Logout.emit(true);
   }
-  onLogin() {
-    this.isLoggedIn=!this.isLoggedIn;
-    this.onSignout();
-   }
 }
-
-
-
 
 
 

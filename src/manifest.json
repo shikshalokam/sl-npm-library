@@ -1,6 +1,6 @@
 {
-  "name": "sl-assessments-portal",
-  "short_name": "sl-assessments-portal",
+  "name": "sl-portal-library",
+  "short_name": "sl-portal-library",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
