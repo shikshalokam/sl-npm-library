@@ -11,6 +11,7 @@ export class NavbarComponent implements OnInit {
   @Input() currentUser: any;
   @Input() logo ;
   @Output() Logout = new EventEmitter ();
+  @Input() isLoggedIn;
   constructor() {
   }
   ngOnInit() {
