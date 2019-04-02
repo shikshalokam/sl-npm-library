@@ -4,7 +4,7 @@
             placeholder="{{genericData.label | camelcase}} "  formControlName="{{genericData.field}}" 
             (keyup)="inputChange($event)"
             [matAutocomplete]="auto" appDebounceSearch (debounceSearch)="searchSchoolIdInApi($event)"
-            [debounceTime]="2000" [searchValue]="id"
+            [debounceTime]="200" [searchValue]="id"
              [required]="genericData.validation.required"
              >
 
