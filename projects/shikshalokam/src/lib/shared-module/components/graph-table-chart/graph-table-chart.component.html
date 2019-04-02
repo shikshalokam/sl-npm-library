@@ -6,7 +6,7 @@
         </app-table-component>
     </div>
     <div class="marginTop _border">
-        <app-column-graph [datas]="sections?.data" [configs]="sections?.graphData" *ngIf="sections?.graph">
+        <app-column-graph [datas]="sections?.newGraphData ? sections?.newGraphData : sections?.data" [configs]="sections?.graphData" *ngIf="sections?.graph">
         </app-column-graph>
     </div>
 
