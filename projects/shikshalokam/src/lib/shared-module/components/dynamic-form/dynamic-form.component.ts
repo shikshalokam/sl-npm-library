@@ -12,7 +12,7 @@ export class DynamicFormComponent implements OnInit {
   @Input()genericForm :FormGroup;
   @Input()genericEdit:boolean;
   @Output() editnewquestion = new EventEmitter();
-  
+  @Input() hostUrl ;
 
   constructor() { 
     

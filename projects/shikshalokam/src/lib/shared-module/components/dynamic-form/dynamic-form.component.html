@@ -14,7 +14,7 @@
 
     <app-date-picker  *ngIf="data.input == 'date' && data.visible" [genericData]="data" [genericForm]="genericForm" [genericEdit]= "genericEdit"></app-date-picker>
 
-    <app-auto-complete  *ngIf="data.input == 'text'&& data.autocomplete && data.visible" [genericData]="data" [genericForm]="genericForm" [genericEdit]= "genericEdit"></app-auto-complete>
+    <app-auto-complete  *ngIf="data.input == 'text'&& data.autocomplete && data.visible" [genericData]="data" [genericForm]="genericForm" [genericEdit]= "genericEdit" [hostUrl]="hostUrl"></app-auto-complete>
 
   </div> 
 

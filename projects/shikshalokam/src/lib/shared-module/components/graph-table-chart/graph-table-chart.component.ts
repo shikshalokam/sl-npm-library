@@ -16,7 +16,7 @@ export class GraphTableChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    
+    //console.log(this.section.subSections)
   }
   pageResponse(event){
     this.pageEvent.emit(event);

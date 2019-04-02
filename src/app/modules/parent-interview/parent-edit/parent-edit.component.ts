@@ -26,7 +26,7 @@ export class ParentEditComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.sendUrl = params["id"];
       this.schoolName =params["name"];
-      console.log(this.sendUrl)
+      //console.log(this.sendUrl)
   });
 
   this.showConfig(); 
@@ -52,18 +52,18 @@ export class ParentEditComponent implements OnInit {
 
   this.parentService.getParentInfo(this.sendUrl)
       .subscribe(data => {
-        console.log(data);
+        //console.log(data);
         this.parentEditData = data['result'];
         // this.parentEditData.forEach( element => {
         //   if(element['field'] == "callResponse")
         //     {
         //       element.visible = false ;
-        //       console.log(element.visible);
+        //       //console.log(element.visible);
         //     }
         // });
-        console.log(data['result']);
+        //console.log(data['result']);
         this.parentForm = this.utility.toGroup(data['result']) ;
-        console.log(this.parentForm);
+        //console.log(this.parentForm);
         this.utility.loaderHide();
       },
       (error) => {
@@ -74,10 +74,10 @@ export class ParentEditComponent implements OnInit {
 }
   getUpdateData(){
   this.updateData = this.parentForm.getRawValue(); 
-  console.log(this.updateData)
+  //console.log(this.updateData)
     this.parentService.postParentData(this.sendUrl,this.updateData).
     subscribe(data => {
-      console.log(data);
+      //console.log(data);
       this.snackBar.open(data['message'], "Ok", {duration: 3000});
     
    },

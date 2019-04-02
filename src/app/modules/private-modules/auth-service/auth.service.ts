@@ -27,7 +27,7 @@ export class AuthService {
       this.keycloakAuth = new Keycloak(config);
       this.keycloakAuth.init({ onLoad: 'login-required' })
         .success(() => {
-          console.log("seting")
+          //console.log("seting")
           localStorage.setItem('auth-token',this.keycloakAuth.token)
           localStorage.setItem('downloadReport-token',environment.downloadReportHeaderValue)
 
@@ -44,7 +44,7 @@ export class AuthService {
   }
 
   getCurrentUserDetails() {
-    // console.log(jwt_decode(this.keycloakAuth.token).name)
+    // //console.log(jwt_decode(this.keycloakAuth.token).name)
     // this.userName = jwt_decode(this.keycloakAuth.token).name;
     // return jwt_decode(this.keycloakAuth.token);
     this.userName = this.jwtHelper.decodeToken(this.getToken()).name;
