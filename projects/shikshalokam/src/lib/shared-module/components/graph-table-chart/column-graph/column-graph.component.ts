@@ -23,6 +23,9 @@ export class ColumnGraphComponent implements OnInit {
     this.graphData['chartType'] = this.configs.chartType;
     this.graphData["data"] = this.datas.map(data => Object.values(data));
     // this.graphData['title'] = this.configs.title;
+    this.graphData['data'].forEach(element => {
+      //console.log( element);
+    });
     this.graphData['options'] = this.configs.chartOptions;
   //   this.graphData['options'] ['titleTextStyle'] = {
   //     color: "red",    // any HTML string color ('red', '#cc00cc')

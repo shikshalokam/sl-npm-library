@@ -53,9 +53,9 @@ export class AppComponent implements OnInit {
       this.pushMode = 'push';
     }
     this.currentUser = this.authService.getCurrentUserDetails();
-    console.log(this.isLoggedIn +"islogin");
+    //console.log(this.isLoggedIn +"islogin");
     this.isLoggedIn = this.currentUser ? true: false;
-    console.log(this.isLoggedIn)
+    //console.log(this.isLoggedIn)
   }
   ngOnInit() {
   }
@@ -70,7 +70,7 @@ export class AppComponent implements OnInit {
   //     this.pushMode = 'push';
   //   }
   //   this.currentUser = this.authService.getCurrentUserDetails();
-  //   console.log(this.isLoggedIn +"islogin");
+  //   //console.log(this.isLoggedIn +"islogin");
   //  }
 
   // ngOnInit() {
@@ -83,7 +83,7 @@ export class AppComponent implements OnInit {
     this.authService.getLogout();
   }
   onLogin(){
-    console.log("hiii");
+    //console.log("hiii");
     this.authService.getLogin();
   }
   onResize(event)

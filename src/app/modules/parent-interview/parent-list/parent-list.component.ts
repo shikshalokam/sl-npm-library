@@ -25,7 +25,7 @@ export class ParentListComponent implements OnInit {
     this.route.params.subscribe(params=>{
       this.schoolName = params['name'];
       this.schoolId = params['id'];
-      console.log(params)
+      //console.log(params)
     })
     if (window.innerWidth < 760) { // 768px portrait
       this.smallScreen = true;
@@ -44,7 +44,7 @@ export class ParentListComponent implements OnInit {
   ngOnInit() {
     if (window.screen.width < 760) { // 768px portrait
       this.smallScreen = true;
-      console.log(this.smallScreen)
+      //console.log(this.smallScreen)
     }
     this.utility.loaderShow();
     this.breadcrumbRoute = [
@@ -83,10 +83,10 @@ export class ParentListComponent implements OnInit {
       this.utility.loaderShow();
       this.parentService.getAssessmentQuestions(this.schoolId).subscribe(successData => {
         this.submissionId = successData['result'].assessments[0]['submissionId'];
-        console.log(this.submissionId);
+        //console.log(this.submissionId);
         this.parentService.parentInterviewSubmission(this.submissionId)
           .subscribe(successData => {
-            console.log(successData);
+            //console.log(successData);
             this.utility.loaderHide();
             this.snackBar.open(successData['message'], "Ok", { duration: 3000 });
 
