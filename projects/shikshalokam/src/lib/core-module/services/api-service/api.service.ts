@@ -23,7 +23,7 @@ export class ApiService {
             formData.append(name,f)
           })
     }
-    console.log(formData)
+    //console.log(formData)
     return this.http.post(url, formData , {reportProgress: true, observe: 'events'});
   }
 }

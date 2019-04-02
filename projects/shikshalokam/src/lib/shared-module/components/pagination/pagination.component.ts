@@ -98,7 +98,7 @@ export class PaginationComponent implements OnInit {
       pageLimit: [this.pagination.pageLimit, Validators.required]
     });
     this.paginationFlag = true;
-    console.log(this.pageSize);
+    //console.log(this.pageSize);
   }
 
   page(event) {
@@ -151,14 +151,14 @@ export class PaginationComponent implements OnInit {
     this.sendPaginationResponse();
   }
   setPageLimit(event){
-    console.log("pagelimit Set" , event)
+    //console.log("pagelimit Set" , event)
     this.last = this.length / event  -1;
     this.pagination.pageIndex = 0 ;
     this.pagination.previousPageIndex = 0;
     if( (this.length % event)  !== 0   ){
 
       this.last =  Math.floor(this.last)+1 ;
-      console.log(this.last)
+      //console.log(this.last)
      }
      
     this.pagination.pageLimit = event;

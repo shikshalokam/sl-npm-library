@@ -16,7 +16,7 @@ export class QuestionWorkspace implements OnInit {
   constructor(public dialog: MatDialog) {
   }
   ngOnInit() {
-    console.log(this.date)
+    //console.log(this.date)
   }
   
   showEditOption(index){
@@ -36,9 +36,9 @@ export class QuestionWorkspace implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      //console.log('The dialog was closed');
       if(result){
-      console.log(result)
+      //console.log(result)
       this.updateQuestionArray(result);
       }
     });
@@ -48,6 +48,6 @@ export class QuestionWorkspace implements OnInit {
     const index = result.questionIndex;
     const questObj = result.questionObject;
     this.newQuestionArray[index] = questObj;
-    console.log(this.newQuestionArray)
+    //console.log(this.newQuestionArray)
   }
 }

@@ -59,7 +59,7 @@ export class DownloadReportComponent implements OnInit {
 
   sendEvedinceId(evedinceID) {
     this.activeButton = true;
-    console.log(evedinceID + "is this");
+    //console.log(evedinceID + "is this");
     this.evedince = evedinceID;
 
   }
@@ -69,14 +69,14 @@ export class DownloadReportComponent implements OnInit {
     this.reportService.downloadReport(this.evedince)
     .subscribe(
       (data:string) => {
-        console.log("file download")
-        console.log(data);
+        //console.log("file download")
+        //console.log(data);
         // this.downloadFile(data);
         const datastr = data.toString();
-        console.log(datastr)
+        //console.log(datastr)
         const blob = new Blob([datastr], { type: 'text/csv' });
         const url = window.URL.createObjectURL(blob);
-        console.log(url)
+        //console.log(url)
         window.open(url);
         this.showLoader = false;
 
@@ -106,8 +106,8 @@ export class DownloadReportComponent implements OnInit {
   }
   // moviePromiseService
   //         .getService('api/Movie/TestGetNo')
-  //         .then(result => console.log(result))
-  //         .catch(error => console.log(error));
+  //         .then(result => //console.log(result))
+  //         .catch(error => //console.log(error));
   objectKeys(obj) {
     return Object.keys(obj);
   }

@@ -14,7 +14,7 @@ export class ConfirmModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit() {
-    console.log(this.data);
+    //console.log(this.data);
   }
 
   confirm() {

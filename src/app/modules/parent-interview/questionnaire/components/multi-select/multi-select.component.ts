@@ -19,14 +19,14 @@ export class MultiSelectComponent implements OnInit {
   }
 
   updateModelValue(val) {
-    // console.log(val);
+    // //console.log(val);
     if (this.data.value.indexOf(val) > -1) {
       let index = this.data.value.indexOf(val);
       this.data.value.splice(index, 1)
     } else {
       this.data.value.push(val)
     }
-    // console.log(this.data.value)
+    // //console.log(this.data.value)
     this.updated();
   }
 

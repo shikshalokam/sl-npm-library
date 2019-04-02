@@ -12,6 +12,7 @@ export class AutoCompeteComponent implements OnInit {
   @Input()genericData;
   @Input()genericForm:FormGroup;
   @Input()genericEdit:boolean;
+  @Input()hostUrl;
   autoCompleteData;
   id="";
   programId;
@@ -21,7 +22,7 @@ export class AutoCompeteComponent implements OnInit {
   ) {
     this.route.queryParams.subscribe(params => {
       this.programId = params['ProgramId']
-      console.log(this.programId)
+      //console.log(this.programId)
     })
    }
 
@@ -30,22 +31,22 @@ export class AutoCompeteComponent implements OnInit {
   }
   getAutoComplete(url){
    
-    this.apiService.get(this.genericData.url+this.programId+"?id="+url).subscribe(data => {
+    this.apiService.get(this.hostUrl+this.genericData.url+this.programId+"?id="+url).subscribe(data => {
       this.autoCompleteData = data['result'];
-      console.log(data);
+      //console.log(data);
     },
     error =>{
-      console.log(error.message);
+      //console.log(error.message);
       this.autoCompleteData = [];
     });
   }
    inputChange(event){
     this.id=event.target.value;
-    console.log(event)
+    //console.log(event)
   }
   searchSchoolIdInApi(event){
     this.getAutoComplete(event);
-    console.log(event)
+    //console.log(event)
   }
   
 

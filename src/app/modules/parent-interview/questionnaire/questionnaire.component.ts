@@ -74,7 +74,7 @@ export class QuestionnaireComponent implements OnInit {
     this.parentService.getParentResponses(this.submissionId, this.parentId).subscribe(response => {
       this.currentParentType = this.parentInfoCmp.getParentInfo().type;
 
-      console.log(this.currentParentType)
+      //console.log(this.currentParentType)
       if (response['result']) {
         const resp = response['result'].answers;
         if (resp) {
@@ -90,14 +90,14 @@ export class QuestionnaireComponent implements OnInit {
           this.generalQuestions[0]['instanceQuestions'][0].value = this.currentParentType;
         }
       } else {
-        //console.log(this.currentCallStatus['type'] +"hihiii")
-        //console.log(this.generalQuestions[0]['instanceQuestions'][0].value)
+        ////console.log(this.currentCallStatus['type'] +"hihiii")
+        ////console.log(this.generalQuestions[0]['instanceQuestions'][0].value)
         this.generalQuestions[0]['instanceQuestions'][0].value = this.currentParentType;
         this.utils.loaderHide();
 
       }
 
-      // //console.log(this.previousResponses)
+      // ////console.log(this.previousResponses)
     },(error)=>{
       this.utils.loaderHide();
 
@@ -108,7 +108,7 @@ export class QuestionnaireComponent implements OnInit {
 
 
   mapPreviousResponse(): void {
-    console.log("yesss")
+    //console.log("yesss")
     for (const question of this.generalQuestions[0]['instanceQuestions']) {
       for (const response of this.previousResponses) {
         if (response[question._id]) {
@@ -121,8 +121,8 @@ export class QuestionnaireComponent implements OnInit {
       }
     }
 
-    // console.log(JSON.stringify(this.generalQuestions[0]['instanceQuestions']))
-    //console.log(this.currentCallStatus['type'] +"hihiii")
+    // //console.log(JSON.stringify(this.generalQuestions[0]['instanceQuestions']))
+    ////console.log(this.currentCallStatus['type'] +"hihiii")
     this.generalQuestions[0]['instanceQuestions'][0].value.push( this.currentCallStatus['type']);
 
     // if(!this.generalQuestions[0]['instanceQuestions'][0].value.length) {
@@ -138,7 +138,7 @@ export class QuestionnaireComponent implements OnInit {
   setcallResponse(select: string) {
     if (select) {
       this.selectResponse = select;
-      //console.log(this.selectResponse);
+      ////console.log(this.selectResponse);
     }
   }
 
@@ -151,7 +151,7 @@ export class QuestionnaireComponent implements OnInit {
       this.end--;
       this.generalQuestions[0]['instanceQuestions'][this.start].startTime = Date.now()
       if (this.generalQuestions[0]['instanceQuestions'][this.start].visibleIf && !this.checkForDependentVisibility(this.generalQuestions[0]['instanceQuestions'][this.start])) {
-        //console.log("visibility: " + this.checkForDependentVisibility(this.generalQuestions[0]['instanceQuestions'][this.start]));
+        ////console.log("visibility: " + this.checkForDependentVisibility(this.generalQuestions[0]['instanceQuestions'][this.start]));
         this.generalQuestions[0]['instanceQuestions'][this.start].validation.required = false;
         this.previousQeustion();
       }
@@ -165,7 +165,7 @@ export class QuestionnaireComponent implements OnInit {
       this.currentCallStatus[field['field']] = field['value']
     }
     this.callstatusLabel = JSON.parse(callStatusObj).callStatus.label;
-    //console.log(this.callstatusLabel)
+    ////console.log(this.callstatusLabel)
     this.submitBtnDisable = this.currentCallStatus['callResponse'] === 'R7' && !this.allQuestionsAnswered ? true : false;
     if (this.generalQuestions && this.generalQuestions[0] && !this.generalQuestions[0]['instanceQuestions'][0].value) {
       this.generalQuestions[0]['instanceQuestions'][0].value =  this.currentCallStatus['type'];
@@ -182,14 +182,14 @@ export class QuestionnaireComponent implements OnInit {
 
   nextQuestion(): void {
     this.checkForCompletionOfQuestion();
-    //console.log(this.end + " " + this.generalQuestions[0]['instanceQuestions'].length)
+    ////console.log(this.end + " " + this.generalQuestions[0]['instanceQuestions'].length)
     if (this.end < this.generalQuestions[0]['instanceQuestions'].length) {
       this.generalQuestions[0]['instanceQuestions'][this.start].endTime = Date.now();
       this.start++;
       this.end++;
       this.generalQuestions[0]['instanceQuestions'][this.start].startTime = Date.now();
       if (this.generalQuestions[0]['instanceQuestions'][this.start].visibleIf && !this.checkForDependentVisibility(this.generalQuestions[0]['instanceQuestions'][this.start])) {
-        // //console.log("visibility: " + this.checkForDependentVisibility(this.generalQuestions[0]['instanceQuestions'][this.start]));
+        // ////console.log("visibility: " + this.checkForDependentVisibility(this.generalQuestions[0]['instanceQuestions'][this.start]));
         this.generalQuestions[0]['instanceQuestions'][this.start].validation.required = false;
         this.nextQuestion();
       }
@@ -201,7 +201,7 @@ export class QuestionnaireComponent implements OnInit {
         }
         this.openCompleteModel("completed")
       } else {
-        console.log("in")
+        //console.log("in")
         // this.previousQeustion();
         if(!this.checkForDependentVisibility(this.generalQuestions[0]['instanceQuestions'][this.start])) {
           this.previousQeustion();
@@ -220,7 +220,7 @@ export class QuestionnaireComponent implements OnInit {
     const currentQuestionanswer = this.generalQuestions[0]['instanceQuestions'][this.start].value && this.generalQuestions[0]['instanceQuestions'][this.start].value.length ? this.generalQuestions[0]['instanceQuestions'][this.start].value : "";
     if (this.generalQuestions[0]['instanceQuestions'][this.start].validation.required) {
       this.generalQuestions[0]['instanceQuestions'][this.start].isCompleted = currentQuestionanswer ? true : false;
-      //console.log(this.generalQuestions[0]['instanceQuestions'][this.start].isCompleted)
+      ////console.log(this.generalQuestions[0]['instanceQuestions'][this.start].isCompleted)
     } else {
       this.generalQuestions[0]['instanceQuestions'][this.start].isCompleted = true;
     }
@@ -235,7 +235,7 @@ export class QuestionnaireComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result)
+      //console.log(result)
       if (result === "save") {
         // this.submitSurvey("started");
         // this.goBack();
@@ -244,7 +244,7 @@ export class QuestionnaireComponent implements OnInit {
         this.goBack();
       } else {
       }
-      //console.log('The dialog was closed' + result);
+      ////console.log('The dialog was closed' + result);
     });
   }
 
@@ -263,7 +263,7 @@ export class QuestionnaireComponent implements OnInit {
         this.goBack();
       } else {
       }
-      //console.log('The dialog was closed' + result);
+      ////console.log('The dialog was closed' + result);
     });
   }
 
@@ -273,7 +273,7 @@ export class QuestionnaireComponent implements OnInit {
 
     // }
     const payload = this.constructPayload(surveyStatus);
-    console.log(JSON.stringify(payload))
+    //console.log(JSON.stringify(payload))
     this.parentService.submitParentsurvey(this.submissionId, payload).subscribe(response => {
       this.submitCallStatus(status);
     })
@@ -316,8 +316,8 @@ export class QuestionnaireComponent implements OnInit {
             // if(question.value.includes(condition.value)) {
             //   return true
             // }
-            // console.log(question.value);
-            // console.log(question.value + " "  +condition.operator +" " + condition.value + question.value.includes(condition.value))
+            // //console.log(question.value);
+            // //console.log(question.value + " "  +condition.operator +" " + condition.value + question.value.includes(condition.value))
             return question.value.includes(condition.value)
             // for (const value of question.value) {
             //   if ((eval('"' + value + '"' + condition.operator + '"' + condition.value + '"'))) {
@@ -342,13 +342,13 @@ export class QuestionnaireComponent implements OnInit {
   }
 
   updateValues() {
-    //console.log("in update");
+    ////console.log("in update");
     this.checkForCompletionOfQuestion();
     this.checkForCompletionOfInterview();
   }
 
   checkForCompletionOfInterview() {
-    // //console.log(currentQuestionanswer + " " + this.generalQuestions[0]['instanceQuestions'][this.start].isCompleted)
+    // ////console.log(currentQuestionanswer + " " + this.generalQuestions[0]['instanceQuestions'][this.start].isCompleted)
     let completedAllQuestions = true;
     for (const question of this.generalQuestions[0]['instanceQuestions']) {
       if (!question.isCompleted) {
@@ -356,7 +356,7 @@ export class QuestionnaireComponent implements OnInit {
         // break
       }
     }
-    //console.log(completedAllQuestions);
+    ////console.log(completedAllQuestions);
     this.allQuestionsAnswered = completedAllQuestions;
 
     // this.submitBtnDisable = this.currentCallStatus['callResponse'] === 'R7' && !this.allQuestionsAnswered ? true : false;
@@ -370,7 +370,7 @@ export class QuestionnaireComponent implements OnInit {
       disableClose: true
     });
     dialogRef.afterClosed().subscribe(result => {
-      // //console.log(result)
+      // ////console.log(result)
       if (result.status === 'completed') {
         this.generalQuestions[0].remarks = result.remarks;
         this.submitSurvey("completed");
@@ -385,7 +385,7 @@ export class QuestionnaireComponent implements OnInit {
       answers: {}
     }
     for (const question of this.generalQuestions) {
-      //console.log(question)
+      ////console.log(question)
       payload.answers[question._id] = {
         "qid": question._id,
         "value": [],
