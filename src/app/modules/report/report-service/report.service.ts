@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ReportConfig } from 'src/app/modules/report/report-config';
-import { ApiService } from '../../../../../dist/shikshalokam';
-import { environment } from 'src/environments/environment';
+// import { ApiService } from '../../../../../dist/shikshalokam';
+// import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })

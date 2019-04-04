@@ -2,7 +2,7 @@
     <div *ngFor="let sections of section.subSections">
 
     <div>
-        <app-table-component [headers]="sections?.tabularData?.headers" [datas]="sections?.data" *ngIf="sections?.table">
+        <app-table-component [headers]="sections?.tabularData?.headers" [datas]="sections?.data" [tableScroll]="sections?.tableScroll" *ngIf="sections?.table">
         </app-table-component>
     </div>
     <div class="marginTop _border">
