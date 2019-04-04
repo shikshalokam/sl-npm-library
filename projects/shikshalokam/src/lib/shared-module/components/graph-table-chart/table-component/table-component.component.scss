@@ -4,13 +4,16 @@
     width: 100%;
     border: 1px solid #ddd;
     margin-top: 20px;
-
+    overflow: auto;
     th,
     td {
         text-align: left;
         padding: 10px;
     }
-
+    .fixed{
+        position: absolute;
+        float: left;
+    }
     tr:nth-child(even) {
         background-color: #f2f2f2
     }
@@ -24,3 +27,33 @@
       font-size: 12px !important;
     }
 }
+
+
+.example-container {
+    max-height: 600px;
+    width: 100% ;
+    overflow: auto;
+  }
+  
+  
+  td.mat-column-star {
+    width: 20px;
+    padding-right: 8px;
+  }
+  
+  th.mat-column-position, td.mat-column-position {
+    padding: 8px;
+    text-align:  center;
+  }
+  
+  .border{
+    border-right: 1px solid #e0e0e0;
+  }
+  
+  .padding{
+    padding: 15px;
+    text-align: center;
+  }
+  
+  
+  

@@ -4,7 +4,7 @@ import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.com
 import { TextFieldComponent } from './components/text-field/text-field.component';
 import { DropdownFieldComponent } from './components/dropdown-field/dropdown-field.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule, MatRadioModule, MatDividerModule, MatCheckboxModule, MatCardMdImage, MatCardModule, MatTooltipModule, MatDatepickerModule, MatAutocompleteModule } from '@angular/material';
+import { MatInputModule, MatRadioModule, MatDividerModule, MatCheckboxModule, MatCardMdImage, MatCardModule, MatTooltipModule, MatDatepickerModule, MatAutocompleteModule, MatTableModule } from '@angular/material';
 import { NumberFieldComponent } from './components/number-field/number-field.component';
 import { TextareaFieldComponent } from './components/textarea-field/textarea-field.component';
 import {MatSelectModule} from '@angular/material/select';
@@ -35,6 +35,8 @@ import { GraphTableChartComponent } from './components/graph-table-chart/graph-t
 import { TableComponentComponent } from './components/graph-table-chart/table-component/table-component.component';
 import { ColumnGraphComponent } from './components/graph-table-chart/column-graph/column-graph.component';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { ShareLinkComponent } from './components/share-link/share-link.component';
+import { ShareLinkViewComponent } from './components/share-link-view/share-link-dialog.component';
 
 @NgModule({
   declarations: [
@@ -59,10 +61,12 @@ import { GoogleChartsModule } from 'angular-google-charts';
     DatePickerComponent,
     TableComponentComponent,
     ColumnGraphComponent,
-    GraphTableChartComponent
-
+    GraphTableChartComponent,
+    ShareLinkComponent,
+    ShareLinkViewComponent
    ],
   imports: [
+    
     CommonModule,
     FormsModule,
     MatCheckboxModule,
@@ -73,6 +77,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
     MatDividerModule,
     MatDialogModule,
     MatRadioModule,
+    MatTableModule,
     MatSelectModule,
     RouterModule,
     CoreModule,
@@ -86,7 +91,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
 
 
   ],
-  entryComponents: [DialogBoxComponent],
+  entryComponents: [DialogBoxComponent,ShareLinkViewComponent],
   exports : [
     GraphTableChartComponent,
     DynamicFormComponent,
@@ -102,6 +107,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
     BreadcrumbComponent,
     PaginationComponent,
     MatTooltipModule,
+    ShareLinkComponent
   ]
 
 })

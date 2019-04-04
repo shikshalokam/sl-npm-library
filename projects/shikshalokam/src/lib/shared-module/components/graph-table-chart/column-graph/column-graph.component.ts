@@ -39,6 +39,11 @@ export class ColumnGraphComponent implements OnInit {
     this.graphData['columnNames'] = keys.map(key => new CamelCasePipe().transform(key));
     // position: 'top',
     this.graphData['options']["legend"] = {  maxLines: 2 }
+    if(this.graphData['data'].length > 10 ){
+    Object.assign(this.graphData['options'].hAxis , {textPosition : 'none'});
+
+
+    }
   }
 
 }
