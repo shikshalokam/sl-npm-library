@@ -7,15 +7,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule, MatRadioModule, MatDividerModule, MatCheckboxModule, MatCardMdImage, MatCardModule, MatTooltipModule, MatDatepickerModule, MatAutocompleteModule, MatTableModule } from '@angular/material';
 import { NumberFieldComponent } from './components/number-field/number-field.component';
 import { TextareaFieldComponent } from './components/textarea-field/textarea-field.component';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { RouterModule } from '@angular/router';
 import { ParentHeadingComponent } from './components/parent-heading/parent-heading.component';
 import { CoreModule } from '../core-module/core.module';
 import { DialogBoxComponent } from './components/dialog-box/dialog-box.component'
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatButtonModule} from '@angular/material/button';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ImageCardComponent } from './components/image-card/image-card.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoaderComponent } from './components/loader/loader.component';
@@ -37,22 +37,22 @@ import { ColumnGraphComponent } from './components/graph-table-chart/column-grap
 import { GoogleChartsModule } from 'angular-google-charts';
 import { ShareLinkComponent } from './components/share-link/share-link.component';
 import { ShareLinkViewComponent } from './components/share-link-view/share-link-dialog.component';
-
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [
     ProgramsDashboardComponent,
     DynamicFormComponent,
     DialogBoxComponent,
-    TextFieldComponent, 
-    DropdownFieldComponent, 
-    NumberFieldComponent, 
+    TextFieldComponent,
+    DropdownFieldComponent,
+    NumberFieldComponent,
     TextareaFieldComponent,
-    ParentHeadingComponent, 
-    ImageCardComponent, 
-    LoaderComponent, 
-    SelectFieldComponent, 
-    FormArrayFieldComponent, 
-    SearchDirective, 
+    ParentHeadingComponent,
+    ImageCardComponent,
+    LoaderComponent,
+    SelectFieldComponent,
+    FormArrayFieldComponent,
+    SearchDirective,
     IndividualLoaderComponent,
     DashboardBlocksComponent,
     BreadcrumbComponent,
@@ -64,9 +64,9 @@ import { ShareLinkViewComponent } from './components/share-link-view/share-link-
     GraphTableChartComponent,
     ShareLinkComponent,
     ShareLinkViewComponent
-   ],
+  ],
   imports: [
-    
+
     CommonModule,
     FormsModule,
     MatCheckboxModule,
@@ -88,15 +88,15 @@ import { ShareLinkViewComponent } from './components/share-link-view/share-link-
     MatDatepickerModule,
     MatAutocompleteModule,
     GoogleChartsModule.forRoot(),
-
+    MatIconModule
 
   ],
-  entryComponents: [DialogBoxComponent,ShareLinkViewComponent],
-  exports : [
+  entryComponents: [DialogBoxComponent, ShareLinkViewComponent],
+  exports: [
     GraphTableChartComponent,
     DynamicFormComponent,
     NgxSpinnerModule,
-    ParentHeadingComponent, 
+    ParentHeadingComponent,
     MatSnackBarModule,
     ImageCardComponent,
     LoaderComponent,
@@ -115,7 +115,7 @@ export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [ResourceService,BreadcrumbsService]
+      providers: [ResourceService, BreadcrumbsService]
     };
   }
- }
+}
