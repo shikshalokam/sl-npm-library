@@ -35,6 +35,8 @@ import { GraphTableChartComponent } from './components/graph-table-chart/graph-t
 import { TableComponentComponent } from './components/graph-table-chart/table-component/table-component.component';
 import { ColumnGraphComponent } from './components/graph-table-chart/column-graph/column-graph.component';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { ShareLinkComponent } from './components/share-link/share-link.component';
+import { ShareLinkViewComponent } from './components/share-link-view/share-link-dialog.component';
 
 @NgModule({
   declarations: [
@@ -59,10 +61,12 @@ import { GoogleChartsModule } from 'angular-google-charts';
     DatePickerComponent,
     TableComponentComponent,
     ColumnGraphComponent,
-    GraphTableChartComponent
-
+    GraphTableChartComponent,
+    ShareLinkComponent,
+    ShareLinkViewComponent
    ],
   imports: [
+    
     CommonModule,
     FormsModule,
     MatCheckboxModule,
@@ -87,7 +91,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
 
 
   ],
-  entryComponents: [DialogBoxComponent],
+  entryComponents: [DialogBoxComponent,ShareLinkViewComponent],
   exports : [
     GraphTableChartComponent,
     DynamicFormComponent,
@@ -103,6 +107,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
     BreadcrumbComponent,
     PaginationComponent,
     MatTooltipModule,
+    ShareLinkComponent
   ]
 
 })
