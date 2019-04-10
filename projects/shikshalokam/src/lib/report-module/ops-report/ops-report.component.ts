@@ -58,6 +58,9 @@ export class OpsReportComponent implements OnInit {
   queryParamsRouterUrl: string = '';
   apiBaseUrl: any;
   reportConfig: any;
+  share: any;
+  publicSharedBaseUrl: any;
+  shareLinkApi: any;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -69,7 +72,8 @@ export class OpsReportComponent implements OnInit {
     this.route.data.subscribe(data=>{
       this.apiBaseUrl = data.apibaseUrl;
       this.reportConfig = data.reportConfig
-      console.log(data);
+      this.shareLinkApi = data.shareLinkApi;
+      this.publicSharedBaseUrl = data.publicSharedBaseUrl;
     })
     this.filterForm = this._fb.group({
       formDate: ['', Validators.required],
@@ -536,6 +540,7 @@ export class OpsReportComponent implements OnInit {
   getSchoolReport() {
     this.schoolLoading = true;
     this.operationService.getSchoolReport(this.apiBaseUrl+this.reportConfig.schoolReport+this.queryParamsUrl + this.searchParam).subscribe(data => {
+      this.share = data['result'];
       this.schoolReport = this.mapGraphObject(data['result']['sections']);
       //  this.schoolGraph=this.schoolReport['graphData'];
       this.schoolLoading = false;

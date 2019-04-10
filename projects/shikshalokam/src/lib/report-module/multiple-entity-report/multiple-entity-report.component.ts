@@ -17,6 +17,8 @@ export class MultipleEntityRportComponent implements OnInit {
   blockName: any;
   @Input()apiBaseUrl: any;
   @Input()reportConfig: any;
+  shareLinkApi: any;
+  publicSharedBaseUrl: any;
   constructor(
     private reportService: ReportService,
     private utility: UtilityService,
@@ -32,10 +34,16 @@ export class MultipleEntityRportComponent implements OnInit {
       this.programId = params['ProgramId'];
       this.blockName = params['blockName'];
     })
+    this.router.data.subscribe(data => {
+      this.apiBaseUrl = data.apibaseUrl;
+      this.reportConfig = data.reportConfig;
+      this.shareLinkApi = data.shareLinkApi;
+      this.publicSharedBaseUrl = data.publicSharedBaseUrl;
+    });
     this.getMultiEntityReport();
   }
   getMultiEntityReport() {
-    this.reportService.getMultipleEntityReport(this.apiBaseUrl+this.reportConfig,this.programId, this.blockName, this.schoolId).subscribe(successData => {
+    this.reportService.getMultipleEntityReport(this.apiBaseUrl+this.reportConfig.multiEntityHighLevelReport,this.programId, this.blockName, this.schoolId).subscribe(successData => {
       this.mutipleEntity = successData['result'];
       this.createNewData();
       console.log(this.mutipleEntity);

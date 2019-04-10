@@ -16,8 +16,14 @@ export class SchoolsComponent implements OnInit {
   dataSource;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  reportConfig: any;
+  apiBaseUrl: any;
   constructor(private apiService: ReportService, private router: ActivatedRoute, private route: Router) {
     this.programId = this.router.snapshot.queryParamMap.get('ProgramId');
+    this.router.data.subscribe(data => {
+      this.apiBaseUrl = data.apibaseUrl;
+      this.reportConfig = data.reportConfig
+    });
   }
 
   ngOnInit() {
@@ -29,7 +35,7 @@ export class SchoolsComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   getSchoolList() {
-    this.apiService.getUserSchoolsInProgram(this.programId).subscribe(successData => {
+    this.apiService.getUserSchoolsInProgram( this.apiBaseUrl+this.apiBaseUrl.reportConfig.userSchoolsInProgram , this.programId).subscribe(successData => {
       this.dataSource =  new MatTableDataSource(successData['result'].schools);
       setTimeout(() => this.dataSource.sort = this.sort);
       setTimeout(() => this.dataSource.paginator = this.paginator);

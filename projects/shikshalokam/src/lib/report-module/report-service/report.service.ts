@@ -37,9 +37,7 @@ export class ReportService {
     return this.apiService.get(apiBaseUrl+  programId + '?school=' + schoolId);
     // return this.apiService.get('/assests/insight.json');
   }
-  getFrameWorkStructureRubric(apiBaseUrl,url) {
-    return this.apiService.get(apiBaseUrl+ url)
-  }
+ 
   getMultipleEntityReport(apiBaseUrl,programId,blockName, ...schoolId) {
     let url = '';
     schoolId.forEach((Id, index) => {

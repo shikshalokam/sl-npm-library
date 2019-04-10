@@ -17,6 +17,8 @@ export class MultipleEntityDrilldownReportComponent implements OnInit {
   blockName;
   @Input()reportConfig: any;
   @Input()apiBaseUrl: any;
+  shareLinkApi: any;
+  publicSharedBaseUrl: any;
   constructor(
     private reportService: ReportService,
     private utility: UtilityService,
@@ -32,10 +34,16 @@ export class MultipleEntityDrilldownReportComponent implements OnInit {
       this.programId = params['ProgramId'];
       this.blockName = params['blockName'];
     })
+    this.router.data.subscribe(data => {
+      this.apiBaseUrl = data.apibaseUrl;
+      this.reportConfig = data.reportConfig;
+      this.shareLinkApi = data.shareLinkApi;
+      this.publicSharedBaseUrl = data.publicSharedBaseUrl;
+    });
     this.getMultiEntityDrillReport();
   }
   getMultiEntityDrillReport() {
-    this.reportService.getMultipleEntityDrilldownReport(this.apiBaseUrl+this.reportConfig,this.programId,this.blockName, this.schoolId).subscribe(successData => {
+    this.reportService.getMultipleEntityDrilldownReport(this.apiBaseUrl+this.reportConfig.multiEntityDrillDownLevelReport,this.programId,this.blockName, this.schoolId).subscribe(successData => {
       this.mutipleEntity = successData['result'];
       this.createNewData();
       console.log(this.mutipleEntity);
@@ -49,7 +57,7 @@ export class MultipleEntityDrilldownReportComponent implements OnInit {
     this.mutipleEntity.sections.forEach((element, sectionIndex) => {
       element.subSections.forEach((subSections, subSectionsIndex) => {
         this.mutipleEntity.sections[sectionIndex].subSections[subSectionsIndex]['tableScroll']= true;
-        this.mutipleEntity.sections[sectionIndex].subSections[subSectionsIndex]['graphData'].chartType = 'LineChart';
+        // this.mutipleEntity.sections[sectionIndex].subSections[subSectionsIndex]['graphData'].chartType = 'LineChart';
         // let newgraphData = [];
         // for (const data of this.mutipleEntity['sections'][sectionIndex]['subSections'][subSectionsIndex].data) {
         //   let newData = Object.assign({}, data);
