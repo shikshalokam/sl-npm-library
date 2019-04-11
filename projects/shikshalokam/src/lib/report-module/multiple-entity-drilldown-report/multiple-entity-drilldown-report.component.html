@@ -1,13 +1,13 @@
 <app-loader></app-loader>
 
-<app-parent-heading [genericHeading]="headings" [showControl]="false"></app-parent-heading>
+<app-parent-heading *ngIf="!linkId" [genericHeading]="headings" [showControl]="false"></app-parent-heading>
 
 <div>
   <div class="_flex-box _full-width">
     <h4 class="marginTop" style="flex:1">{{mutipleEntity?.heading}}</h4>
-    <button mat-button color="primary" (click)="naviagteToRubrics()">{{'headings.frameworkRubricView' | translate}}
+    <button mat-button color="primary" *ngIf="!linkId" (click)="naviagteToRubrics()">{{'headings.frameworkRubricView' | translate}}
     </button>
-    <app-share-link *ngIf="mutipleEntity?.isShareable" [publicSharedBaseUrl]="publicSharedBaseUrl" [shareLinkApi]="shareLinkApi"></app-share-link>
+    <app-share-link *ngIf="mutipleEntity?.isShareable && !linkId"  [globalConfig]="globalConfig" [publicSharedBaseUrl]="publicSharedBaseUrl" [shareLinkApi]="shareLinkApi"></app-share-link>
   </div>
   <div>
     <mat-card>

@@ -17,22 +17,26 @@ export class EntityReportComponent implements OnInit {
   insightReport;
   programId;
   schoolId;
-  @Input() golbalConfig ;
+  @Input() globalConfig ;
   @Input()apiBaseUrl: any;
   @Input()reportConfig: any;
   shareLinkApi: any;
   publicSharedBaseUrl: any;
+  linkId: string;
   constructor(private apiService: ReportService,
     private snackBar: MatSnackBar,
     private route: Router,
     private utility: UtilityService, private router: ActivatedRoute) {
     this.programId = this.router.snapshot.queryParamMap.get('ProgramId');
+    this.linkId = this.router.snapshot.queryParamMap.get('linkId');
+
     this.schoolId = this.router.snapshot.params.schoolId;
     this.router.data.subscribe(data => {
       this.apiBaseUrl = data.apibaseUrl;
       this.reportConfig = data.reportConfig;
       this.shareLinkApi = data.shareLinkApi;
       this.publicSharedBaseUrl = data.publicSharedBaseUrl;
+      this.globalConfig = data.globalConfig;
     });
   }
 
@@ -70,13 +74,14 @@ export class EntityReportComponent implements OnInit {
   }
 
   getEntityReport() {
-    this.apiService.getSingleEntityReport(this.apiBaseUrl+this.reportConfig.singleEntityReport,this.programId, this.schoolId).subscribe(data => {
+    console.log("api called")
+    this.apiService.getSingleEntityReport(this.apiBaseUrl+this.reportConfig.singleEntityReport,this.programId, this.schoolId,this.linkId).subscribe(data => {
       this.insightReport = data['result'];
       this.utility.loaderHide();
     },
       (error) => {
 
-        this.snackBar.open(this.golbalConfig.errorMessage, "Ok", { duration: 9000 });
+        this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
         this.utility.loaderHide();
       })
   }

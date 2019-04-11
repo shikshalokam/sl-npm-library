@@ -19,6 +19,7 @@ export class HighlevelEntityReportComponent implements OnInit {
   headings = "headings.reportMiltipleEntityReport"
   shareLinkApi: any;
   publicSharedBaseUrl: any;
+  linkId: any;
   constructor(private apiService: ReportService,
     private utility: UtilityService,
     private snackBar: MatSnackBar,
@@ -27,11 +28,14 @@ export class HighlevelEntityReportComponent implements OnInit {
   ) {
     this.programId = this.router.snapshot.queryParamMap.get('ProgramId');
     this.schoolId = this.router.snapshot.params.schoolId;
+    this.linkId = this.router.snapshot.params.linkId;
+
     this.router.data.subscribe(data => {
       this.apiBaseUrl = data.apibaseUrl;
       this.reportConfig = data.reportConfig;
       this.shareLinkApi = data.shareLinkApi;
       this.publicSharedBaseUrl = data.publicSharedBaseUrl;
+      this.globalConfig = data.globalConfig;
     });
   }
 
@@ -41,7 +45,7 @@ export class HighlevelEntityReportComponent implements OnInit {
   }
 
   getHighEntityReport() {
-    this.apiService.getHighEntityReport(this.apiBaseUrl+this.reportConfig.highEntityReport,this.programId, this.schoolId).subscribe(data => {
+    this.apiService.getHighEntityReport(this.apiBaseUrl+this.reportConfig.highEntityReport,this.programId, this.schoolId,this.linkId).subscribe(data => {
       this.highLevelInsight = data['result'];
       const newgraphData = []
 

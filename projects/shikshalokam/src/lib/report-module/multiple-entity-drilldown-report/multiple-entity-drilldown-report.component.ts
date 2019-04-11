@@ -19,6 +19,8 @@ export class MultipleEntityDrilldownReportComponent implements OnInit {
   @Input()apiBaseUrl: any;
   shareLinkApi: any;
   publicSharedBaseUrl: any;
+  globalConfig: any;
+  linkId: any;
   constructor(
     private reportService: ReportService,
     private utility: UtilityService,
@@ -33,22 +35,29 @@ export class MultipleEntityDrilldownReportComponent implements OnInit {
       this.schoolId = params['school'];
       this.programId = params['ProgramId'];
       this.blockName = params['blockName'];
+      this.linkId = params['linkId'];
     })
     this.router.data.subscribe(data => {
       this.apiBaseUrl = data.apibaseUrl;
       this.reportConfig = data.reportConfig;
       this.shareLinkApi = data.shareLinkApi;
       this.publicSharedBaseUrl = data.publicSharedBaseUrl;
+      this.globalConfig = data.globalConfig;
     });
     this.getMultiEntityDrillReport();
   }
   getMultiEntityDrillReport() {
-    this.reportService.getMultipleEntityDrilldownReport(this.apiBaseUrl+this.reportConfig.multiEntityDrillDownLevelReport,this.programId,this.blockName, this.schoolId).subscribe(successData => {
+    this.reportService.getMultipleEntityDrilldownReport(this.apiBaseUrl+this.reportConfig.multiEntityDrillDownLevelReport,this.programId,this.blockName, this.schoolId,this.linkId).subscribe(successData => {
       this.mutipleEntity = successData['result'];
       this.createNewData();
       console.log(this.mutipleEntity);
       this.utility.loaderHide();
-    })
+    },error => {
+      this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
+      this.utility.loaderHide();
+
+    }
+        )
   }
   url = "PROGID01?school="
   createNewData() {

@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort, Sort } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, Sort, MatSnackBar } from '@angular/material';
 import { ReportService } from '../../../report-service/report.service';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { UtilityService } from 'projects/shikshalokam/src/lib/core-module/services/utility-service/utility.service';
 @Component({
   selector: 'app-schools',
   templateUrl: './schools.component.html',
@@ -18,7 +18,11 @@ export class SchoolsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   reportConfig: any;
   apiBaseUrl: any;
-  constructor(private apiService: ReportService, private router: ActivatedRoute, private route: Router) {
+  globalConfig: any;
+  constructor(private apiService: ReportService,
+    private snackBar :MatSnackBar,
+    private utility :UtilityService,
+     private router: ActivatedRoute, private route: Router) {
     this.programId = this.router.snapshot.queryParamMap.get('ProgramId');
     this.router.data.subscribe(data => {
       this.apiBaseUrl = data.apibaseUrl;
@@ -27,6 +31,7 @@ export class SchoolsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.utility.loaderShow();
     this.getSchoolList();
   }
 
@@ -42,6 +47,8 @@ export class SchoolsComponent implements OnInit {
       
     }, error => {
 
+      this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
+      this.utility.loaderHide();
     })
   }
 

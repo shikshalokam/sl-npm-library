@@ -28,17 +28,24 @@ export class ReportService {
     return this.apiService.get(apiBaseUrl + programId);
   }
 
-  getSingleEntityReport(apiBaseUrl,programId, schoolId) {
+  getSingleEntityReport(apiBaseUrl,programId, schoolId,linkId) {
+    if(linkId){
+    return this.apiService.get(apiBaseUrl + programId + '?school=' + schoolId+"&linkId="+ linkId);
+    }
     return this.apiService.get(apiBaseUrl + programId + '?school=' + schoolId);
     // return this.apiService.get('/assests/insight.json');
 
   }
-  getHighEntityReport(apiBaseUrl,programId, schoolId) {
+  getHighEntityReport(apiBaseUrl,programId, schoolId , linkId) {
+    if(linkId){
+    return this.apiService.get(apiBaseUrl+  programId + '?school=' + schoolId +"&linkId="+linkId);
+
+    }
     return this.apiService.get(apiBaseUrl+  programId + '?school=' + schoolId);
     // return this.apiService.get('/assests/insight.json');
   }
  
-  getMultipleEntityReport(apiBaseUrl,programId,blockName, ...schoolId) {
+  getMultipleEntityReport(apiBaseUrl,programId,blockName, schoolId,linkId) {
     let url = '';
     schoolId.forEach((Id, index) => {
       if (index === 0) {
@@ -49,11 +56,16 @@ export class ReportService {
       }
 
     });
+
+    if(linkId){
+      return this.apiService.get(apiBaseUrl + programId + '?school=' + url +'&blockName='+blockName+"&linkId="+linkId);
+
+    }
     return this.apiService.get(apiBaseUrl + programId + '?school=' + url +'&blockName='+blockName);
     // return this.apiService.get('/assests/insight.json');
   }
 
-  getMultipleEntityDrilldownReport(apiBaseUrl,programId,blockName, ...schoolId) {
+  getMultipleEntityDrilldownReport(apiBaseUrl,programId,blockName,schoolId,linkId) {
     let url = '';
     schoolId.forEach((Id, index) => {
       if (index === 0) {
@@ -64,6 +76,10 @@ export class ReportService {
       }
 
     });
+    if(linkId){
+    return this.apiService.get(apiBaseUrl+ programId + '?school=' + url+'&blockName='+blockName+"&linkId="+linkId);
+
+    }
     return this.apiService.get(apiBaseUrl+ programId + '?school=' + url+'&blockName='+blockName);
     // return this.apiService.get('/assests/insight.json');
   }

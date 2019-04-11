@@ -1,6 +1,6 @@
 <nav class="responsiveNavbar noMarginPadding">
   <body class=" col-xs-12 noMarginPadding alingCenterline" >
-      <span class="col-xs-4 alingCenterline noMarginPadding">
+      <span  *ngIf="!noAssess"class="col-xs-4 alingCenterline noMarginPadding">
           <button mat-icon-button>
           <i class="material-icons" (click)="openSideNav()">
             menu
@@ -18,7 +18,7 @@
      <!-- Responsive nav -->
 
 
-        <span class="right _flex-box alingCenterline app-box">
+        <span *ngIf="!noAssess" class="right _flex-box alingCenterline app-box">
             <button mat-icon-button (click)="openDropdown()">
                   <i class="material-icons">apps</i>
             </button>

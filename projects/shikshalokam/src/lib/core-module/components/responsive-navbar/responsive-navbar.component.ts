@@ -14,7 +14,7 @@ export class ResponsiveNavbarComponent implements OnInit {
   @Output() Logout = new EventEmitter ();
   @Input() url;
   @Input() portal;
-
+  @Input() noAssess= false;
   constructor() {
   }
   ngOnInit() {
