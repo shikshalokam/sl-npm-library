@@ -1,6 +1,6 @@
 <app-loader></app-loader>
 <div class="_margin-bottom">
-  <app-parent-heading *ngIf="!noAssess" [genericHeading]="headings" [showControl]="false"></app-parent-heading>
+  <app-parent-heading *ngIf="!noAssess" [startIndex]="3" [genericHeading]="headings" [showControl]="false"></app-parent-heading>
 </div>
 <div class="reportDashboard">
 
@@ -61,7 +61,7 @@
         </mat-card>  -->
         <div class="_flex-box _justify-content-space-between">
           <h4 class="marginTop" style="flex:1">Program Operations Report </h4>
-          <app-share-link *ngIf="share?.isShareable && !noAssess" [publicSharedBaseUrl]="publicSharedBaseUrl"  [globalConfig]="globalConfig" [shareLinkApi]="shareLinkApi"></app-share-link>
+          <app-share-link *ngIf="share?.isShareable && !noAssess" [componentId]="componentId" [publicSharedBaseUrl]="publicSharedBaseUrl"  [globalConfig]="globalConfig" [shareLinkApi]="shareLinkApi"></app-share-link>
         </div>
 
         <!-- <h4 class="_flex-box  _small-Bottom-Margin"></h4>

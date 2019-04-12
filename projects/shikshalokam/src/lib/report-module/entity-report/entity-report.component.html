@@ -1,6 +1,6 @@
 <app-loader></app-loader>
 
-<app-parent-heading *ngIf="!linkId" [genericHeading]="headings" [showControl]="false"></app-parent-heading>
+<app-parent-heading *ngIf="!linkId" [genericHeading]="headings" [startIndex]="3" [showControl]="false"></app-parent-heading>
 
 <div>
   <div class="_flex-box ">
@@ -9,6 +9,7 @@
       (click)="naviagteToRubrics()">{{'headings.frameworkRubricView' | translate}}</button>
     <app-share-link *ngIf="insightReport?.isShareable && !linkId"
      [publicSharedBaseUrl]="publicSharedBaseUrl"
+     [componentId]="componentId"
      [globalConfig]="globalConfig"
       [shareLinkApi]="shareLinkApi">
     </app-share-link>

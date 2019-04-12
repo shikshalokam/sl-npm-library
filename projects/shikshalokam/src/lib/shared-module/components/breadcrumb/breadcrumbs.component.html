@@ -8,10 +8,10 @@
         <li *ngFor="let breadcrumb of breadcrumbs; let last = last" class="padding breadcrumbList">
             <span *ngIf="breadcrumb.label !=''">
 
-                <a *ngIf=" breadcrumb == breadcrumbs[2] " [routerLink]="hasParams(breadcrumb)" class="_flex-box breadcrumbLink">
+                <a *ngIf=" breadcrumb == breadcrumbs[startIndex] " [routerLink]="hasParams(breadcrumb)" class="_flex-box breadcrumbLink">
                             {{breadcrumb.label | translate}}
                 </a>
-                <a *ngIf="(!last) &&( breadcrumb != breadcrumbs[2])" [routerLink]="hasParams(breadcrumb)" class="_flex-box breadcrumbLink">
+                <a *ngIf="(!last) &&( breadcrumb != breadcrumbs[startIndex])" [routerLink]="hasParams(breadcrumb)" class="_flex-box breadcrumbLink">
                     
                     <i class="material-icons">
                         keyboard_arrow_right

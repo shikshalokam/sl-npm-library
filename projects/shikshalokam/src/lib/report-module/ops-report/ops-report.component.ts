@@ -50,7 +50,7 @@ export class OpsReportComponent implements OnInit {
   expandedFilters: boolean = true;
   schoolLoading: boolean;
   assessorLoading: boolean;
-  @Input() hostUrl;
+   @Input() hostUrl;
   @Input() globalConfig;
   @ViewChild('myaccordion') filterPanel: MatAccordion;
   summaryProfileData: any;
@@ -63,6 +63,7 @@ export class OpsReportComponent implements OnInit {
   publicSharedBaseUrl: any;
   shareLinkApi: any;
   noAssess: any;
+  componentId: any;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -78,6 +79,8 @@ export class OpsReportComponent implements OnInit {
       this.publicSharedBaseUrl = data.publicSharedBaseUrl;
       this.globalConfig = data.globalConfig; 
       this.noAssess = data.noAssess;
+      this.componentId = data.id;
+      this.hostUrl = data.apiBaseUrl;
     })
     this.filterForm = this._fb.group({
       formDate: ['', Validators.required],

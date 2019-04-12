@@ -23,6 +23,7 @@ export class EntityReportComponent implements OnInit {
   shareLinkApi: any;
   publicSharedBaseUrl: any;
   linkId: string;
+  componentId: any;
   constructor(private apiService: ReportService,
     private snackBar: MatSnackBar,
     private route: Router,
@@ -37,6 +38,7 @@ export class EntityReportComponent implements OnInit {
       this.shareLinkApi = data.shareLinkApi;
       this.publicSharedBaseUrl = data.publicSharedBaseUrl;
       this.globalConfig = data.globalConfig;
+      this.componentId = data.id;
     });
   }
 

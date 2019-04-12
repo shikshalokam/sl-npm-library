@@ -41,7 +41,8 @@ import { CoreModule } from '../core-module/core.module';
     EntityReportComponent,
     HighlevelEntityReportComponent,
     MultipleEntityDrilldownReportComponent,
-    MultipleEntityRportComponent
+    MultipleEntityRportComponent,
+    OpsReportComponent
   ],
   providers :[
     MatDatepickerModule,

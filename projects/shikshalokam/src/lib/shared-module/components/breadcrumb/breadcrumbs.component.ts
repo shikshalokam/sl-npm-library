@@ -25,6 +25,8 @@ export class BreadcrumbComponent implements OnInit {
   public addClass: string;
 
   @Input() showControl;
+  @Input() startIndex;
+
   public constructor(private breadcrumbService: BreadcrumbsService,private utilityService :UtilityService, private activatedRoute: ActivatedRoute, private router: Router) {
     breadcrumbService.get().subscribe((breadcrumbs: IBreadcrumb[]) => {
       this.breadcrumbs = breadcrumbs as IBreadcrumb[];

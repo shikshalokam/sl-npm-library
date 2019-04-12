@@ -20,6 +20,7 @@ export class HighlevelEntityReportComponent implements OnInit {
   shareLinkApi: any;
   publicSharedBaseUrl: any;
   linkId: any;
+  componentId: any;
   constructor(private apiService: ReportService,
     private utility: UtilityService,
     private snackBar: MatSnackBar,
@@ -36,6 +37,7 @@ export class HighlevelEntityReportComponent implements OnInit {
       this.shareLinkApi = data.shareLinkApi;
       this.publicSharedBaseUrl = data.publicSharedBaseUrl;
       this.globalConfig = data.globalConfig;
+      this.componentId = data.id;
     });
   }
 

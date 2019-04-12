@@ -14,9 +14,11 @@ export class ShareLinkComponent implements OnInit {
   @Input() publicSharedBaseUrl;
   @Input() shareLinkApi  ;
   @Input() globalConfig;
+  @Input() componentId ;
   url = {
     publicURL: '',
-    privateURL: ''
+    privateURL: '',
+    reportName : ''
   }
   uuId: any;
   constructor(public dialog: MatDialog, 
@@ -36,13 +38,14 @@ export class ShareLinkComponent implements OnInit {
       let routeIndex = this.url.privateURL.indexOf(url[0].path)
       this.url.publicURL = this.publicSharedBaseUrl + this.url.privateURL.slice(routeIndex);
       console.log(this.url)
+      this.url.reportName = this.componentId;
     })
     this.apiService.post(this.shareLinkApi , this.url).subscribe( successData =>{
       console.log(successData);
       
 
       this.uuId = this.publicSharedBaseUrl.substring(0, this.publicSharedBaseUrl.length - 1)  +"?linkId="+ successData['result']['linkId'];
-      this.url.publicURL = "https://devhome.shikshalokam.org/programs/public?linkId="+successData['result']['linkId'];
+      this.url.publicURL = "https://devhome.shikshalokam.org/programs/public?linkId="+successData['result']['linkId'] +"&componentName="+this.componentId;
 
       this.openDialog();
     },error => {
