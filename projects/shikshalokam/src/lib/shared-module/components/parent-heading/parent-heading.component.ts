@@ -12,6 +12,8 @@ import { UtilityService } from '../../../core-module/services/utility-service/ut
 export class ParentHeadingComponent implements OnInit {
   @Input() genericHeading: string;
   @Input() schoolName;
+  @Input() startIndex;
+
   @Input() atleastOneComplete;
   @Input() schoolId;
   @Input() schoolNameDivider ;

@@ -33,11 +33,13 @@ export class AutoCompeteComponent implements OnInit {
    
     this.apiService.get(this.hostUrl+this.genericData.url+this.programId+"?id="+url).subscribe(data => {
       this.autoCompleteData = data['result'];
-      //console.log(data);
+      console.log(this.hostUrl);
     },
     error =>{
       //console.log(error.message);
       this.autoCompleteData = [];
+      console.log(this.hostUrl);
+
     });
   }
    inputChange(event){

@@ -14,6 +14,8 @@ export class NavbarComponent implements OnInit {
   @Output() Logout = new EventEmitter ();
   @Input() isLoggedIn;
   @Input() portal;
+  @Input() noAssess = false;
+
   constructor() {
   }
 

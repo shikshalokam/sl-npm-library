@@ -8,10 +8,12 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 })
 export class ShareLinkViewComponent {
-  sharLink = "dev.shikshalokam.org/reports/operation/ssq121ds"
+  sharLink;
   constructor(
     public dialogRef: MatDialogRef<ShareLinkViewComponent>,
-    @Inject(MAT_DIALOG_DATA) public data) {}
+    @Inject(MAT_DIALOG_DATA) public data) {
+      this.sharLink = data;
+    }
 
   onNoClick(): void {
     this.dialogRef.close();

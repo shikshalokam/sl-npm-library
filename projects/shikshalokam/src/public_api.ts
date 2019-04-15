@@ -35,3 +35,9 @@ export * from './lib/shared-module/components/date-picker/date-picker.component'
 export * from './lib/shared-module/components/individual-loader/individual-loader.component';
 export * from './lib/shared-module/components/graph-table-chart/graph-table-chart.component';
 export * from  './lib/shared-module/components/share-link/share-link.component';
+export * from './lib/report-module/entity-report/entity-report.component';
+export * from './lib/report-module/highlevel-entity-report/highlevel-entity-report.component';
+export * from './lib/report-module/multiple-entity-drilldown-report/multiple-entity-drilldown-report.component';
+export * from './lib/report-module/multiple-entity-report/multiple-entity-report.component';
+export * from './lib/report-module/ops-report/ops-report.component';
+export * from './lib/report-module/report.module';

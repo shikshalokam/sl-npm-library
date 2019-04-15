@@ -17,6 +17,8 @@ roleAcess = [];
     }
     getUniqueRoleAcessObject(result,currentPortal){
         let currentTabAction ;
+        this.roleAcess = [];
+
         result['tabActions'].forEach( element => {
           if(element.id === currentPortal) {
             currentTabAction = element;
