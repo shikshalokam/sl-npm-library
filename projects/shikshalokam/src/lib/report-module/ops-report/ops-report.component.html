@@ -61,7 +61,7 @@
         </mat-card>  -->
         <div class="_flex-box _justify-content-space-between">
           <h4 class="marginTop" style="flex:1">Program Operations Report </h4>
-          <app-share-link *ngIf="share?.isShareable && !noAssess" [componentId]="componentId" [publicSharedBaseUrl]="publicSharedBaseUrl"  [globalConfig]="globalConfig" [shareLinkApi]="shareLinkApi"></app-share-link>
+          <app-share-link *ngIf="share?.isShareable && !noAssess" [portalName]="portalName" [baseUrl]="baseUrl" [componentId]="componentId" [publicSharedBaseUrl]="publicSharedBaseUrl"  [globalConfig]="globalConfig" [shareLinkApi]="shareLinkApi"></app-share-link>
         </div>
 
         <!-- <h4 class="_flex-box  _small-Bottom-Margin"></h4>
@@ -193,17 +193,17 @@
         *ngIf=" reportGenerate && assessorReport">
         <div *ngFor="let assessorGraph of assessorReport ; let index = index">
           <mat-card class="flex-direction-column col-xs-12">
-            <h4 class="_flex-box _justify-content-space-between"> {{'headings.assessorReports'| translate}} <div
+            <h4 class="_flex-box _justify-content-space-between loaderHeight"> {{'headings.assessorReports'| translate}} <div
                 *ngIf="assessorLoading">
                 <app-individual-loader></app-individual-loader>
               </div>
             </h4>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  _noMarginPadding ">
               <mat-form-field class=" _full-width">
-                <input class="filterInput" matInput appDebounceSearch [searchValue]="searchAssessorName"
-                  [value]="searchAssessorName" (debounceSearch)="searchInApi('assessor')"
+                <input matInput appDebounceSearch [searchValue]="searchAssessorName"
+                   (debounceSearch)="searchInApi('assessor'  , $event)"
                   placeholder="{{'search'| translate}}" [debounceTime]="200"
-                  (keyup)="searchVal('assessor',$event.target.value)">
+                  (keyup)="searchVal('assessor',$event)">
                 <button mat-button matPrefix mat-icon-button aria-label="Clear">
                   <i class="material-icons">
                     search
@@ -260,17 +260,17 @@
         *ngIf="reportGenerate && schoolReport">
         <div *ngFor="let schoolGraph of schoolReport ; let index = index ">
           <mat-card class="flex-direction-column col-xs-12 _noMarginPadding">
-            <h4 class="_flex-box _justify-content-space-between"> {{'headings.schoolReports'| translate}} <div
+            <h4 class="_flex-box _justify-content-space-between loaderHeight"> {{'headings.schoolReports'| translate}} <div
                 *ngIf="schoolLoading">
                 <app-individual-loader></app-individual-loader>
               </div>
             </h4>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  ">
               <mat-form-field class=" _full-width">
-                <input class="filterInput" matInput appDebounceSearch [searchValue]="searchSchoolValue"
-                  [value]="searchSchoolValue" (debounceSearch)="searchInApi('school')"
+                <input  class="filterInput" matInput appDebounceSearch [searchValue]="searchSchoolValue"
+                  [value]="searchSchoolValue" (debounceSearch)="searchInApi('school' , $event)"
                   placeholder="{{'search'| translate}}" [debounceTime]="100"
-                  (keyup)="searchVal('school',$event.target.value)">
+                  (keyup)="searchVal('school',$event)">
                 <button mat-button matPrefix mat-icon-button aria-label="Clear">
                   <i class="material-icons">
                     search
@@ -284,7 +284,7 @@
                 </button>
               </mat-form-field>
             </div>
-            <div *ngIf="schoolGraph.data.length > 0">
+            <div *ngIf="schoolGraph.data?.length > 0">
               <table>
                 <tr>
                   <th *ngFor="let heading of schoolGraph.tabularData.headers">{{heading.label}}</th>
@@ -314,7 +314,7 @@
                 </div>
               </div>
             </div>
-            <div *ngIf="!(schoolGraph.data.length > 0)">
+            <div *ngIf="!(schoolGraph.data?.length > 0)">
               <div class="middle">
                 {{'message.noData' | translate}}
               </div>

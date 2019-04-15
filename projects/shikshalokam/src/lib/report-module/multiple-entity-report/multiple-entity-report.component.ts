@@ -22,6 +22,8 @@ export class MultipleEntityRportComponent implements OnInit {
   globalConfig: any;
   linkId: any;
   componentId: any;
+  baseUrl: any;
+  portalName: any;
   constructor(
     private reportService: ReportService,
     private utility: UtilityService,
@@ -41,10 +43,13 @@ export class MultipleEntityRportComponent implements OnInit {
     this.router.data.subscribe(data => {
       this.apiBaseUrl = data.apibaseUrl;
       this.reportConfig = data.reportConfig;
-      this.componentId = data.id;
+      this.componentId = data.componentId;
       this.shareLinkApi = data.shareLinkApi;
       this.publicSharedBaseUrl = data.publicSharedBaseUrl;
       this.globalConfig = data.globalConfig;
+      this.baseUrl=  data.baseUrl;
+      this.portalName = data.portalName;
+
     });
     this.getMultiEntityReport();
   }

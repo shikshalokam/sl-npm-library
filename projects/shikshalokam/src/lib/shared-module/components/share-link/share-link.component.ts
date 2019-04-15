@@ -15,6 +15,8 @@ export class ShareLinkComponent implements OnInit {
   @Input() shareLinkApi  ;
   @Input() globalConfig;
   @Input() componentId ;
+  @Input() baseUrl;
+  @Input() portalName;
   url = {
     publicURL: '',
     privateURL: '',
@@ -36,7 +38,7 @@ export class ShareLinkComponent implements OnInit {
 
       console.log(url);
       let routeIndex = this.url.privateURL.indexOf(url[0].path)
-      this.url.publicURL = this.publicSharedBaseUrl + this.url.privateURL.slice(routeIndex);
+      this.url.publicURL = this.publicSharedBaseUrl + this.url.privateURL.slice(routeIndex)+"&componentName="+this.componentId;
       console.log(this.url)
       this.url.reportName = this.componentId;
     })
@@ -45,7 +47,7 @@ export class ShareLinkComponent implements OnInit {
       
 
       this.uuId = this.publicSharedBaseUrl.substring(0, this.publicSharedBaseUrl.length - 1)  +"?linkId="+ successData['result']['linkId'];
-      this.url.publicURL = "https://devhome.shikshalokam.org/programs/public?linkId="+successData['result']['linkId'] +"&componentName="+this.componentId;
+      this.url.publicURL = this.baseUrl+"/"+this.portalName.toLowerCase()+"/public?linkId="+successData['result']['linkId'] ;
 
       this.openDialog();
     },error => {
@@ -61,7 +63,7 @@ export class ShareLinkComponent implements OnInit {
   openDialog() {
     const dialogRef = this.dialog.open(ShareLinkViewComponent, {
       width: '500px',
-      height: '250px',
+      height: '200px',
       data : this.url.publicURL
     });
 

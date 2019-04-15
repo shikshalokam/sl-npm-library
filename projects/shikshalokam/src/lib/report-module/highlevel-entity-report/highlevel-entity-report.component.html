@@ -7,7 +7,10 @@
     <h4 class="marginTop" style="flex:1">{{'headings.performanceReport' | translate}}</h4>
     <button *ngIf="!linkId" mat-button color="primary"
       (click)="naviagteToRubrics()">{{'headings.frameworkRubricView' | translate}}</button>
-      <app-share-link *ngIf="highLevelInsight?.isShareable && !linkId" [componentId]="componentId" [globalConfig]="globalConfig" [publicSharedBaseUrl]="publicSharedBaseUrl" [shareLinkApi]="shareLinkApi"></app-share-link>
+      <app-share-link *ngIf="highLevelInsight?.isShareable && !linkId" 
+     [portalName]="portalName"
+
+       [baseUrl]="baseUrl" [componentId]="componentId" [globalConfig]="globalConfig" [publicSharedBaseUrl]="publicSharedBaseUrl" [shareLinkApi]="shareLinkApi"></app-share-link>
   </div>
   <div>
     <mat-card>
