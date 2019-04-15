@@ -154,7 +154,7 @@
       <app-share-link *ngIf="share['isShareable'] && !noAssess" [publicSharedBaseUrl]="publicSharedBaseUrl"  [globalConfig]="globalConfig" [shareLinkApi]="shareLinkApi"></app-share-link>
   </div> -->
 
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 _noMarginPadding " *ngIf="reportGenerate && summaryData">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 _noMarginPadding "[ngClass]="{'_margin-top': noAssess}" *ngIf="reportGenerate && summaryData">
         <mat-card class="_flex-box _justify-content-center col-xs-12">
           <h4>{{'headings.summary' | translate}} </h4>
           <div class="_flex-box flexWarp">
