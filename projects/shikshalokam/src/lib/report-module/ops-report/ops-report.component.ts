@@ -131,6 +131,7 @@ export class OpsReportComponent implements OnInit {
 
           console.log(param)
           delete param['ProgramId'];
+          delete param['componentName'];
           console.log(param)
 
           this.applyFilter(param);
@@ -163,7 +164,7 @@ export class OpsReportComponent implements OnInit {
           window.history.pushState({ path: resetUrl }, '', resetUrl);
         }
         else{
-        let resetUrl = '/operations/ops-reports?ProgramId=' + params['ProgramId']
+        let resetUrl = '/programs/operations/ops-reports?ProgramId=' + params['ProgramId']
         window.history.pushState({ path: resetUrl }, '', resetUrl);
         }
       })
@@ -466,7 +467,7 @@ if ( type === 'call'){
   }
   downloadCsv(id) {
     if (id === 'school') {
-      this.operationService.getSchoolReport(this.apiBaseUrl+this.reportConfig.schoolReport+this.pageParam['ProgramId'] + "?csv=" + true).subscribe(data => {
+      this.operationService.getSchoolReport(this.apiBaseUrl+this.reportConfig.schoolReport+this.pageParam['ProgramId'] +"?fromDate="+this.pageParam['fromDate']+"&toDate="+this.pageParam['toDate']+"&csv=" + true).subscribe(data => {
 
       },
         error => {
@@ -486,7 +487,7 @@ if ( type === 'call'){
         });
     }
     else if (id === 'assessor') {
-      this.operationService.getAssessorReport(this.apiBaseUrl+this.reportConfig.assessorReport+this.pageParam['ProgramId'] + "?csv=" + true).subscribe(data => {
+      this.operationService.getAssessorReport(this.apiBaseUrl+this.reportConfig.assessorReport+this.pageParam['ProgramId'] +"?fromDate="+this.pageParam['fromDate']+"&toDate="+this.pageParam['toDate']+"&csv=" + true).subscribe(data => {
 
       },
         error => {
