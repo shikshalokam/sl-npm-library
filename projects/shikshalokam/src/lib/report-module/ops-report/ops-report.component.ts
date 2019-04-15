@@ -118,11 +118,11 @@ export class OpsReportComponent implements OnInit {
       this.linkId = params['linkId'];
 
       // if(!params['linkId']){ 
-      this.filters(params['ProgramId']);
+     
       console.log(this.linkId)
       // }
       this.getUserProfile(params['ProgramId']);
-
+      this.filters(params['ProgramId']);
       if (this.pageReload) {
         //  this.getUserSummary(params['ProgramId']);
         if (Object.keys(params).length > 1) {
@@ -159,7 +159,7 @@ export class OpsReportComponent implements OnInit {
       this.filterArray = [];
       this.route.queryParams.subscribe(params => {
         if(this.noAssess){
-          let resetUrl = '/public/ops-reports?ProgramId=' + params['ProgramId']
+          let resetUrl = '/programs/public/ops-reports?ProgramId=' + params['ProgramId']
           window.history.pushState({ path: resetUrl }, '', resetUrl);
         }
         else{
@@ -327,8 +327,10 @@ if ( type === 'call'){
           return obj
         }, {})
       this.summaryProfileData = arrayToObject(this.summaryProfileData, "label")
-
+        if( this.noAssess){
       this.utility.loaderHide();
+
+        }
     },
       error => {
 
@@ -407,7 +409,7 @@ if ( type === 'call'){
     let addQueryParamUlr;
     //console.logthis.queryParamsRouterUrl)
     if(this.noAssess){
-    addQueryParamUlr = '/public/ops-reports?ProgramId=' + this.pageParam['ProgramId'] + "&" + this.queryParamsRouterUrl;
+    addQueryParamUlr = '/programs/public/ops-reports?ProgramId=' + this.pageParam['ProgramId'] + "&" + this.queryParamsRouterUrl;
 
     }
     else {
