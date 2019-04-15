@@ -21,6 +21,9 @@ export class MultipleEntityDrilldownReportComponent implements OnInit {
   publicSharedBaseUrl: any;
   globalConfig: any;
   linkId: any;
+  componentId: any;
+  baseUrl: any;
+  portalName: any;
   constructor(
     private reportService: ReportService,
     private utility: UtilityService,
@@ -43,6 +46,11 @@ export class MultipleEntityDrilldownReportComponent implements OnInit {
       this.shareLinkApi = data.shareLinkApi;
       this.publicSharedBaseUrl = data.publicSharedBaseUrl;
       this.globalConfig = data.globalConfig;
+      this.componentId = data.componentId;
+      this.baseUrl=  data.baseUrl;
+      this.portalName = data.portalName;
+
+
     });
     this.getMultiEntityDrillReport();
   }

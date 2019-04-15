@@ -50,7 +50,7 @@ export class OpsReportComponent implements OnInit {
   expandedFilters: boolean = true;
   schoolLoading: boolean;
   assessorLoading: boolean;
-  @Input() hostUrl;
+   @Input() hostUrl;
   @Input() globalConfig;
   @ViewChild('myaccordion') filterPanel: MatAccordion;
   summaryProfileData: any;
@@ -63,6 +63,9 @@ export class OpsReportComponent implements OnInit {
   publicSharedBaseUrl: any;
   shareLinkApi: any;
   noAssess: any;
+  componentId: any;
+  baseUrl: any;
+  portalName: any;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -78,6 +81,12 @@ export class OpsReportComponent implements OnInit {
       this.publicSharedBaseUrl = data.publicSharedBaseUrl;
       this.globalConfig = data.globalConfig; 
       this.noAssess = data.noAssess;
+      this.componentId = data.componentId;
+      this.hostUrl = data.apibaseUrl;
+      this.baseUrl=  data.baseUrl;
+      this.portalName = data.portalName;
+
+
     })
     this.filterForm = this._fb.group({
       formDate: ['', Validators.required],
@@ -213,8 +222,12 @@ export class OpsReportComponent implements OnInit {
 
 
   }
-  mapGraphObject(data) {
+  mapGraphObject(data , type = 'call' ) {
+
+if ( type === 'call'){
+
     data.forEach((object, ind) => {
+      console.log(object)
       for (let i = 0; i < object.graphData.length; i++) {
 
         const dataArray = this.getData(object, i)
@@ -250,7 +263,44 @@ export class OpsReportComponent implements OnInit {
     });
     ////console.logdata)
     return data;
+  }
+  else {
+    for (let i = 0; i < data.graphData.length; i++) {
 
+      const dataArray = this.getData(data, i);
+      Object.assign(data.graphData[i], {
+        data: dataArray
+      })
+      Object.assign(data.graphData[i].chartOptions, { legend: { position: 'top', alignment: 'end' } })
+
+    }
+    data.graphData.forEach((item, index) => {
+
+      if (data.graphData[index].data.length > 2 && data.graphData[index].chartType === 'ColumnChart') {
+        Object.assign(data.graphData[index].chartOptions, {
+          isStack: true,
+        })
+      }
+
+      if (data.graphData[index].data.length > 10) {
+        Object.assign(data.graphData[index].chartOptions.hAxis, { textPosition: 'none' });
+      }
+      let colNameArray = []
+      data.graphData[index].columnNames.forEach(column => {
+        colNameArray.push(new CamelCasePipe().transform(column));
+      });
+      Object.assign(data.graphData[index], { columnNames: colNameArray });
+
+
+    });
+
+    new CamelCasePipe().transform('schoolList')
+    const headers = this.getTableHeader(data);
+    Object.assign(data, { tableHeader: headers })
+
+  ////console.logdata)
+  return data.graphData;
+  }
   }
   getTableHeader(object) {
     let headingArray = []
@@ -563,11 +613,21 @@ export class OpsReportComponent implements OnInit {
       }
     );
   }
-  getSchoolReport() {
+  getSchoolReport(label = 'call' ) {
+
     this.schoolLoading = true;
     this.operationService.getSchoolReport(this.apiBaseUrl+this.reportConfig.schoolReport+this.queryParamsUrl + this.searchParam).subscribe(data => {
       this.share = data['result'];
-      this.schoolReport = this.mapGraphObject(data['result']['sections']);
+      if(label == 'call'){
+        this.schoolReport = this.mapGraphObject(data['result']['sections']);
+      }
+      else {
+        console.log(data['result']['sections'][0] );
+        console.log(data['result']['sections'])
+        this.schoolReport[0].data = data['result']['sections'][0]['data'] ;
+        this.schoolReport[0].graphData = this.mapGraphObject(data['result']['sections'][0] , 'search')
+        console.log(this.schoolReport)
+      }
       //  this.schoolGraph=this.schoolReport['graphData'];
       this.schoolLoading = false;
 
@@ -577,11 +637,19 @@ export class OpsReportComponent implements OnInit {
     );
   }
 
-  getAssessorReport() {
+  getAssessorReport(label = 'call') {
     this.assessorLoading = true;
     this.operationService.getAssessorReport(this.apiBaseUrl+this.reportConfig.assessorReport+this.queryParamsUrl + this.searchParam).subscribe(data => {
-      this.assessorReport = this.mapGraphObject(data['result']['sections']);
-      //  this.assessorGraph=this.assessorReport['graphData'];
+      if(label == 'call'){
+        this.assessorReport = this.mapGraphObject(data['result']['sections']);
+      }
+      else {
+        console.log(data['result']['sections'][0] );
+        console.log(data['result']['sections'])
+        this.assessorReport[0].data = data['result']['sections'][0]['data'] ;
+        this.assessorReport[0].graphData = this.mapGraphObject(data['result']['sections'][0] , 'search')
+        console.log(this.assessorReport)
+      }
       this.assessorLoading = false;
 
     }, error => {
@@ -593,22 +661,25 @@ export class OpsReportComponent implements OnInit {
   }
   searchVal(id, searchValue) {
     if (id == 'school') {
-      this.searchSchoolValue = searchValue;
+      this.searchSchoolValue = searchValue.target.value;
     }
     else if (id == 'assessor') {
-      this.searchAssessorName = searchValue;
+      this.searchAssessorName = searchValue.target.value;
     }
   }
-  searchInApi(label) {
+  searchInApi(label , value) {
     if (label === 'school') {
       this.schoolPageIndex = 1;
+      this.searchSchoolValue = value;
       this.searchParam = this.setSearchParam(this.schoolPageIndex, this.schoolPageLimit, 'school');
-      this.getSchoolReport();
+      this.getSchoolReport('search');
     }
     else if (label === 'assessor') {
       this.assessorPageIndex = 1;
+      this.searchAssessorName = value;
+
       this.searchParam = this.setSearchParam(this.assessorPageIndex, this.assessorPageLimit, 'assessor');
-      this.getAssessorReport();
+      this.getAssessorReport('search');
     }
 
   }
