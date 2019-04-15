@@ -414,7 +414,7 @@ if ( type === 'call'){
 
     }
     else {
-    addQueryParamUlr = '/operations/ops-reports?ProgramId=' + this.pageParam['ProgramId'] + "&" + this.queryParamsRouterUrl;
+    addQueryParamUlr = '/programs/operations/ops-reports?ProgramId=' + this.pageParam['ProgramId'] + "&" + this.queryParamsRouterUrl;
     //console.logaddQueryParamUlr)
     }
     window.history.pushState({ path: addQueryParamUlr }, '', addQueryParamUlr);
