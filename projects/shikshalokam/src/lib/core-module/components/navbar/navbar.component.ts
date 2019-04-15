@@ -10,11 +10,12 @@ export class NavbarComponent implements OnInit {
   showDropdown = false;
   @Input() dropdownLabel;
   @Input() currentUser: any;
-  @Input() logo;
-  @Input() isLoggedIn: boolean;
-  @Output() Logout = new EventEmitter();
+  @Input() logo ;
+  @Output() Logout = new EventEmitter ();
+  @Input() isLoggedIn;
   @Input() portal;
   @Input() noAssess = false;
+
   constructor() {
   }
 
