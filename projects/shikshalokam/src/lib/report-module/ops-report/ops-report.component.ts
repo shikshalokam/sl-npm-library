@@ -163,7 +163,7 @@ export class OpsReportComponent implements OnInit {
           window.history.pushState({ path: resetUrl }, '', resetUrl);
         }
         else{
-        let resetUrl = '/operations/ops-reports?ProgramId=' + params['ProgramId']
+        let resetUrl = '/programs/operations/ops-reports?ProgramId=' + params['ProgramId']
         window.history.pushState({ path: resetUrl }, '', resetUrl);
         }
       })
