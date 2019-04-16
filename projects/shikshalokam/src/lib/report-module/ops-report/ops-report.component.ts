@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // import { OperationsService } from '../operations-service/operations.service';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAccordion, MatSnackBar } from '@angular/material';
 import * as jspdf from 'jspdf';
 
@@ -94,23 +93,7 @@ export class OpsReportComponent implements OnInit {
       toDate: ['', Validators.required]
     });
 
-    this.route.queryParams.subscribe(params => {
-      let param = Object.assign({}, params);
-      this.urlQueryParams = Object.assign({}, params);
-      delete param.ProgramId;
-      if(Object.keys(param).length) {
-        this.generateReport(param);
-      } else {
-        console.log("Inside ")
-        console.log(param)
-        this.filterForm.reset();
-        this.expandedFilters = true;
-        this.reportGenerate = false;
-        this.assessorReport = [];
-        this.schoolReport = [];
-        this.summaryData = {};
-      }
-    });
+
 
   }
   pdf(id) {
@@ -131,44 +114,53 @@ export class OpsReportComponent implements OnInit {
   ngOnInit() {
     console.log("ngOninit");
     this.currentRouterUrl = window.location.href;
+
     this.route.queryParams.subscribe(params => {
+      let param = Object.assign({}, params);
       this.pageParam = params;
-      //console.logparams)
       this.utility.loaderShow();
       this.linkId = params['linkId'];
-
-      // if(!params['linkId']){ 
-     
-      console.log(this.linkId)
-      // }
       this.getUserProfile(params['ProgramId']);
       this.filters(params['ProgramId']);
-      if (this.pageReload) {
-        //  this.getUserSummary(params['ProgramId']);
-        if (Object.keys(params).length > 1) {
-          //console.log"api twice")
-          let param = Object.assign({}, params);
-
-          console.log(param)
-          delete param['ProgramId'];
-          delete param['componentName'];
-          console.log(param)
-
-          this.applyFilter(param);
-          this.expandedFilters = false;
-          this.reportGenerate = true;
-        }
-        this.pageReload = false;
-
+      this.applyFilter(this.pageParam);
+      this.urlQueryParams = Object.assign({}, params);
+      delete param.ProgramId;
+      if(Object.keys(param).length) {
+        this.generateReport(param);
+        this.expandedFilters = false;
+      } else {
+        console.log("Inside ")
+        console.log(param)
+        this.filterForm.reset();
+        this.expandedFilters = true;
+        this.reportGenerate = false;
+        this.assessorReport = [];
+        this.schoolReport = [];
+        this.summaryData = {};
       }
+    });
 
-    })
-  }
 
-  step = 0;
+    // this.route.queryParams.subscribe(params => {
+    //   this.pageParam = params;
+    //   this.utility.loaderShow();
+    //   this.linkId = params['linkId'];
+    //   this.getUserProfile(params['ProgramId']);
+    //   this.filters(params['ProgramId']);
+    //   this.applyFilter(this.pageParam);
 
-  setStep(index: number) {
-    this.step = index;
+    //   // if (this.pageReload) {
+    //     if (Object.keys(params).length > 1) {
+    //       // let param = Object.assign({}, params);
+    //       // delete param['ProgramId'];
+    //       // delete param['componentName'];
+    //       // this.applyFilter(param);
+    //       // this.expandedFilters = false;
+    //       this.reportGenerate = true;
+    //     }
+    //     // this.pageReload = false;
+    //   // }
+    // })
   }
 
   filterApply(condition) {
@@ -224,17 +216,7 @@ export class OpsReportComponent implements OnInit {
 
     }
   }
-  buildqueryParams() {
 
-  }
-  prevStep() {
-    this.step--;
-  }
-  visible = true;
-  selectable = true;
-  removable = true;
-  addOnBlur = true;
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   remove(filter): void {
     let param;
@@ -464,16 +446,24 @@ if ( type === 'call'){
     //console.logparam)
     this.queryParamsUrl = this.pageParam['ProgramId'] + "?";
     let paramKey = Object.keys(param);
+    if(paramKey.includes('componentName')) {
+      paramKey.splice(paramKey.indexOf('componentName'), 1)
+
+    }
     // paramKey = paramKey.slice(1)
     let index = 0;
-    paramKey.forEach(element => {
-      if (index == 0) {
-        this.queryParamsUrl += element + '=' + param[element]
-      }
-      else {
-        this.queryParamsUrl += '&' + element + '=' + param[element]
-      }
-      index++;
+    // paramKey.forEach(element => {
+    //   if (index == 0) {
+    //     this.queryParamsUrl += element + '=' + param[element]
+    //   }
+    //   else {
+    //     this.queryParamsUrl += '&' + element + '=' + param[element]
+    //   }
+    //   index++;
+    // })
+
+    paramKey.forEach((element, index) => {
+      index ? this.queryParamsUrl += '&' + element + '=' + param[element] :this.queryParamsUrl += element + '=' + param[element]
     })
     // this.queryParamsUrl += '&csv=' + false;
     //console.logthis.queryParamsUrl)
