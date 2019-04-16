@@ -5,7 +5,7 @@
 core module is a module which have almost all the common functionality and 
 component used throughout the project like common services,pipe,components.
 there are 4 components i.e is Navbar component(header component) , sidenavbar 
-,responsive navnbar component ,program sidebar  
+,responsive navnbar component ,program sidebar .
 
 
 * Navbar / Responsive navbar  :-
