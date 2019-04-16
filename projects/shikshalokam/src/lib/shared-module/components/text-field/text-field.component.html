@@ -1,6 +1,6 @@
 <div [formGroup]= "genericForm" *ngIf="genericForm">
     <mat-form-field  class="col-sm-6 fixSize _halfWidth">
-            <input [disabled]="!genericData.editable" matInput   type="text"  placeholder="{{genericData.label | camelcase}} "  formControlName="{{genericData?.field}}"  [required]="genericData.validation.required">
+            <input  matInput   type="text"  placeholder="{{genericData.label | camelcase}} "  formControlName="{{genericData?.field}}"  [required]="genericData.validation.required">
     </mat-form-field>
 </div>
 
