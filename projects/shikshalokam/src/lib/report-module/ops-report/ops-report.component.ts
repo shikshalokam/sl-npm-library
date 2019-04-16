@@ -120,11 +120,11 @@ export class OpsReportComponent implements OnInit {
       this.pageParam = params;
       this.utility.loaderShow();
       this.linkId = params['linkId'];
-      this.getUserProfile(params['ProgramId']);
-      this.filters(params['ProgramId']);
+      this.getUserProfile(params['programId']);
+      this.filters(params['programId']);
       this.applyFilter(this.pageParam);
       this.urlQueryParams = Object.assign({}, params);
-      delete param.ProgramId;
+      delete param.programId;
       if(Object.keys(param).length) {
         this.generateReport(param);
         this.expandedFilters = false;
@@ -175,7 +175,7 @@ export class OpsReportComponent implements OnInit {
       for (const key of keys) {
         obj[key] = null
       }
-      obj['ProgramId'] = this.pageParam.ProgramId;
+      obj['programId'] = this.pageParam.programId;
       this.applyFilter(obj);
       // this.route.queryParams.subscribe(params => {
       //   if(this.noAssess){
@@ -327,8 +327,8 @@ if ( type === 'call'){
     }
     return dataArray;
   }
-  getUserProfile(ProgramId) {
-    this.operationService.getUserProfileSummary(this.apiBaseUrl+this.reportConfig.profileSummary+ProgramId).subscribe(data => {
+  getUserProfile(programId) {
+    this.operationService.getUserProfileSummary(this.apiBaseUrl+this.reportConfig.profileSummary+programId).subscribe(data => {
       ////console.logdata);
       this.summaryProfileData = data['result'];
       const arrayToObject = (array, keyField) =>
@@ -444,7 +444,7 @@ if ( type === 'call'){
     //   param = params
     // });
     //console.logparam)
-    this.queryParamsUrl = this.pageParam['ProgramId'] + "?";
+    this.queryParamsUrl = this.pageParam['programId'] + "?";
     let paramKey = Object.keys(param);
     if(paramKey.includes('componentName')) {
       paramKey.splice(paramKey.indexOf('componentName'), 1)
@@ -474,7 +474,7 @@ if ( type === 'call'){
   }
   downloadCsv(id) {
     if (id === 'school') {
-      this.operationService.getSchoolReport(this.apiBaseUrl+this.reportConfig.schoolReport+this.pageParam['ProgramId'] +"?fromDate="+this.pageParam['fromDate']+"&toDate="+this.pageParam['toDate']+"&csv=" + true).subscribe(data => {
+      this.operationService.getSchoolReport(this.apiBaseUrl+this.reportConfig.schoolReport+this.pageParam['programId'] +"?fromDate="+this.pageParam['fromDate']+"&toDate="+this.pageParam['toDate']+"&csv=" + true).subscribe(data => {
 
       },
         error => {
@@ -494,7 +494,7 @@ if ( type === 'call'){
         });
     }
     else if (id === 'assessor') {
-      this.operationService.getAssessorReport(this.apiBaseUrl+this.reportConfig.assessorReport+this.pageParam['ProgramId'] +"?fromDate="+this.pageParam['fromDate']+"&toDate="+this.pageParam['toDate']+"&csv=" + true).subscribe(data => {
+      this.operationService.getAssessorReport(this.apiBaseUrl+this.reportConfig.assessorReport+this.pageParam['programId'] +"?fromDate="+this.pageParam['fromDate']+"&toDate="+this.pageParam['toDate']+"&csv=" + true).subscribe(data => {
 
       },
         error => {
