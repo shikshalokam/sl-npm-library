@@ -1,6 +1,6 @@
 <div [formGroup]= "genericForm" *ngIf="genericForm">
     <mat-form-field  class="col-sm-6 fixSize _halfWidth">
-            <input [disabled]="!genericData.editable" matInput   type="text" 
+            <input  matInput   type="text" 
             placeholder="{{genericData.label | camelcase}} "  formControlName="{{genericData.field}}" 
             (keyup)="inputChange($event)"
             [matAutocomplete]="auto" appDebounceSearch (debounceSearch)="searchSchoolIdInApi($event)"

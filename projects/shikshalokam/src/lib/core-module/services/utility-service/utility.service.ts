@@ -20,27 +20,30 @@ export class UtilityService {
   toGroup(inputs) {
 
     let group: any = {};
-   
-    inputs.forEach(inputs => {
-      if(inputs.input == "array")
+    console.log("togroup")
+    console.log(inputs)
+    inputs.forEach(element => {
+      if(element.input == "array")
       {
-        group[inputs.field] = this.createFormArray(inputs);
+        group[element.field] = this.createFormArray(element);
       }
       else{
-        group[inputs.field] = inputs.validation.required ? new FormControl(inputs.value || '', Validators.required)
-        : new FormControl(inputs.value || '');
+        group[element.field] = element.validation.required ? new FormControl({value: element.value || '', disabled: !element.editable}, Validators.required)
+        : new FormControl({value: element.value || '', disabled: !element.editable});
       }
     });
+    console.log("return array")
+    console.log(group)
     return new FormGroup(group);
   }
   createFormArray(inputs){
 
     let elements : any = [];
     inputs.array.forEach(element => {
-      elements[element['field']] = element.validation.required ? new FormControl(element.value || '', Validators.required)
-                                            : new FormControl(element.value || '');
+      elements[element['field']] = element.validation.required ? new FormControl({value: element.value || '', disabled: !element.editable}, Validators.required)
+                                            : new FormControl({value: element.value || '', disabled: !element.editable});
     });
-
+   
     return new FormArray(elements);
   }
 }

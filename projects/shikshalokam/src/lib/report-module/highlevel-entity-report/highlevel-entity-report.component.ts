@@ -29,7 +29,7 @@ export class HighlevelEntityReportComponent implements OnInit {
     private router: ActivatedRoute,
     private route: Router
   ) {
-    this.programId = this.router.snapshot.queryParamMap.get('ProgramId');
+    this.programId = this.router.snapshot.queryParamMap.get('programId');
     this.schoolId = this.router.snapshot.params.schoolId;
     this.linkId = this.router.snapshot.params.linkId;
 

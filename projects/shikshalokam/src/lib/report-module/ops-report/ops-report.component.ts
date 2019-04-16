@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // import { OperationsService } from '../operations-service/operations.service';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAccordion, MatSnackBar } from '@angular/material';
 import * as jspdf from 'jspdf';
 
@@ -66,6 +65,7 @@ export class OpsReportComponent implements OnInit {
   componentId: any;
   baseUrl: any;
   portalName: any;
+  urlQueryParams: any;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -93,6 +93,8 @@ export class OpsReportComponent implements OnInit {
       toDate: ['', Validators.required]
     });
 
+
+
   }
   pdf(id) {
     var data = document.getElementById(id);
@@ -110,45 +112,55 @@ export class OpsReportComponent implements OnInit {
 
   }
   ngOnInit() {
+    console.log("ngOninit");
     this.currentRouterUrl = window.location.href;
+
     this.route.queryParams.subscribe(params => {
+      let param = Object.assign({}, params);
       this.pageParam = params;
-      //console.logparams)
       this.utility.loaderShow();
       this.linkId = params['linkId'];
-
-      // if(!params['linkId']){ 
-     
-      console.log(this.linkId)
-      // }
-      this.getUserProfile(params['ProgramId']);
-      this.filters(params['ProgramId']);
-      if (this.pageReload) {
-        //  this.getUserSummary(params['ProgramId']);
-        if (Object.keys(params).length > 1) {
-          //console.log"api twice")
-          let param = Object.assign({}, params);
-
-          console.log(param)
-          delete param['ProgramId'];
-          delete param['componentName'];
-          console.log(param)
-
-          this.applyFilter(param);
-          this.expandedFilters = false;
-          this.reportGenerate = true;
-        }
-        this.pageReload = false;
-
+      this.getUserProfile(params['programId']);
+      this.filters(params['programId']);
+      this.applyFilter(this.pageParam);
+      this.urlQueryParams = Object.assign({}, params);
+      delete param.programId;
+      if(Object.keys(param).length) {
+        this.generateReport(param);
+        this.expandedFilters = false;
+      } else {
+        console.log("Inside ")
+        console.log(param)
+        this.filterForm.reset();
+        this.expandedFilters = true;
+        this.reportGenerate = false;
+        this.assessorReport = [];
+        this.schoolReport = [];
+        this.summaryData = {};
       }
+    });
 
-    })
-  }
 
-  step = 0;
+    // this.route.queryParams.subscribe(params => {
+    //   this.pageParam = params;
+    //   this.utility.loaderShow();
+    //   this.linkId = params['linkId'];
+    //   this.getUserProfile(params['ProgramId']);
+    //   this.filters(params['ProgramId']);
+    //   this.applyFilter(this.pageParam);
 
-  setStep(index: number) {
-    this.step = index;
+    //   // if (this.pageReload) {
+    //     if (Object.keys(params).length > 1) {
+    //       // let param = Object.assign({}, params);
+    //       // delete param['ProgramId'];
+    //       // delete param['componentName'];
+    //       // this.applyFilter(param);
+    //       // this.expandedFilters = false;
+    //       this.reportGenerate = true;
+    //     }
+    //     // this.pageReload = false;
+    //   // }
+    // })
   }
 
   filterApply(condition) {
@@ -158,16 +170,23 @@ export class OpsReportComponent implements OnInit {
       // this.router.navigate(['/operations/reports'], { queryParams: { ProgramId: this.pageParam['ProgramId'] } });
       this.reportGenerate = false;
       this.filterArray = [];
-      this.route.queryParams.subscribe(params => {
-        if(this.noAssess){
-          let resetUrl = '/programs/public/ops-reports?ProgramId=' + params['ProgramId']
-          window.history.pushState({ path: resetUrl }, '', resetUrl);
-        }
-        else{
-        let resetUrl = '/programs/operations/ops-reports?ProgramId=' + params['ProgramId']
-        window.history.pushState({ path: resetUrl }, '', resetUrl);
-        }
-      })
+      const keys = Object.keys(this.urlQueryParams);
+      const obj = {}
+      for (const key of keys) {
+        obj[key] = null
+      }
+      obj['programId'] = this.pageParam.programId;
+      this.applyFilter(obj);
+      // this.route.queryParams.subscribe(params => {
+      //   if(this.noAssess){
+      //     let resetUrl = '/programs/public/ops-reports?ProgramId=' + params['ProgramId']
+      //     window.history.pushState({ path: resetUrl }, '', resetUrl);
+      //   }
+      //   else{
+      //   let resetUrl = '/programs/operations/ops-reports?ProgramId=' + params['ProgramId']
+      //   window.history.pushState({ path: resetUrl }, '', resetUrl);
+      //   }
+      // })
     }
     else {
       // this.filterPanel.closeAll();
@@ -197,17 +216,7 @@ export class OpsReportComponent implements OnInit {
 
     }
   }
-  buildqueryParams() {
 
-  }
-  prevStep() {
-    this.step--;
-  }
-  visible = true;
-  selectable = true;
-  removable = true;
-  addOnBlur = true;
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   remove(filter): void {
     let param;
@@ -318,8 +327,8 @@ if ( type === 'call'){
     }
     return dataArray;
   }
-  getUserProfile(ProgramId) {
-    this.operationService.getUserProfileSummary(this.apiBaseUrl+this.reportConfig.profileSummary+ProgramId).subscribe(data => {
+  getUserProfile(programId) {
+    this.operationService.getUserProfileSummary(this.apiBaseUrl+this.reportConfig.profileSummary+programId).subscribe(data => {
       ////console.logdata);
       this.summaryProfileData = data['result'];
       const arrayToObject = (array, keyField) =>
@@ -370,64 +379,54 @@ if ( type === 'call'){
   }
 
   applyFilter(obj) {
-    // this.router.navigate([], {
-    //   relativeTo: this.route, queryParams: obj, queryParamsHandling: "merge",
-    //   preserveFragment: true
-    // });
+     let navigationExtras: NavigationExtras = {
+      queryParams: obj,
+      relativeTo: this.route,
+      queryParamsHandling: 'merge',
+    };
+    this.router.navigate([], navigationExtras);
+
     console.log("applyfilter");
-    let paramKey = Object.keys(obj);
-    let queryParamKey = Object.keys(this.pageParam);
-    let ifIndex = 0;
-    let elseIndex = 0;
-    this.queryParamsRouterUrl = '';
-    paramKey.forEach(element => {
-      if (!this.pageReload) {
-        if (element !== 'ProgramId') {
-          //console.log);
-          if (ifIndex == 0) {
-            this.queryParamsRouterUrl += element + '=' + obj[element]
-          }
-          else {
-            this.queryParamsRouterUrl += '&' + element + '=' + obj[element]
-          }
-          ifIndex++;
-        }
-      } else {
-        if (queryParamKey.includes(element) && element !== 'ProgramId') {
+    // let paramKey = Object.keys(obj);
+    // let queryParamKey = Object.keys(this.pageParam);
+    // let ifIndex = 0;
+    // let elseIndex = 0;
+    
+    // this.queryParamsRouterUrl = '';
+    // paramKey.forEach(element => {
+    //   if (!this.pageReload) {
+    //     if (element !== 'ProgramId') {
+    //       if (ifIndex == 0) {
+    //         this.queryParamsRouterUrl += element + '=' + obj[element]
+    //       }
+    //       else {
+    //         this.queryParamsRouterUrl += '&' + element + '=' + obj[element]
+    //       }
+    //       ifIndex++;
+    //     }
+    //   } else {
+    //     if (queryParamKey.includes(element) && element !== 'ProgramId') {
+    //       if (elseIndex == 0) {
+    //         this.queryParamsRouterUrl += element + '=' + obj[element]
+    //       }
+    //       else {
+    //         this.queryParamsRouterUrl += '&' + element + '=' + obj[element]
+    //       }
+    //       elseIndex++
+    //     }
+    //   }
 
-          console.log("test")
-          if (elseIndex == 0) {
-            this.queryParamsRouterUrl += element + '=' + obj[element]
-          }
-          else {
-            this.queryParamsRouterUrl += '&' + element + '=' + obj[element]
-          }
-          elseIndex++
-        }
-      }
-
-    })
-    let addQueryParamUlr;
-    //console.logthis.queryParamsRouterUrl)
-    if(this.noAssess){
-    addQueryParamUlr = '/programs/public/ops-reports?ProgramId=' + this.pageParam['ProgramId'] + "&" + this.queryParamsRouterUrl;
-
-    }
-    else {
-    addQueryParamUlr = '/programs/operations/ops-reports?ProgramId=' + this.pageParam['ProgramId'] + "&" + this.queryParamsRouterUrl;
-    //console.logaddQueryParamUlr)
-    }
-    window.history.pushState({ path: addQueryParamUlr }, '', addQueryParamUlr);
-    let param;
-    this.route.queryParams.subscribe(params => {
-      param = params;
-      //console.logparams)
-    });
-
-
-    this.generateReport(obj);
-
-  }
+    // })
+    // let addQueryParamUlr;
+    // if(this.noAssess){
+    // addQueryParamUlr = '/programs/public/ops-reports?ProgramId=' + this.pageParam['ProgramId'] + "&" + this.queryParamsRouterUrl;
+    // }
+    // else {
+    // addQueryParamUlr = '/programs/operations/ops-reports?ProgramId=' + this.pageParam['ProgramId'] + "&" + this.queryParamsRouterUrl;
+    // }
+    // window.history.pushState({ path: addQueryParamUlr }, '', addQueryParamUlr);
+    // let param;
+}
 
   inputChange(key, event) {
     this.applyFilter({ [key]: event.target.value });
@@ -445,18 +444,26 @@ if ( type === 'call'){
     //   param = params
     // });
     //console.logparam)
-    this.queryParamsUrl = this.pageParam['ProgramId'] + "?";
+    this.queryParamsUrl = this.pageParam['programId'] + "?";
     let paramKey = Object.keys(param);
+    if(paramKey.includes('componentName')) {
+      paramKey.splice(paramKey.indexOf('componentName'), 1)
+
+    }
     // paramKey = paramKey.slice(1)
     let index = 0;
-    paramKey.forEach(element => {
-      if (index == 0) {
-        this.queryParamsUrl += element + '=' + param[element]
-      }
-      else {
-        this.queryParamsUrl += '&' + element + '=' + param[element]
-      }
-      index++;
+    // paramKey.forEach(element => {
+    //   if (index == 0) {
+    //     this.queryParamsUrl += element + '=' + param[element]
+    //   }
+    //   else {
+    //     this.queryParamsUrl += '&' + element + '=' + param[element]
+    //   }
+    //   index++;
+    // })
+
+    paramKey.forEach((element, index) => {
+      index ? this.queryParamsUrl += '&' + element + '=' + param[element] :this.queryParamsUrl += element + '=' + param[element]
     })
     // this.queryParamsUrl += '&csv=' + false;
     //console.logthis.queryParamsUrl)
@@ -467,7 +474,7 @@ if ( type === 'call'){
   }
   downloadCsv(id) {
     if (id === 'school') {
-      this.operationService.getSchoolReport(this.apiBaseUrl+this.reportConfig.schoolReport+this.pageParam['ProgramId'] +"?fromDate="+this.pageParam['fromDate']+"&toDate="+this.pageParam['toDate']+"&csv=" + true).subscribe(data => {
+      this.operationService.getSchoolReport(this.apiBaseUrl+this.reportConfig.schoolReport+this.pageParam['programId'] +"?fromDate="+this.pageParam['fromDate']+"&toDate="+this.pageParam['toDate']+"&csv=" + true).subscribe(data => {
 
       },
         error => {
@@ -487,7 +494,7 @@ if ( type === 'call'){
         });
     }
     else if (id === 'assessor') {
-      this.operationService.getAssessorReport(this.apiBaseUrl+this.reportConfig.assessorReport+this.pageParam['ProgramId'] +"?fromDate="+this.pageParam['fromDate']+"&toDate="+this.pageParam['toDate']+"&csv=" + true).subscribe(data => {
+      this.operationService.getAssessorReport(this.apiBaseUrl+this.reportConfig.assessorReport+this.pageParam['programId'] +"?fromDate="+this.pageParam['fromDate']+"&toDate="+this.pageParam['toDate']+"&csv=" + true).subscribe(data => {
 
       },
         error => {
