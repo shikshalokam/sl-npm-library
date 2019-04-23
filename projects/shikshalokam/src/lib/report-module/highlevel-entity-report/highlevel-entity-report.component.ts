@@ -77,7 +77,7 @@ export class HighlevelEntityReportComponent implements OnInit {
       this.utility.loaderHide();
     },
       (error) => {
-        this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
+        //this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
         this.utility.loaderHide();
       }
     )

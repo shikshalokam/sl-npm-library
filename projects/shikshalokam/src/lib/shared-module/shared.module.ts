@@ -4,7 +4,7 @@ import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.com
 import { TextFieldComponent } from './components/text-field/text-field.component';
 import { DropdownFieldComponent } from './components/dropdown-field/dropdown-field.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule, MatRadioModule, MatDividerModule, MatCheckboxModule, MatCardMdImage, MatCardModule, MatTooltipModule, MatDatepickerModule, MatAutocompleteModule, MatTableModule } from '@angular/material';
+import { MatInputModule, MatRadioModule, MatDividerModule, MatCheckboxModule, MatCardMdImage, MatCardModule, MatTooltipModule, MatDatepickerModule, MatAutocompleteModule, MatTableModule, MatChipsModule } from '@angular/material';
 import { NumberFieldComponent } from './components/number-field/number-field.component';
 import { TextareaFieldComponent } from './components/textarea-field/textarea-field.component';
 import { MatSelectModule } from '@angular/material/select';
@@ -38,6 +38,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
 import { ShareLinkComponent } from './components/share-link/share-link.component';
 import { ShareLinkViewComponent } from './components/share-link-view/share-link-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
+import { ChipsFieldComponent } from './components/chips-field/chips-field.component';
 @NgModule({
   declarations: [
     ProgramsDashboardComponent,
@@ -63,12 +64,14 @@ import { MatIconModule } from '@angular/material/icon';
     ColumnGraphComponent,
     GraphTableChartComponent,
     ShareLinkComponent,
-    ShareLinkViewComponent
+    ShareLinkViewComponent,
+    ChipsFieldComponent
   ],
   imports: [
 
     CommonModule,
     FormsModule,
+    MatChipsModule,
     MatCheckboxModule,
     ReactiveFormsModule,
     MatInputModule,
