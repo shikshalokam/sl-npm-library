@@ -57,26 +57,7 @@ export class FormArrayFieldComponent implements OnInit {
   }
 
 
-  // reset(){
-  //   //  this.genericForm.controls[this.genericData.field]['controls']=[];
-  //   //   // let control;
-  //   //   // control = new FormArray([])
-
-  //   //   this.genericData.value.forEach(field => {
-  //   //       // this.questionCount = this.data.questionObject.question.length;
-          
-  //   //         // control.push( new FormControl(level)
-  //   //         this.genericForm.controls[this.genericData.field]['controls'].push(this._formBuilder.control({
-  //   //           [this.genericData.field]: [ field ? field : '', Validators.required]
-  //   //         })
-  //   //         )
-          
   
-  //   //   });
-  //     // this.genericForm.controls[this.genericData.field]=control; 
-  //     this.genericForm.controls[this.genericData.field].reset();
-  // }
-
   add(control){
     control.push(
       this._formBuilder.group({
@@ -92,47 +73,5 @@ export class FormArrayFieldComponent implements OnInit {
     this.questionCount--;
 
   }
-//   customizeForm(control) {
-//     let controls = control.controlName ;
 
-//     if (control.mode == 'add') {
-//       this.genericForm.controls[controls].push(
-//         this._formBuilder.group({
-//           [controls]: ['', Validators.required]
-//         })
-//       );
-//     }
-//     else if (control.mode == 'delete') {
-//       // console.log(this.programsForm.controls[controls])
-//       this.genericForm.controls[controls].removeAt(
-//         // this._formBuilder.control({
-//         //   keyWords: ['', Validators.required]
-//         // })
-//         control.index
-//         );
-//     }
-//   //   else {
-//   //     // this.programsForm.controls[controls].controls=[];
-//   //     let control;
-//   //     this.programMetaData.forEach(field => {
-//   //       if (field.field === controls) {
-//   //       let controlLabel = field.field;
-
-//   //         control = new FormArray([])
-//   //         // this.questionCount = this.data.questionObject.question.length;
-//   //         field.value.forEach(level => {
-//   //           // control.push( new FormControl(level)
-//   //           control.push(this._formBuilder.control({
-//   //             [controlLabel]: [level ? level : '', Validators.required]
-//   //           })
-//   //           )
-//   //         })
-  
-//   //       }
-//   //     });
-//   //     this.programsForm.controls[controls]=control; 
-      
-//   //   console.log(this.programsForm)
-//   // }
-// }
 }
