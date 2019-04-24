@@ -344,7 +344,7 @@ if ( type === 'call'){
     },
       error => {
 
-        this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
+        //this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
       this.utility.loaderHide();
 
       });
@@ -489,7 +489,7 @@ if ( type === 'call'){
             document.body.removeChild(a);
             window.URL.revokeObjectURL(url);
           } else {
-            this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
+            //this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
           }
         });
     }
@@ -510,7 +510,7 @@ if ( type === 'call'){
             document.body.removeChild(a);
             window.URL.revokeObjectURL(url);
           } else {
-            this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
+            //this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
           }
         });
 
@@ -576,7 +576,7 @@ if ( type === 'call'){
       this.utility.loaderHide();
     },
       error => {
-        this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
+        //this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
         this.utility.loaderHide();
       });
     }
@@ -619,7 +619,7 @@ if ( type === 'call'){
       this.utility.loaderHide();
     },
       error => {
-        this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
+        //this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
       }
     );
   }
@@ -642,7 +642,7 @@ if ( type === 'call'){
       this.schoolLoading = false;
 
     }, error => {
-      this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
+      //this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
     }
     );
   }
@@ -663,7 +663,7 @@ if ( type === 'call'){
       this.assessorLoading = false;
 
     }, error => {
-      this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
+      //this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
     }
     );
   }
