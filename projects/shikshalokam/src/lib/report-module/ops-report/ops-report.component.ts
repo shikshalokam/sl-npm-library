@@ -49,7 +49,7 @@ export class OpsReportComponent implements OnInit {
   expandedFilters: boolean = true;
   schoolLoading: boolean;
   assessorLoading: boolean;
-   @Input() hostUrl;
+  @Input() hostUrl;
   @Input() globalConfig;
   @ViewChild('myaccordion') filterPanel: MatAccordion;
   summaryProfileData: any;
@@ -74,28 +74,24 @@ export class OpsReportComponent implements OnInit {
     private utility: UtilityService,
     private snackBar: MatSnackBar
   ) {
-    this.route.data.subscribe(data=>{
+    this.route.data.subscribe(data => {
       this.apiBaseUrl = data.apibaseUrl;
       this.reportConfig = data.reportConfig
       this.shareLinkApi = data.shareLinkApi;
       this.publicSharedBaseUrl = data.publicSharedBaseUrl;
-      this.globalConfig = data.globalConfig; 
+      this.globalConfig = data.globalConfig;
       this.noAssess = data.noAssess;
       this.componentId = data.componentId;
       this.hostUrl = data.apibaseUrl;
-      this.baseUrl=  data.baseUrl;
+      this.baseUrl = data.baseUrl;
       this.portalName = data.portalName;
-
-
     })
     this.filterForm = this._fb.group({
       formDate: ['', Validators.required],
       toDate: ['', Validators.required]
     });
-
-
-
   }
+
   pdf(id) {
     var data = document.getElementById(id);
     html2canvas(data).then(canvas => {
@@ -109,12 +105,10 @@ export class OpsReportComponent implements OnInit {
       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
       pdf.save(id + '.pdf');
     });
-
   }
-  ngOnInit() {
-    console.log("ngOninit");
-    this.currentRouterUrl = window.location.href;
 
+  ngOnInit() {
+    this.currentRouterUrl = window.location.href;
     this.route.queryParams.subscribe(params => {
       let param = Object.assign({}, params);
       this.pageParam = params;
@@ -125,7 +119,7 @@ export class OpsReportComponent implements OnInit {
       this.applyFilter(this.pageParam);
       this.urlQueryParams = Object.assign({}, params);
       delete param.ProgramId;
-      if(Object.keys(param).length) {
+      if (Object.keys(param).length) {
         this.generateReport(param);
         this.expandedFilters = false;
       } else {
@@ -218,100 +212,101 @@ export class OpsReportComponent implements OnInit {
   }
 
 
-  remove(filter): void {
-    let param;
-    const index = this.filterArray.indexOf(filter);
-    this.route.queryParams.subscribe(params => {
-      param = params;
-      // delete param['ProgramId'];
-      // this.generateReport(param);
-    })
-    if (index >= 0) {
-      this.filterArray.splice(index, 1);
+  // remove(filter): void {
+  //   let param;
+  //   const index = this.filterArray.indexOf(filter);
+  //   this.route.queryParams.subscribe(params => {
+  //     param = params;
+  //     // delete param['ProgramId'];
+  //     // this.generateReport(param);
+  //   })
+  //   if (index >= 0) {
+  //     this.filterArray.splice(index, 1);
+  //   }
+
+
+  // }
+  mapGraphObject(data, type = 'call') {
+
+    if (type === 'call') {
+
+      data.forEach((object, ind) => {
+        console.log(object)
+        for (let i = 0; i < object.graphData.length; i++) {
+
+          const dataArray = this.getData(object, i)
+          Object.assign(data[ind].graphData[i], {
+            data: dataArray
+          })
+          Object.assign(data[ind].graphData[i].chartOptions, { legend: { position: 'top', alignment: 'end' } })
+
+        }
+        object.graphData.forEach((item, index) => {
+
+          if (object.graphData[index].data.length > 2 && object.graphData[index].chartType === 'ColumnChart') {
+            Object.assign(data[ind].graphData[index].chartOptions, {
+              isStack: true,
+            })
+          }
+
+          if (data[ind].graphData[index].data.length > 10) {
+            Object.assign(data[ind].graphData[index].chartOptions.hAxis, { textPosition: 'none' });
+          }
+          let colNameArray = []
+          data[ind].graphData[index].columnNames.forEach(column => {
+            colNameArray.push(new CamelCasePipe().transform(column));
+          });
+          Object.assign(data[ind].graphData[index], { columnNames: colNameArray });
+
+
+        });
+
+        new CamelCasePipe().transform('schoolList')
+        const headers = this.getTableHeader(object);
+        Object.assign(data[ind], { tableHeader: headers })
+      });
+      ////console.logdata)
+      return data;
     }
+    else {
+      for (let i = 0; i < data.graphData.length; i++) {
 
-
-  }
-  mapGraphObject(data , type = 'call' ) {
-
-if ( type === 'call'){
-
-    data.forEach((object, ind) => {
-      console.log(object)
-      for (let i = 0; i < object.graphData.length; i++) {
-
-        const dataArray = this.getData(object, i)
-        Object.assign(data[ind].graphData[i], {
+        const dataArray = this.getData(data, i);
+        Object.assign(data.graphData[i], {
           data: dataArray
         })
-        Object.assign(data[ind].graphData[i].chartOptions, { legend: { position: 'top', alignment: 'end' } })
+        Object.assign(data.graphData[i].chartOptions, { legend: { position: 'top', alignment: 'end' } })
 
       }
-      object.graphData.forEach((item, index) => {
+      data.graphData.forEach((item, index) => {
 
-        if (object.graphData[index].data.length > 2 && object.graphData[index].chartType === 'ColumnChart') {
-          Object.assign(data[ind].graphData[index].chartOptions, {
+        if (data.graphData[index].data.length > 2 && data.graphData[index].chartType === 'ColumnChart') {
+          Object.assign(data.graphData[index].chartOptions, {
             isStack: true,
           })
         }
 
-        if (data[ind].graphData[index].data.length > 10) {
-          Object.assign(data[ind].graphData[index].chartOptions.hAxis, { textPosition: 'none' });
+        if (data.graphData[index].data.length > 10) {
+          Object.assign(data.graphData[index].chartOptions.hAxis, { textPosition: 'none' });
         }
         let colNameArray = []
-        data[ind].graphData[index].columnNames.forEach(column => {
+        data.graphData[index].columnNames.forEach(column => {
           colNameArray.push(new CamelCasePipe().transform(column));
         });
-        Object.assign(data[ind].graphData[index], { columnNames: colNameArray });
+        Object.assign(data.graphData[index], { columnNames: colNameArray });
 
 
       });
 
       new CamelCasePipe().transform('schoolList')
-      const headers = this.getTableHeader(object);
-      Object.assign(data[ind], { tableHeader: headers })
-    });
-    ////console.logdata)
-    return data;
-  }
-  else {
-    for (let i = 0; i < data.graphData.length; i++) {
+      const headers = this.getTableHeader(data);
+      Object.assign(data, { tableHeader: headers })
 
-      const dataArray = this.getData(data, i);
-      Object.assign(data.graphData[i], {
-        data: dataArray
-      })
-      Object.assign(data.graphData[i].chartOptions, { legend: { position: 'top', alignment: 'end' } })
-
+      ////console.logdata)
+      return data.graphData;
     }
-    data.graphData.forEach((item, index) => {
-
-      if (data.graphData[index].data.length > 2 && data.graphData[index].chartType === 'ColumnChart') {
-        Object.assign(data.graphData[index].chartOptions, {
-          isStack: true,
-        })
-      }
-
-      if (data.graphData[index].data.length > 10) {
-        Object.assign(data.graphData[index].chartOptions.hAxis, { textPosition: 'none' });
-      }
-      let colNameArray = []
-      data.graphData[index].columnNames.forEach(column => {
-        colNameArray.push(new CamelCasePipe().transform(column));
-      });
-      Object.assign(data.graphData[index], { columnNames: colNameArray });
-
-
-    });
-
-    new CamelCasePipe().transform('schoolList')
-    const headers = this.getTableHeader(data);
-    Object.assign(data, { tableHeader: headers })
-
-  ////console.logdata)
-  return data.graphData;
   }
-  }
+
   getTableHeader(object) {
     let headingArray = []
     object.tabularData.headers.forEach(header => {
@@ -319,6 +314,7 @@ if ( type === 'call'){
     })
     return headingArray;
   }
+
   getData(object, i) {
     let dataArray = [];
     for (let j = 0; j < object.data.length; j++) {
@@ -327,8 +323,9 @@ if ( type === 'call'){
     }
     return dataArray;
   }
+
   getUserProfile(ProgramId) {
-    this.operationService.getUserProfileSummary(this.apiBaseUrl+this.reportConfig.profileSummary+ProgramId).subscribe(data => {
+    this.operationService.getUserProfileSummary(this.apiBaseUrl + this.reportConfig.profileSummary + ProgramId).subscribe(data => {
       ////console.logdata);
       this.summaryProfileData = data['result'];
       const arrayToObject = (array, keyField) =>
@@ -337,15 +334,15 @@ if ( type === 'call'){
           return obj
         }, {})
       this.summaryProfileData = arrayToObject(this.summaryProfileData, "label")
-        if( this.noAssess){
-      this.utility.loaderHide();
+      if (this.noAssess) {
+        this.utility.loaderHide();
 
-        }
+      }
     },
       error => {
 
         this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
-      this.utility.loaderHide();
+        this.utility.loaderHide();
 
       });
   }
@@ -379,19 +376,19 @@ if ( type === 'call'){
   }
 
   applyFilter(obj) {
-     let navigationExtras: NavigationExtras = {
+    let navigationExtras: NavigationExtras = {
       queryParams: obj,
       relativeTo: this.route,
       queryParamsHandling: 'merge',
     };
     this.router.navigate([], navigationExtras);
 
-    console.log("applyfilter");
+    // console.log("applyfilter");
     // let paramKey = Object.keys(obj);
     // let queryParamKey = Object.keys(this.pageParam);
     // let ifIndex = 0;
     // let elseIndex = 0;
-    
+
     // this.queryParamsRouterUrl = '';
     // paramKey.forEach(element => {
     //   if (!this.pageReload) {
@@ -426,7 +423,7 @@ if ( type === 'call'){
     // }
     // window.history.pushState({ path: addQueryParamUlr }, '', addQueryParamUlr);
     // let param;
-}
+  }
 
   inputChange(key, event) {
     this.applyFilter({ [key]: event.target.value });
@@ -446,7 +443,7 @@ if ( type === 'call'){
     //console.logparam)
     this.queryParamsUrl = this.pageParam['ProgramId'] + "?";
     let paramKey = Object.keys(param);
-    if(paramKey.includes('componentName')) {
+    if (paramKey.includes('componentName')) {
       paramKey.splice(paramKey.indexOf('componentName'), 1)
 
     }
@@ -463,7 +460,7 @@ if ( type === 'call'){
     // })
 
     paramKey.forEach((element, index) => {
-      index ? this.queryParamsUrl += '&' + element + '=' + param[element] :this.queryParamsUrl += element + '=' + param[element]
+      index ? this.queryParamsUrl += '&' + element + '=' + param[element] : this.queryParamsUrl += element + '=' + param[element]
     })
     // this.queryParamsUrl += '&csv=' + false;
     //console.logthis.queryParamsUrl)
@@ -474,111 +471,135 @@ if ( type === 'call'){
   }
   downloadCsv(id) {
     if (id === 'school') {
-      this.operationService.getSchoolReport(this.apiBaseUrl+this.reportConfig.schoolReport+this.pageParam['ProgramId'] +"?fromDate="+this.pageParam['fromDate']+"&toDate="+this.pageParam['toDate']+"&csv=" + true).subscribe(data => {
+      this.operationService.getSchoolReport(this.apiBaseUrl + this.reportConfig.schoolReport + this.pageParam['ProgramId'] + "?fromDate=" + this.pageParam['fromDate'] + "&toDate=" + this.pageParam['toDate'] + "&csv=" + true).subscribe(data => {
 
       },
         error => {
-          if (error.status == 200) {
-            const blob = new Blob([error.error.text], { type: 'csv' });
-            const url = window.URL.createObjectURL(blob);
-            let a = document.createElement('a');
-            a.href = url;
-            a.download = `${id}-Report.csv`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
-          } else {
-            this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
-          }
+          this.download(error, id)
+
+          // if (error.status == 200) {
+          //   const blob = new Blob([error.error.text], { type: 'csv' });
+          //   const url = window.URL.createObjectURL(blob);
+          //   let a = document.createElement('a');
+          //   a.href = url;
+          //   a.download = `${id}-Report.csv`;
+          //   document.body.appendChild(a);
+          //   a.click();
+          //   document.body.removeChild(a);
+          //   window.URL.revokeObjectURL(url);
+          // } else {
+          //   this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
+          // }
         });
     }
     else if (id === 'assessor') {
-      this.operationService.getAssessorReport(this.apiBaseUrl+this.reportConfig.assessorReport+this.pageParam['ProgramId'] +"?fromDate="+this.pageParam['fromDate']+"&toDate="+this.pageParam['toDate']+"&csv=" + true).subscribe(data => {
+      this.operationService.getAssessorReport(this.apiBaseUrl + this.reportConfig.assessorReport + this.pageParam['ProgramId'] + "?fromDate=" + this.pageParam['fromDate'] + "&toDate=" + this.pageParam['toDate'] + "&csv=" + true).subscribe(data => {
 
       },
         error => {
           ////console.logerror.status)
-          if (error.status == 200) {
-            const blob = new Blob([error.error.text], { type: 'csv' });
-            const url = window.URL.createObjectURL(blob);
-            let a = document.createElement('a');
-            a.href = url;
-            a.download = `${id}-Report.csv`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
-          } else {
-            this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
-          }
+          // if (error.status == 200) {
+          //   const blob = new Blob([error.error.text], { type: 'csv' });
+          //   const url = window.URL.createObjectURL(blob);
+          //   let a = document.createElement('a');
+          //   a.href = url;
+          //   a.download = `${id}-Report.csv`;
+          //   document.body.appendChild(a);
+          //   a.click();
+          //   document.body.removeChild(a);
+          //   window.URL.revokeObjectURL(url);
+          // } else {
+          //   this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
+          // }
+          this.download(error, id)
         });
 
     }
-
   }
-  setSearchParam(index: number = 1, size: number = this.itemsPerPage[0], label) {
-    if (label === 'school') {
 
-      const url = '&page=' + index + '&limit=' + size + '&schoolName=' + this.searchSchoolValue;
-      return url;
+  download(object, id) {
+    if (object.status == 200) {
+      const blob = new Blob([object.error.text], { type: 'csv' });
+      const url = window.URL.createObjectURL(blob);
+      let a = document.createElement('a');
+      a.href = url;
+      a.download = `${id}-Report.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    } else {
+      this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
     }
-    else if (label === 'assessor') {
-      const url = '&page=' + index + '&limit=' + size + '&assessorName=' + this.searchAssessorName;
-      return url;
-    }
+  }
+
+  setSearchParam(index: number = 1, size: number = this.itemsPerPage[0], label) {
+    // if (label === 'school') {
+
+    //   const url = '&page=' + index + '&limit=' + size + '&schoolName=' + this.searchSchoolValue;
+    //   return url;
+    // }
+    // else if (label === 'assessor') {
+    //   const url = '&page=' + index + '&limit=' + size + '&assessorName=' + this.searchAssessorName;
+    //   return url;
+    // }
+    let url = '&page=' + index + '&limit=' + size;
+    url = url + (label === 'school' ? '&schoolName=' + this.searchSchoolValue : '&assessorName=' + this.searchAssessorName);
+    return url;
 
   }
   pageResponse(event) {
+    // if (event.label === 'school') {
+    this[`${event.label} + PageLimit`] = event.pageLimit;
+    this[`${event.label} + PageIndex`] = event.pageIndex;
+    this.searchParam = this.setSearchParam(this[`${event.label} + PageIndex`] + 1, this[`${event.label} + PageLimit`], event.label);
     if (event.label === 'school') {
-      this.schoolPageLimit = event.pageLimit;
-      this.schoolPageIndex = event.pageIndex;
-      this.searchParam = this.setSearchParam(this.schoolPageIndex + 1, this.schoolPageLimit, 'school');
       this.getSchoolReport();
-    }
 
-    else if (event.label === 'assessor') {
-      this.assessorPageIndex = event.pageIndex;
-      this.assessorPageLimit = event.pageLimit;
-      this.searchParam = this.setSearchParam(this.assessorPageIndex + 1, this.assessorPageLimit, 'assessor');
+    } else {
       this.getAssessorReport();
+
     }
+    // }
+
+    // else if (event.label === 'assessor') {
+    //   this.assessorPageIndex = event.pageIndex;
+    //   this.assessorPageLimit = event.pageLimit;
+    //   this.searchParam = this.setSearchParam(this.assessorPageIndex + 1, this.assessorPageLimit, 'assessor');
+    //   this.getAssessorReport();
+    // }
 
 
 
   }
   reportsDataFetch() {
-    console.log("api called")
-    
     this.utility.loaderShow();
     this.getUserSummary(this.queryParamsUrl);
     this.searchParam = this.setSearchParam(this.schoolPageIndex + 1, this.schoolPageLimit, 'school');
     this.getSchoolReport();
     this.searchParam = this.setSearchParam(this.assessorPageIndex + 1, this.assessorPageLimit, 'assessor');
-
     this.getAssessorReport();
   }
 
   filters(url) {
-  if(!this.pageParam.linkId){
-    this.operationService.applyFilters(this.apiBaseUrl+this.reportConfig.reportFilter+url).subscribe(data => {
-
-      this.filterData = this.mapQueryParams(data['result']);
-      this.filterForm = this.utility.toGroup(this.filterData);
-      ////console.logthis.filterForm)
-      this.filterObject = this.filterForm.getRawValue()
-      for (let filter in this.filterObject) {
-        if (this.filterObject[filter] === null || this.filterObject[filter] === undefined || this.filterObject[filter] === "" || this.filterObject[filter] === "aN-aN-NaN") {
-          delete this.filterObject[filter];
+    if (!this.pageParam.linkId) {
+      this.operationService.applyFilters(this.apiBaseUrl + this.reportConfig.reportFilter + url).subscribe(data => {
+        this.filterData = this.mapQueryParams(data['result']);
+        this.filterForm = this.utility.toGroup(this.filterData);
+        ////console.logthis.filterForm)
+        this.filterObject = this.filterForm.getRawValue()
+        for (let filter in this.filterObject) {
+          if (this.filterObject[filter] === null || this.filterObject[filter] === undefined || this.filterObject[filter] === "" || this.filterObject[filter] === "aN-aN-NaN") {
+            delete this.filterObject[filter];
+          }
         }
-      }
-      this.filterArray = Object.entries(this.filterObject);
-      this.utility.loaderHide();
-    },
-      error => {
-        this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
+        this.filterArray = Object.entries(this.filterObject);
         this.utility.loaderHide();
-      });
+      },
+        error => {
+          this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
+          this.utility.loaderHide();
+        });
     }
   }
   mapQueryParams(data) {
@@ -589,7 +610,6 @@ if ( type === 'call'){
     let paramKey = Object.keys(param);
     paramKey.forEach(paramLabel => {
       data.forEach((element, index) => {
-        ////console.logparamLabel)
         if (element.field === paramLabel) {
           if (element.input === 'date') {
             let date = [param[paramLabel].substring(6), param[paramLabel].substring(3, 5), param[paramLabel].substring(0, 2)].join("-");
@@ -597,25 +617,22 @@ if ( type === 'call'){
           }
           else {
             data[index].value = param[paramLabel];
-
           }
         }
       });
     });
-    ////console.logdata)
     return data;
   }
-  getUserSummary(url) {
-    this.operationService.getUserSummary(this.apiBaseUrl+this.reportConfig.reportSummary+url).subscribe(data => {
-      this.summaryData = data['result'];
 
+  getUserSummary(url) {
+    this.operationService.getUserSummary(this.apiBaseUrl + this.reportConfig.reportSummary + url).subscribe(data => {
+      this.summaryData = data['result'];
       const arrayToObject = (array, keyField) =>
         array.reduce((obj, item) => {
           obj[item[keyField]] = item
           return obj
         }, {})
       this.summaryData = arrayToObject(this.summaryData, "label")
-
       this.utility.loaderHide();
     },
       error => {
@@ -623,20 +640,17 @@ if ( type === 'call'){
       }
     );
   }
-  getSchoolReport(label = 'call' ) {
 
+  getSchoolReport(label = 'call') {
     this.schoolLoading = true;
-    this.operationService.getSchoolReport(this.apiBaseUrl+this.reportConfig.schoolReport+this.queryParamsUrl + this.searchParam).subscribe(data => {
+    this.operationService.getSchoolReport(this.apiBaseUrl + this.reportConfig.schoolReport + this.queryParamsUrl + this.searchParam).subscribe(data => {
       this.share = data['result'];
-      if(label == 'call'){
+      if (label == 'call') {
         this.schoolReport = this.mapGraphObject(data['result']['sections']);
       }
       else {
-        console.log(data['result']['sections'][0] );
-        console.log(data['result']['sections'])
-        this.schoolReport[0].data = data['result']['sections'][0]['data'] ;
-        this.schoolReport[0].graphData = this.mapGraphObject(data['result']['sections'][0] , 'search')
-        console.log(this.schoolReport)
+        this.schoolReport[0].data = data['result']['sections'][0]['data'];
+        this.schoolReport[0].graphData = this.mapGraphObject(data['result']['sections'][0], 'search')
       }
       //  this.schoolGraph=this.schoolReport['graphData'];
       this.schoolLoading = false;
@@ -649,16 +663,13 @@ if ( type === 'call'){
 
   getAssessorReport(label = 'call') {
     this.assessorLoading = true;
-    this.operationService.getAssessorReport(this.apiBaseUrl+this.reportConfig.assessorReport+this.queryParamsUrl + this.searchParam).subscribe(data => {
-      if(label == 'call'){
+    this.operationService.getAssessorReport(this.apiBaseUrl + this.reportConfig.assessorReport + this.queryParamsUrl + this.searchParam).subscribe(data => {
+      if (label == 'call') {
         this.assessorReport = this.mapGraphObject(data['result']['sections']);
       }
       else {
-        console.log(data['result']['sections'][0] );
-        console.log(data['result']['sections'])
-        this.assessorReport[0].data = data['result']['sections'][0]['data'] ;
-        this.assessorReport[0].graphData = this.mapGraphObject(data['result']['sections'][0] , 'search')
-        console.log(this.assessorReport)
+        this.assessorReport[0].data = data['result']['sections'][0]['data'];
+        this.assessorReport[0].graphData = this.mapGraphObject(data['result']['sections'][0], 'search')
       }
       this.assessorLoading = false;
 
@@ -669,6 +680,7 @@ if ( type === 'call'){
   }
   searchSchoolIdInApi(searchId) {
   }
+  
   searchVal(id, searchValue) {
     if (id == 'school') {
       this.searchSchoolValue = searchValue.target.value;
@@ -677,18 +689,29 @@ if ( type === 'call'){
       this.searchAssessorName = searchValue.target.value;
     }
   }
-  searchInApi(label , value) {
-    if (label === 'school') {
-      this.schoolPageIndex = 1;
-      this.searchSchoolValue = value;
-      this.searchParam = this.setSearchParam(this.schoolPageIndex, this.schoolPageLimit, 'school');
-      this.getSchoolReport('search');
-    }
-    else if (label === 'assessor') {
-      this.assessorPageIndex = 1;
-      this.searchAssessorName = value;
 
-      this.searchParam = this.setSearchParam(this.assessorPageIndex, this.assessorPageLimit, 'assessor');
+  searchInApi(label, value) {
+    // if (label === 'school') {
+    //   this.schoolPageIndex = 1;
+    //   this.searchSchoolValue = value;
+    //   this.searchParam = this.setSearchParam(this.schoolPageIndex, this.schoolPageLimit, 'school');
+    //   this.getSchoolReport('search');
+    // }
+    // else if (label === 'assessor') {
+    //   this.assessorPageIndex = 1;
+    //   this.searchAssessorName = value;
+
+    //   this.searchParam = this.setSearchParam(this.assessorPageIndex, this.assessorPageLimit, 'assessor');
+    //   this.getAssessorReport('search');
+    // }
+
+    this[`${label}+PageIndex`] = 1;
+    this.searchParam = this.setSearchParam(this[`${label}PageIndex`], this[`${label}PageLimit`], label);
+    if (label === 'school') {
+      this.searchSchoolValue = value
+      this.getSchoolReport('search');
+    } else {
+      this.searchAssessorName = value
       this.getAssessorReport('search');
     }
 

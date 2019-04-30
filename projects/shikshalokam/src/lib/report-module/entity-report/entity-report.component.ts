@@ -17,9 +17,9 @@ export class EntityReportComponent implements OnInit {
   insightReport;
   programId;
   schoolId;
-  @Input() globalConfig ;
-  @Input()apiBaseUrl: any;
-  @Input()reportConfig: any;
+  @Input() globalConfig;
+  @Input() apiBaseUrl: any;
+  @Input() reportConfig: any;
   shareLinkApi: any;
   publicSharedBaseUrl: any;
   linkId: string;
@@ -41,8 +41,8 @@ export class EntityReportComponent implements OnInit {
       this.publicSharedBaseUrl = data.publicSharedBaseUrl;
       this.globalConfig = data.globalConfig;
       this.componentId = data.componentId;
-      this.baseUrl=  data.baseUrl ;
-      this.portalName = data.portalName ;
+      this.baseUrl = data.baseUrl;
+      this.portalName = data.portalName;
     });
   }
 
@@ -80,18 +80,16 @@ export class EntityReportComponent implements OnInit {
   }
 
   getEntityReport() {
-    console.log("api called")
-    this.apiService.getSingleEntityReport(this.apiBaseUrl+this.reportConfig.singleEntityReport,this.programId, this.schoolId,this.linkId).subscribe(data => {
+    this.apiService.getSingleEntityReport(this.apiBaseUrl + this.reportConfig.singleEntityReport, this.programId, this.schoolId, this.linkId).subscribe(data => {
       this.insightReport = data['result'];
       this.utility.loaderHide();
     },
       (error) => {
-
         this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
         this.utility.loaderHide();
       })
   }
-  
+
   naviagteToRubrics() {
     this.route.navigate(["/report/framework-rubric"], { queryParams: { link: this.insightReport.frameworkUrl.link } });
   }
