@@ -36,7 +36,7 @@ export class MultipleEntityRportComponent implements OnInit {
     this.utility.loaderShow();
     this.router.queryParams.subscribe( params =>{
       this.schoolId = params['school'];
-      this.programId = params['ProgramId'];
+      this.programId = params['programId'];
       this.blockName = params['blockName'];
       this.linkId = params['linkId'];
     })
@@ -61,7 +61,7 @@ export class MultipleEntityRportComponent implements OnInit {
 
       this.utility.loaderHide();
     },error => {
-      this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
+      //this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
       this.utility.loaderHide();
 
     }

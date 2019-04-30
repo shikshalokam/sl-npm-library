@@ -45,14 +45,14 @@ export class AuthGuard implements CanActivate {
       if (this.authService.userName == 'Sandeep') {
         return true;
       }
-      this.snackBar.open("Unauthorized Access", "Ok", {duration: 3000});
+      //this.snackBar.open("Unauthorized Access", "Ok", {duration: 3000});
       return false;
     }
     else {
       if (this.authService.userName == 'Mouneesh') {
         return true;
       }
-      this.snackBar.open("Unauthorized Access", "Ok", {duration: 3000});
+      //this.snackBar.open("Unauthorized Access", "Ok", {duration: 3000});
       return false;
 
     }

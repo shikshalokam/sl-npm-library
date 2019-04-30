@@ -114,8 +114,8 @@ export class OpsReportComponent implements OnInit {
       this.pageParam = params;
       this.utility.loaderShow();
       this.linkId = params['linkId'];
-      this.getUserProfile(params['ProgramId']);
-      this.filters(params['ProgramId']);
+      this.getUserProfile(params['programId']);
+      this.filters(params['programId']);
       this.applyFilter(this.pageParam);
       this.urlQueryParams = Object.assign({}, params);
       delete param.ProgramId;
@@ -169,7 +169,7 @@ export class OpsReportComponent implements OnInit {
       for (const key of keys) {
         obj[key] = null
       }
-      obj['ProgramId'] = this.pageParam.ProgramId;
+      obj['programId'] = this.pageParam.programId;
       this.applyFilter(obj);
       // this.route.queryParams.subscribe(params => {
       //   if(this.noAssess){
@@ -341,7 +341,7 @@ export class OpsReportComponent implements OnInit {
     },
       error => {
 
-        this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
+        //this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
         this.utility.loaderHide();
 
       });
@@ -441,7 +441,7 @@ export class OpsReportComponent implements OnInit {
     //   param = params
     // });
     //console.logparam)
-    this.queryParamsUrl = this.pageParam['ProgramId'] + "?";
+    this.queryParamsUrl = this.pageParam['programId'] + "?";
     let paramKey = Object.keys(param);
     if (paramKey.includes('componentName')) {
       paramKey.splice(paramKey.indexOf('componentName'), 1)
@@ -636,7 +636,7 @@ export class OpsReportComponent implements OnInit {
       this.utility.loaderHide();
     },
       error => {
-        this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
+        //this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
       }
     );
   }
@@ -656,7 +656,7 @@ export class OpsReportComponent implements OnInit {
       this.schoolLoading = false;
 
     }, error => {
-      this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
+      //this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
     }
     );
   }
@@ -674,13 +674,13 @@ export class OpsReportComponent implements OnInit {
       this.assessorLoading = false;
 
     }, error => {
-      this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
+      //this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
     }
     );
   }
   searchSchoolIdInApi(searchId) {
   }
-  
+
   searchVal(id, searchValue) {
     if (id == 'school') {
       this.searchSchoolValue = searchValue.target.value;

@@ -30,7 +30,7 @@ export class EntityReportComponent implements OnInit {
     private snackBar: MatSnackBar,
     private route: Router,
     private utility: UtilityService, private router: ActivatedRoute) {
-    this.programId = this.router.snapshot.queryParamMap.get('ProgramId');
+    this.programId = this.router.snapshot.queryParamMap.get('programId');
     this.linkId = this.router.snapshot.queryParamMap.get('linkId');
 
     this.schoolId = this.router.snapshot.params.schoolId;

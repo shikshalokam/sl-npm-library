@@ -1,33 +1,32 @@
-<div [formGroup]="genericForm" *ngIf="genericForm">
-  <div formArrayName="question" >
-    <div *ngFor="let arrayOption of genericData.array; let i = index" class="_flex-box _justify-content-center" >
-      <mat-form-field class="col-sm-11 fixSize _halfWidth">
-          <input matInput type="text" value="{{arrayOption.value}}" placeholder="{{genericData.label}} " formControlName="{{i}}"
-          required>
-      </mat-form-field>
+<form [formGroup]="genericForm" *ngIf="genericForm" class="col-sm-6 fixSize _halfWidth">
+  <div formArrayName="{{genericData.field}}" class="col-xs-12" >
+    <div *ngFor="let quest of getControls() ; let i = index" class="_flex-box _justify-content-center" >
+      <div [formGroup]="quest" class="col-xs-12 noPadding">
+          <mat-form-field class="col-xs-10 noPadding">
+              <input matInput placeholder="{{genericData.field}}" formControlName="{{genericData.field}}" />
+            </mat-form-field>
       
-
-        <button class ="col-sm-1"*ngIf="questionCount >1" mat-raised-button (click)="editQuestion(i)" color="warn">
-              
+          <button class ="col-xs-1"*ngIf="questionCount >1" mat-icon-button (click)="delete(genericForm.controls[genericData.field],i)" color="warn">
             <i class="material-icons">
                 close
                 </i>
           </button>
         </div>
+        </div>
     
   </div>
-  <button mat-raised-button (click)="editQuestion('add')" class="_primary-btn btn-margin">
+  <button mat-raised-button (click)="add(genericForm.controls[genericData.field])" class="_primary-btn btn-margin">
               
       {{'buttons.addNew'| translate}}
       <i class="material-icons">
           add
           </i>
     </button>
-    <button mat-raised-button *ngIf="questionCount>1"(click)="editQuestion('reset')" color="warn" [disabled]=" questionCount<2" class="btn-margin">
+    <!-- <button mat-raised-button *ngIf="questionCount>1"(click)="reset()" color="warn" [disabled]=" questionCount<2" class="btn-margin">
               
         {{'buttons.removeAll'| translate}}
         <i class="material-icons white">
             delete_forever
             </i>
-      </button>
-</div>
+      </button> -->
+    </form>

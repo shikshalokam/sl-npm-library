@@ -101,7 +101,7 @@ export class QuestionnaireComponent implements OnInit {
     },(error)=>{
       this.utils.loaderHide();
 
-      this.snackBar.open(error['message'], "Ok", {duration: 3000});
+      //this.snackBar.open(error['message'], "Ok", {duration: 3000});
     }
     )
   }
@@ -209,9 +209,9 @@ export class QuestionnaireComponent implements OnInit {
         this.disableNext = true;
       }
       // if(this.allQuestionsAnswered){
-      //   this.snackBar.open("All questions Answered. Please Change the call status to completed and save.","Ok" ,{duration: 10000})
+      //   //this.snackBar.open("All questions Answered. Please Change the call status to completed and save.","Ok" ,{duration: 10000})
       // } else {
-      //   this.snackBar.open("Please complete all the questions and complete the survey", "Ok" ,{duration: 2000})
+      //   //this.snackBar.open("Please complete all the questions and complete the survey", "Ok" ,{duration: 2000})
       // }
     }
   }
@@ -288,7 +288,7 @@ export class QuestionnaireComponent implements OnInit {
     // }
     this.parentService.postParentData(this.parentId, this.currentCallStatus).
       subscribe(response => {
-        this.snackBar.open(response['message'], "Ok", { duration: 3000 });
+        //this.snackBar.open(response['message'], "Ok", { duration: 3000 });
         this.goBack();
       });
   }

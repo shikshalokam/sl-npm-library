@@ -21,7 +21,7 @@ export class AutoCompeteComponent implements OnInit {
     private route :ActivatedRoute
   ) {
     this.route.queryParams.subscribe(params => {
-      this.programId = params['ProgramId']
+      this.programId = params['programId']
       //console.log(this.programId)
     })
    }
