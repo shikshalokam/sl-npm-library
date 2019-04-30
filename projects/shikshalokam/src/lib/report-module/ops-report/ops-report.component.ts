@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { OperationsService } from '../operations-service/operations.service';
 import { MatAccordion, MatSnackBar } from '@angular/material';
 import * as jspdf from 'jspdf';
 
@@ -9,7 +8,6 @@ import html2canvas from 'html2canvas';
 import { OperationsService } from '../operations-service/operations.service';
 import { CamelCasePipe } from '../../core-module/pipes/camelcase-pipe/camelcase.pipe';
 import { UtilityService } from '../../core-module/services/utility-service/utility.service';
-// import { this.globalConfig } from 'src/app/modules/global-config';
 
 @Component({
   selector: 'app-ops-report',
@@ -118,13 +116,11 @@ export class OpsReportComponent implements OnInit {
       this.filters(params['programId']);
       this.applyFilter(this.pageParam);
       this.urlQueryParams = Object.assign({}, params);
-      delete param.ProgramId;
+      delete param.programId;
       if (Object.keys(param).length) {
         this.generateReport(param);
         this.expandedFilters = false;
       } else {
-        console.log("Inside ")
-        console.log(param)
         this.filterForm.reset();
         this.expandedFilters = true;
         this.reportGenerate = false;
@@ -458,7 +454,10 @@ export class OpsReportComponent implements OnInit {
     //   }
     //   index++;
     // })
+    if (paramKey.includes('programId')) {
+      paramKey.splice(paramKey.indexOf('programId'), 1)
 
+    }
     paramKey.forEach((element, index) => {
       index ? this.queryParamsUrl += '&' + element + '=' + param[element] : this.queryParamsUrl += element + '=' + param[element]
     })
