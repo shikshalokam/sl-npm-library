@@ -9,8 +9,7 @@ export class UtilityService {
   objectForm;
 
   constructor(private location: Location, private spinner: NgxSpinnerService, private _formBuilder: FormBuilder) {
-   this. objectForm = this._formBuilder.group({});
-   }
+  }
 
   onBack() {
     this.location.back();
@@ -24,8 +23,6 @@ export class UtilityService {
   toGroup(inputs) {
 
     let group: any = {};
-    console.log("togroup")
-    console.log(inputs)
     inputs.forEach(element => {
       if (element.input == "array") {
         group[element.field] = this.createFormArray(element);
@@ -35,8 +32,6 @@ export class UtilityService {
           : new FormControl({ value: element.value || '', disabled: !element.editable });
       }
     });
-    console.log("return array")
-    console.log(group)
     return new FormGroup(group);
   }
   createFormArray(inputs) {
@@ -51,6 +46,8 @@ export class UtilityService {
   }
 
   createControl(object) {
+    this.objectForm = this._formBuilder.group({});
+
     object.forEach(field => {
       let controlLabel = field.field;
       let controls;
@@ -69,7 +66,6 @@ export class UtilityService {
         controls = new FormControl(field.value ? field.value : "", field.validation.required ? Validators.required : null
         );
       }
-      console.log(controls)
       this.objectForm.addControl(field.field, controls);
     });
     return this.objectForm;
