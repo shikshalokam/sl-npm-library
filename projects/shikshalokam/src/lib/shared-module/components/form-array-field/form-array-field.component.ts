@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { FormGroup, FormArray } from '@angular/forms';
+import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-array-field',
@@ -14,25 +14,64 @@ export class FormArrayFieldComponent implements OnInit {
   @Output() editquestion = new EventEmitter ();
   questionCount;
   ;
-  constructor() { }
+  constructor( private _formBuilder:FormBuilder) { }
 
   ngOnInit() {
-    this.questionCount = this.genericData['array'].length  || 1;
+    this.questionCount = this.genericData['value'].length  || 1;
   }
   
   editQuestion(edit){
     if(edit == 'add')
     {
-      this.questionCount++;
+      this.editquestion.emit(
+        {
+          mode : edit ,
+         controlName : this.genericData.field,
+        }
+        );
     }
     else if(edit == 'reset'){
       this.questionCount = 1;
+      this.editquestion.emit(
+        {
+          mode : edit ,
+         controlName : this.genericData.field,
+        }
+        );
     }
     else {
       this.questionCount -= 1;
+      this.editquestion.emit(
+        {
+          mode : "delete" ,
+         controlName : this.genericData.field,
+         index : edit
+        }
+        );
     }
-    this.editquestion.emit(edit);
+   
   }
 
+  getControls() {
+    return (<FormArray>this.genericForm.controls[this.genericData.field]).controls;
+  }
+
+
+  
+  add(control){
+    control.push(
+      this._formBuilder.group({
+        [this.genericData.field]: ['', Validators.required]
+      })
+    );
+    this.questionCount++;
+
+  }
+
+  delete( control , index ){
+    control.removeAt(index);
+    this.questionCount--;
+
+  }
 
 }

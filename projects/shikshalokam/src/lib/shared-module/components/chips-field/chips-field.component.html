@@ -1,0 +1,17 @@
+<div [formGroup]="genericForm" >
+  <mat-form-field class=" col-sm-6 fixSize _halfWidth" *ngIf="genericData.input == 'chips' ">
+    <mat-chip-list #chipList>
+      <mat-chip *ngFor="let chip of listOfChips" [selectable]="selectable"
+               [removable]="removable" (removed)="remove(chip)">
+        {{chip[genericData.field]}}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input placeholder="{{genericData.field}}"
+            formControlName="{{genericData.field}}"
+             [matChipInputFor]="chipList"
+             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+             [matChipInputAddOnBlur]="addOnBlur"
+             (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+  </mat-form-field>
+</div>

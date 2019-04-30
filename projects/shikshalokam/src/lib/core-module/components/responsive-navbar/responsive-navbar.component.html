@@ -8,7 +8,7 @@
               </button>
       </span>
     
-    <mat-card-title class="pageBrand col-xs-4 alingCenterline">
+    <mat-card-title [ngClass]="{'pageBrand col-xs-4 alingCenterline' : !noAssess , 'col-xs-8  _flexStart' : noAssess }" class="pageBrand col-xs-4 alingCenterline">
         <img  class="logo" src ={{logo}} >
       <!-- <strong>{{ 'brandResponsive' | translate }}</strong> -->
     </mat-card-title>
@@ -26,7 +26,6 @@
             <div id="overlay" (click)="openDropdown()" *ngIf="showDropdown">
              <app-container [url]="url" [portal]="portal"></app-container>
               </div>
-          </span>
 
 
 
@@ -36,6 +35,8 @@
               person
               </i>
         </button>
+      </span>
+
         <mat-menu #menu="matMenu">
           <span mat-menu-item class="matmenuIcon">
             <i class="material-icons">
