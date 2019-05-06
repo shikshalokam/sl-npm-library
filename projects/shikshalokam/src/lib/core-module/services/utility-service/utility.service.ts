@@ -71,5 +71,48 @@ export class UtilityService {
     return this.objectForm;
   }
 
-}
+  uploadFile(object){
+    this.objectForm = this._formBuilder.group({});
+    object.forEach(field => {
+      let controlLabel = field.field;
+      let controls;
 
+      if (field.input === "file") {
+
+       
+        controls = new FormControl(field.value ? field.value : null, [field.validation.required ? Validators.required : null]
+        );
+      }
+      this.objectForm.addControl(field.field, controls);
+    });
+    console.log(this.objectForm)
+    return this.objectForm;
+
+  }
+
+}
+// export function requiredFileType( types: String[] ) {
+//   return function (control: FormControl) {
+//     types.forEach( type => {
+
+//     const file = control.value;
+
+//     if ( file ) {
+      
+//       let extension = file.lastIndexOf(".");
+//       extension = file.substring(extension+1).toLowerCase();
+
+//       if ( type.toLowerCase() === extension.toLowerCase() ) {
+//         return {
+//           requiredFileType: true
+//         };
+//       }
+      
+//       // return null;
+//     }
+//   })
+
+
+//     return null;
+//   };
+// }
