@@ -28,24 +28,24 @@ export class ReportService {
     return this.apiService.get(apiBaseUrl + programId);
   }
 
-  getSingleEntityReport(apiBaseUrl,programId, schoolId,linkId) {
+  getSingleEntityReport(apiBaseUrl,programId, solutionId, schoolId,linkId) {
     if(linkId){
-    return this.apiService.get(apiBaseUrl + programId + '?school=' + schoolId+"&linkId="+ linkId);
+    return this.apiService.get(apiBaseUrl + programId + '?solutionId='+solutionId +'&entity=' + schoolId+"&linkId="+ linkId);
     }
-    return this.apiService.get(apiBaseUrl + programId + '?school=' + schoolId);
+    return this.apiService.get(apiBaseUrl + programId + '?solutionId='+solutionId +'&entity=' + schoolId);
     // return this.apiService.get('/assests/insight.json');
 
   }
-  getHighEntityReport(apiBaseUrl,programId, schoolId , linkId) {
+  getHighEntityReport(apiBaseUrl,programId,solutionId, schoolId , linkId) {
     if(linkId){
-    return this.apiService.get(apiBaseUrl+  programId + '?school=' + schoolId +"&linkId="+linkId);
+    return this.apiService.get(apiBaseUrl+  programId + '?solutionId='+solutionId + '&entity=' + schoolId +"&linkId="+linkId);
 
     }
-    return this.apiService.get(apiBaseUrl+  programId + '?school=' + schoolId);
+    return this.apiService.get(apiBaseUrl+  programId + '?solutionId='+solutionId  + '&entity=' + schoolId);
     // return this.apiService.get('/assests/insight.json');
   }
  
-  getMultipleEntityReport(apiBaseUrl,programId,blockName, schoolId,linkId) {
+  getMultipleEntityReport(apiBaseUrl,programId,solutionId,blockName, schoolId,linkId) {
     let url = '';
     schoolId.forEach((Id, index) => {
       if (index === 0) {
@@ -58,14 +58,14 @@ export class ReportService {
     });
 
     if(linkId){
-      return this.apiService.get(apiBaseUrl + programId + '?school=' + url +'&blockName='+blockName+"&linkId="+linkId);
+      return this.apiService.get(apiBaseUrl + programId + '?solutionId='+solutionId+'&entity=' +  url +'&blockName='+blockName+"&linkId="+linkId);
 
     }
-    return this.apiService.get(apiBaseUrl + programId + '?school=' + url +'&blockName='+blockName);
+    return this.apiService.get(apiBaseUrl + programId  + '?solutionId='+solutionId+'&entity=' +  url +'&blockName='+blockName);
     // return this.apiService.get('/assests/insight.json');
   }
 
-  getMultipleEntityDrilldownReport(apiBaseUrl,programId,blockName,schoolId,linkId) {
+  getMultipleEntityDrilldownReport(apiBaseUrl,programId,solutionId ,blockName,schoolId,linkId) {
     let url = '';
     schoolId.forEach((Id, index) => {
       if (index === 0) {
@@ -77,10 +77,10 @@ export class ReportService {
 
     });
     if(linkId){
-    return this.apiService.get(apiBaseUrl+ programId + '?school=' + url+'&blockName='+blockName+"&linkId="+linkId);
+    return this.apiService.get(apiBaseUrl+ programId + '?solutionId='+solutionId+'&entity=' + url+'&blockName='+blockName+"&linkId="+linkId);
 
     }
-    return this.apiService.get(apiBaseUrl+ programId + '?school=' + url+'&blockName='+blockName);
+    return this.apiService.get(apiBaseUrl+ programId + '?solutionId='+solutionId+'&entity=' +  url+'&blockName='+blockName);
     // return this.apiService.get('/assests/insight.json');
   }
 }

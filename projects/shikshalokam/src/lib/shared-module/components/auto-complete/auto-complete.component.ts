@@ -15,14 +15,14 @@ export class AutoCompeteComponent implements OnInit {
   @Input()hostUrl;
   autoCompleteData;
   id="";
-  programId;
+  solutionId;
   constructor(
     private apiService :ApiService,
     private route :ActivatedRoute
   ) {
     this.route.queryParams.subscribe(params => {
-      this.programId = params['programId']
-      //console.log(this.programId)
+      this.solutionId = params['solutionId']
+      //console.log(this.solutionId)
     })
    }
 
@@ -31,7 +31,7 @@ export class AutoCompeteComponent implements OnInit {
   }
   getAutoComplete(url){
    
-    this.apiService.get(this.hostUrl+this.genericData.url+this.programId+"?id="+url).subscribe(data => {
+    this.apiService.get(this.hostUrl+this.genericData.url+this.solutionId+"?id="+url).subscribe(data => {
       this.autoCompleteData = data['result'];
       console.log(this.hostUrl);
     },

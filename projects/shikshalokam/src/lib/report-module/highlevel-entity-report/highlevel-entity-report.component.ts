@@ -23,6 +23,7 @@ export class HighlevelEntityReportComponent implements OnInit {
   componentId: any;
   baseUrl: any;
   portalName: any;
+  solutionId: any;
   constructor(private apiService: ReportService,
     private utility: UtilityService,
     private snackBar: MatSnackBar,
@@ -31,7 +32,9 @@ export class HighlevelEntityReportComponent implements OnInit {
   ) {
     this.programId = this.router.snapshot.queryParamMap.get('programId');
     this.schoolId = this.router.snapshot.params.schoolId;
-    this.linkId = this.router.snapshot.params.linkId;
+    this.solutionId = this.router.snapshot.queryParamMap.get ('solutionId');
+
+    this.linkId = this.router.snapshot.queryParamMap.get('linkId');
 
     this.router.data.subscribe(data => {
       this.apiBaseUrl = data.apibaseUrl;
@@ -53,7 +56,7 @@ export class HighlevelEntityReportComponent implements OnInit {
   }
 
   getHighEntityReport() {
-    this.apiService.getHighEntityReport(this.apiBaseUrl+this.reportConfig.highEntityReport,this.programId, this.schoolId,this.linkId).subscribe(data => {
+    this.apiService.getHighEntityReport(this.apiBaseUrl+this.reportConfig.highEntityReport,this.programId, this.solutionId, this.schoolId,this.linkId).subscribe(data => {
       this.highLevelInsight = data['result'];
       const newgraphData = []
 
