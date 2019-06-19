@@ -3,7 +3,7 @@
             <input  matInput   type="text" 
             placeholder="{{genericData.label | camelcase}} "  formControlName="{{genericData.field}}" 
             (keyup)="inputChange($event)"
-            [matAutocomplete]="auto" appDebounceSearch (debounceSearch)="searchSchoolIdInApi($event)"
+            [matAutocomplete]="auto" appDebounceSearch (debounceSearch)="searchEntityIdInApi($event)"
             [debounceTime]="200" [searchValue]="id"
              [required]="genericData.validation.required"
              >

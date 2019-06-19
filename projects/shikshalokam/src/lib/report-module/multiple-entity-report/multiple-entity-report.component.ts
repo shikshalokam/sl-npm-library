@@ -13,7 +13,7 @@ export class MultipleEntityRportComponent implements OnInit {
   mutipleEntity;
   programId ;
   headings = "heading.reportMiltipleEntityReport";
-  schoolId ;
+  entityId ;
   blockName: any;
   @Input()apiBaseUrl: any;
   @Input()reportConfig: any;
@@ -24,6 +24,7 @@ export class MultipleEntityRportComponent implements OnInit {
   componentId: any;
   baseUrl: any;
   portalName: any;
+  solutionId: any;
   constructor(
     private reportService: ReportService,
     private utility: UtilityService,
@@ -35,10 +36,12 @@ export class MultipleEntityRportComponent implements OnInit {
   ngOnInit() {
     this.utility.loaderShow();
     this.router.queryParams.subscribe( params =>{
-      this.schoolId = params['school'];
+      this.entityId = params['entity'];
       this.programId = params['programId'];
       this.blockName = params['blockName'];
       this.linkId = params['linkId'];
+      this.solutionId = params['solutionId'];
+
     })
     this.router.data.subscribe(data => {
       this.apiBaseUrl = data.apibaseUrl;
@@ -54,7 +57,7 @@ export class MultipleEntityRportComponent implements OnInit {
     this.getMultiEntityReport();
   }
   getMultiEntityReport() {
-    this.reportService.getMultipleEntityReport(this.apiBaseUrl+this.reportConfig.multiEntityHighLevelReport,this.programId, this.blockName, this.schoolId,this.linkId).subscribe(successData => {
+    this.reportService.getMultipleEntityReport(this.apiBaseUrl+this.reportConfig.multiEntityHighLevelReport,this.programId, this.solutionId,this.blockName, this.entityId,this.linkId).subscribe(successData => {
       this.mutipleEntity = successData['result'];
       this.createNewData();
       console.log(this.mutipleEntity);
@@ -67,7 +70,7 @@ export class MultipleEntityRportComponent implements OnInit {
     }
     )
   }
-  url = "PROGID01?school="
+  url = "PROGID01?entity="
   createNewData() {
 
 
