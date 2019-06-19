@@ -11,7 +11,7 @@ import { UtilityService } from '../../core-module/services/utility-service/utili
 })
 export class HighlevelEntityReportComponent implements OnInit {
   programId;
-  schoolId;
+  entityId;
   @Input() globalConfig ;
   @Input() reportConfig ; 
   @Input() apiBaseUrl;
@@ -31,7 +31,7 @@ export class HighlevelEntityReportComponent implements OnInit {
     private route: Router
   ) {
     this.programId = this.router.snapshot.queryParamMap.get('programId');
-    this.schoolId = this.router.snapshot.params.schoolId;
+    this.entityId = this.router.snapshot.params.entityId;
     this.solutionId = this.router.snapshot.queryParamMap.get ('solutionId');
 
     this.linkId = this.router.snapshot.queryParamMap.get('linkId');
@@ -56,7 +56,7 @@ export class HighlevelEntityReportComponent implements OnInit {
   }
 
   getHighEntityReport() {
-    this.apiService.getHighEntityReport(this.apiBaseUrl+this.reportConfig.highEntityReport,this.programId, this.solutionId, this.schoolId,this.linkId).subscribe(data => {
+    this.apiService.getHighEntityReport(this.apiBaseUrl+this.reportConfig.highEntityReport,this.programId, this.solutionId, this.entityId,this.linkId).subscribe(data => {
       this.highLevelInsight = data['result'];
       const newgraphData = []
 

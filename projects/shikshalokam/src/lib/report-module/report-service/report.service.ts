@@ -12,47 +12,47 @@ export class ReportService {
     return this.apiService.get(apiBaseUrl + programId);
   }
 
-  getListOfSchool(apiBaseUrl,programId, Id){
+  getListOfentityl(apiBaseUrl,programId, Id){
     return this.apiService.get(apiBaseUrl+ programId + '&blockId=' + Id);
   }
  
 
 
-  getEcmReportGetSubmissionId(apiBaseUrl,schoolId) {
-    return this.apiService.get(apiBaseUrl + schoolId)
+  getEcmReportGetSubmissionId(apiBaseUrl,entitylId) {
+    return this.apiService.get(apiBaseUrl + entitylId)
   }
   getSubmissionReport(apiBaseUrl,submissionId) {
     return this.apiService.get(apiBaseUrl + submissionId)
   }
-  getUserSchoolsInProgram(apiBaseUrl,programId) {
+  getUserentitylsInProgram(apiBaseUrl,programId) {
     return this.apiService.get(apiBaseUrl + programId);
   }
 
-  getSingleEntityReport(apiBaseUrl,programId, solutionId, schoolId,linkId) {
+  getSingleEntityReport(apiBaseUrl,programId, solutionId, entitylId,linkId) {
     if(linkId){
-    return this.apiService.get(apiBaseUrl + programId + '?solutionId='+solutionId +'&entity=' + schoolId+"&linkId="+ linkId);
+    return this.apiService.get(apiBaseUrl + programId + '?solutionId='+solutionId +'&entity=' + entitylId+"&linkId="+ linkId);
     }
-    return this.apiService.get(apiBaseUrl + programId + '?solutionId='+solutionId +'&entity=' + schoolId);
+    return this.apiService.get(apiBaseUrl + programId + '?solutionId='+solutionId +'&entity=' + entitylId);
     // return this.apiService.get('/assests/insight.json');
 
   }
-  getHighEntityReport(apiBaseUrl,programId,solutionId, schoolId , linkId) {
+  getHighEntityReport(apiBaseUrl,programId,solutionId, entitylId , linkId) {
     if(linkId){
-    return this.apiService.get(apiBaseUrl+  programId + '?solutionId='+solutionId + '&entity=' + schoolId +"&linkId="+linkId);
+    return this.apiService.get(apiBaseUrl+  programId + '?solutionId='+solutionId + '&entity=' + entitylId +"&linkId="+linkId);
 
     }
-    return this.apiService.get(apiBaseUrl+  programId + '?solutionId='+solutionId  + '&entity=' + schoolId);
+    return this.apiService.get(apiBaseUrl+  programId + '?solutionId='+solutionId  + '&entity=' + entitylId);
     // return this.apiService.get('/assests/insight.json');
   }
  
-  getMultipleEntityReport(apiBaseUrl,programId,solutionId,blockName, schoolId,linkId) {
+  getMultipleEntityReport(apiBaseUrl,programId,solutionId,blockName, entitylId,linkId) {
     let url = '';
-    schoolId.forEach((Id, index) => {
+    entitylId.forEach((Id, index) => {
       if (index === 0) {
-        url += schoolId[index];
+        url += entitylId[index];
       }
       else {
-        url += "," + schoolId[index];
+        url += "," + entitylId[index];
       }
 
     });
@@ -65,14 +65,14 @@ export class ReportService {
     // return this.apiService.get('/assests/insight.json');
   }
 
-  getMultipleEntityDrilldownReport(apiBaseUrl,programId,solutionId ,blockName,schoolId,linkId) {
+  getMultipleEntityDrilldownReport(apiBaseUrl,programId,solutionId ,blockName,entitylId,linkId) {
     let url = '';
-    schoolId.forEach((Id, index) => {
+    entitylId.forEach((Id, index) => {
       if (index === 0) {
-        url += schoolId[index];
+        url += entitylId[index];
       }
       else {
-        url += "," + schoolId[index];
+        url += "," + entitylId[index];
       }
 
     });

@@ -17,7 +17,7 @@ export class OperationsService {
 
     return this.apiService.get(url);
   }
-  getSchoolReport(url){
+  getEntityReport(url){
 
     return this.apiService.get(url);
   }

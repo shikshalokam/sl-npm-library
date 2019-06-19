@@ -46,7 +46,7 @@ export class AutoCompeteComponent implements OnInit {
     this.id=event.target.value;
     //console.log(event)
   }
-  searchSchoolIdInApi(event){
+  searchEntityIdInApi(event){
     this.getAutoComplete(event);
     //console.log(event)
   }
