@@ -41,3 +41,4 @@ export * from './lib/report-module/multiple-entity-drilldown-report/multiple-ent
 export * from './lib/report-module/multiple-entity-report/multiple-entity-report.component';
 export * from './lib/report-module/ops-report/ops-report.component';
 export * from './lib/report-module/report.module';
+export * from './lib/shared-module/components/file-upload/file-upload.component';

@@ -16,7 +16,7 @@ export class EntityReportComponent implements OnInit {
   entityResult;
   insightReport;
   programId;
-  schoolId;
+  entityId;
   @Input() globalConfig;
   @Input() apiBaseUrl: any;
   @Input() reportConfig: any;
@@ -26,14 +26,16 @@ export class EntityReportComponent implements OnInit {
   componentId: any;
   baseUrl: any;
   portalName: any;
+  solutionId: string;
   constructor(private apiService: ReportService,
     private snackBar: MatSnackBar,
     private route: Router,
     private utility: UtilityService, private router: ActivatedRoute) {
     this.programId = this.router.snapshot.queryParamMap.get('programId');
+    this.solutionId = this.router.snapshot.queryParamMap.get('solutionId');
     this.linkId = this.router.snapshot.queryParamMap.get('linkId');
 
-    this.schoolId = this.router.snapshot.params.schoolId;
+    this.entityId = this.router.snapshot.params.entityId;
     this.router.data.subscribe(data => {
       this.apiBaseUrl = data.apibaseUrl;
       this.reportConfig = data.reportConfig;
@@ -80,7 +82,7 @@ export class EntityReportComponent implements OnInit {
   }
 
   getEntityReport() {
-    this.apiService.getSingleEntityReport(this.apiBaseUrl + this.reportConfig.singleEntityReport, this.programId, this.schoolId, this.linkId).subscribe(data => {
+    this.apiService.getSingleEntityReport(this.apiBaseUrl + this.reportConfig.singleEntityReport, this.programId,this.solutionId, this.entityId, this.linkId).subscribe(data => {
       this.insightReport = data['result'];
       this.utility.loaderHide();
     },

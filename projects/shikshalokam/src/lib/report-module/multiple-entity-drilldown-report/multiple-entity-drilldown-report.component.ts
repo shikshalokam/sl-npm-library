@@ -13,7 +13,7 @@ export class MultipleEntityDrilldownReportComponent implements OnInit {
   mutipleEntity;
   programId ;
   headings = "heading.reportMultilpeEntityDrillldownReport";
-  schoolId ;
+  entityId ;
   blockName;
   @Input()reportConfig: any;
   @Input()apiBaseUrl: any;
@@ -24,6 +24,7 @@ export class MultipleEntityDrilldownReportComponent implements OnInit {
   componentId: any;
   baseUrl: any;
   portalName: any;
+  solutionId: any;
   constructor(
     private reportService: ReportService,
     private utility: UtilityService,
@@ -35,10 +36,11 @@ export class MultipleEntityDrilldownReportComponent implements OnInit {
   ngOnInit() {
     this.utility.loaderShow();
     this.router.queryParams.subscribe( params =>{
-      this.schoolId = params['school'];
+      this.entityId = params['entity'];
       this.programId = params['programId'];
       this.blockName = params['blockName'];
       this.linkId = params['linkId'];
+      this.solutionId = params['solutionId']
     })
     this.router.data.subscribe(data => {
       this.apiBaseUrl = data.apibaseUrl;
@@ -55,7 +57,7 @@ export class MultipleEntityDrilldownReportComponent implements OnInit {
     this.getMultiEntityDrillReport();
   }
   getMultiEntityDrillReport() {
-    this.reportService.getMultipleEntityDrilldownReport(this.apiBaseUrl+this.reportConfig.multiEntityDrillDownLevelReport,this.programId,this.blockName, this.schoolId,this.linkId).subscribe(successData => {
+    this.reportService.getMultipleEntityDrilldownReport(this.apiBaseUrl+this.reportConfig.multiEntityDrillDownLevelReport,this.programId,this.solutionId,this.blockName, this.entityId,this.linkId).subscribe(successData => {
       this.mutipleEntity = successData['result'];
       this.createNewData();
       console.log(this.mutipleEntity);
@@ -67,7 +69,7 @@ export class MultipleEntityDrilldownReportComponent implements OnInit {
     }
         )
   }
-  url = "PROGID01?school="
+  url = "PROGID01?entity="
   createNewData() {
 
 

@@ -39,6 +39,7 @@ import { ShareLinkComponent } from './components/share-link/share-link.component
 import { ShareLinkViewComponent } from './components/share-link-view/share-link-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ChipsFieldComponent } from './components/chips-field/chips-field.component';
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
 @NgModule({
   declarations: [
     ProgramsDashboardComponent,
@@ -65,7 +66,8 @@ import { ChipsFieldComponent } from './components/chips-field/chips-field.compon
     GraphTableChartComponent,
     ShareLinkComponent,
     ShareLinkViewComponent,
-    ChipsFieldComponent
+    ChipsFieldComponent,
+    FileUploadComponent
   ],
   imports: [
 
@@ -103,6 +105,7 @@ import { ChipsFieldComponent } from './components/chips-field/chips-field.compon
     MatSnackBarModule,
     ImageCardComponent,
     LoaderComponent,
+    FileUploadComponent,
     SearchDirective,
     DashboardBlocksComponent,
     IndividualLoaderComponent,

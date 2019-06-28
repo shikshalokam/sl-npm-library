@@ -16,25 +16,25 @@ import { UtilityService } from '../../core-module/services/utility-service/utili
 })
 export class OpsReportComponent implements OnInit {
   reportGenerate = false;
-  schoolPageIndex = 0;
+  entityPageIndex = 0;
   assessorPageIndex = 0;
-  schoolGraph;
+  entityGraph;
   assessorGraph;
 
   headings = 'headings.opsReport'
   currentUser;
   dynamicResize;
   columnNames;
-  searchSchoolId;
+  searchEntityId;
   filterData;
   maxDate = new Date();
   filterForm: FormGroup;
   queryParamsUrl = '';
-  searchSchoolValue: string = '';
+  searchEntityValue: string = '';
   searchAssessorName: string = '';
   filterObject: any;
   filterArray;
-  schoolReport: Object;
+  entityReport: Object;
   itemsPerPage = [10, 15, 20];
   searchParam: string = '';
   assessorReport: any;
@@ -42,10 +42,10 @@ export class OpsReportComponent implements OnInit {
   pageParam: any;
   pageReload = true;
   summaryGraph: object = {};
-  schoolPageLimit: any = 10;
+  entityPageLimit: any = 10;
   assessorPageLimit: any = 10;
   expandedFilters: boolean = true;
-  schoolLoading: boolean;
+  entityLoading: boolean;
   assessorLoading: boolean;
   @Input() hostUrl;
   @Input() globalConfig;
@@ -110,13 +110,14 @@ export class OpsReportComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       let param = Object.assign({}, params);
       this.pageParam = params;
+      console.log(params);
       this.utility.loaderShow();
       this.linkId = params['linkId'];
-      this.getUserProfile(params['programId']);
-      this.filters(params['programId']);
+      this.getUserProfile(params['solutionId']);
+      this.filters(params['solutionId']);
       this.applyFilter(this.pageParam);
       this.urlQueryParams = Object.assign({}, params);
-      delete param.programId;
+      delete param.solutionId;
       if (Object.keys(param).length) {
         this.generateReport(param);
         this.expandedFilters = false;
@@ -125,7 +126,7 @@ export class OpsReportComponent implements OnInit {
         this.expandedFilters = true;
         this.reportGenerate = false;
         this.assessorReport = [];
-        this.schoolReport = [];
+        this.entityReport = [];
         this.summaryData = {};
       }
     });
@@ -135,14 +136,14 @@ export class OpsReportComponent implements OnInit {
     //   this.pageParam = params;
     //   this.utility.loaderShow();
     //   this.linkId = params['linkId'];
-    //   this.getUserProfile(params['ProgramId']);
-    //   this.filters(params['ProgramId']);
+    //   this.getUserProfile(params['solutionId']);
+    //   this.filters(params['solutionId']);
     //   this.applyFilter(this.pageParam);
 
     //   // if (this.pageReload) {
     //     if (Object.keys(params).length > 1) {
     //       // let param = Object.assign({}, params);
-    //       // delete param['ProgramId'];
+    //       // delete param['solutionId'];
     //       // delete param['componentName'];
     //       // this.applyFilter(param);
     //       // this.expandedFilters = false;
@@ -157,7 +158,7 @@ export class OpsReportComponent implements OnInit {
     //console.logcondition)
     if (condition === 'reset') {
       this.filterForm.reset();
-      // this.router.navigate(['/operations/reports'], { queryParams: { ProgramId: this.pageParam['ProgramId'] } });
+      // this.router.navigate(['/operations/reports'], { queryParams: { solutionId: this.pageParam['solutionId'] } });
       this.reportGenerate = false;
       this.filterArray = [];
       const keys = Object.keys(this.urlQueryParams);
@@ -165,15 +166,15 @@ export class OpsReportComponent implements OnInit {
       for (const key of keys) {
         obj[key] = null
       }
-      obj['programId'] = this.pageParam.programId;
+      obj['solutionId'] = this.pageParam.solutionId;
       this.applyFilter(obj);
       // this.route.queryParams.subscribe(params => {
       //   if(this.noAssess){
-      //     let resetUrl = '/programs/public/ops-reports?ProgramId=' + params['ProgramId']
+      //     let resetUrl = '/programs/public/ops-reports?solutionId=' + params['solutionId']
       //     window.history.pushState({ path: resetUrl }, '', resetUrl);
       //   }
       //   else{
-      //   let resetUrl = '/programs/operations/ops-reports?ProgramId=' + params['ProgramId']
+      //   let resetUrl = '/programs/operations/ops-reports?solutionId=' + params['solutionId']
       //   window.history.pushState({ path: resetUrl }, '', resetUrl);
       //   }
       // })
@@ -200,28 +201,11 @@ export class OpsReportComponent implements OnInit {
       }
       this.applyFilter(this.filterObject)
       this.filterArray = Object.entries(this.filterObject)
-      // this.filterArray = Object.keys(this.filterObject).map(i => this.filterObject[i])
-      // this.buildqueryParams();
-      // this.reportsDataFetch();
-
     }
   }
 
 
-  // remove(filter): void {
-  //   let param;
-  //   const index = this.filterArray.indexOf(filter);
-  //   this.route.queryParams.subscribe(params => {
-  //     param = params;
-  //     // delete param['ProgramId'];
-  //     // this.generateReport(param);
-  //   })
-  //   if (index >= 0) {
-  //     this.filterArray.splice(index, 1);
-  //   }
-
-
-  // }
+ 
   mapGraphObject(data, type = 'call') {
 
     if (type === 'call') {
@@ -257,7 +241,7 @@ export class OpsReportComponent implements OnInit {
 
         });
 
-        new CamelCasePipe().transform('schoolList')
+        new CamelCasePipe().transform('entityList')
         const headers = this.getTableHeader(object);
         Object.assign(data[ind], { tableHeader: headers })
       });
@@ -294,11 +278,12 @@ export class OpsReportComponent implements OnInit {
 
       });
 
-      new CamelCasePipe().transform('schoolList')
+      new CamelCasePipe().transform('entityList')
       const headers = this.getTableHeader(data);
       Object.assign(data, { tableHeader: headers })
 
-      ////console.logdata)
+      console.log(data.graphData);
+    
       return data.graphData;
     }
   }
@@ -320,8 +305,8 @@ export class OpsReportComponent implements OnInit {
     return dataArray;
   }
 
-  getUserProfile(ProgramId) {
-    this.operationService.getUserProfileSummary(this.apiBaseUrl + this.reportConfig.profileSummary + ProgramId).subscribe(data => {
+  getUserProfile(solutionId) {
+    this.operationService.getUserProfileSummary(this.apiBaseUrl + this.reportConfig.profileSummary + solutionId).subscribe(data => {
       ////console.logdata);
       this.summaryProfileData = data['result'];
       const arrayToObject = (array, keyField) =>
@@ -352,7 +337,7 @@ export class OpsReportComponent implements OnInit {
           colArray.push(0);
         }
         else {
-          colArray.push(object.data[j][column]);
+          colArray.push(Math.round(object.data[j][column]));
         }
       }
       else {
@@ -378,53 +363,12 @@ export class OpsReportComponent implements OnInit {
       queryParamsHandling: 'merge',
     };
     this.router.navigate([], navigationExtras);
-
-    // console.log("applyfilter");
-    // let paramKey = Object.keys(obj);
-    // let queryParamKey = Object.keys(this.pageParam);
-    // let ifIndex = 0;
-    // let elseIndex = 0;
-
-    // this.queryParamsRouterUrl = '';
-    // paramKey.forEach(element => {
-    //   if (!this.pageReload) {
-    //     if (element !== 'ProgramId') {
-    //       if (ifIndex == 0) {
-    //         this.queryParamsRouterUrl += element + '=' + obj[element]
-    //       }
-    //       else {
-    //         this.queryParamsRouterUrl += '&' + element + '=' + obj[element]
-    //       }
-    //       ifIndex++;
-    //     }
-    //   } else {
-    //     if (queryParamKey.includes(element) && element !== 'ProgramId') {
-    //       if (elseIndex == 0) {
-    //         this.queryParamsRouterUrl += element + '=' + obj[element]
-    //       }
-    //       else {
-    //         this.queryParamsRouterUrl += '&' + element + '=' + obj[element]
-    //       }
-    //       elseIndex++
-    //     }
-    //   }
-
-    // })
-    // let addQueryParamUlr;
-    // if(this.noAssess){
-    // addQueryParamUlr = '/programs/public/ops-reports?ProgramId=' + this.pageParam['ProgramId'] + "&" + this.queryParamsRouterUrl;
-    // }
-    // else {
-    // addQueryParamUlr = '/programs/operations/ops-reports?ProgramId=' + this.pageParam['ProgramId'] + "&" + this.queryParamsRouterUrl;
-    // }
-    // window.history.pushState({ path: addQueryParamUlr }, '', addQueryParamUlr);
-    // let param;
   }
 
   inputChange(key, event) {
     this.applyFilter({ [key]: event.target.value });
-    if (key == 'schoolId') {
-      this.searchSchoolId = event.target.value;
+    if (key == 'entityId') {
+      this.searchEntityId = event.target.value;
     }
   }
   selectType(key, value) {
@@ -432,84 +376,42 @@ export class OpsReportComponent implements OnInit {
 
   }
   generateReport(param) {
-    // let param;
-    // this.route.queryParams.subscribe(params => {
-    //   param = params
-    // });
-    //console.logparam)
-    this.queryParamsUrl = this.pageParam['programId'] + "?";
+  
+    this.queryParamsUrl = this.pageParam['solutionId'] + "?";
     let paramKey = Object.keys(param);
     if (paramKey.includes('componentName')) {
       paramKey.splice(paramKey.indexOf('componentName'), 1)
 
     }
-    // paramKey = paramKey.slice(1)
     let index = 0;
-    // paramKey.forEach(element => {
-    //   if (index == 0) {
-    //     this.queryParamsUrl += element + '=' + param[element]
-    //   }
-    //   else {
-    //     this.queryParamsUrl += '&' + element + '=' + param[element]
-    //   }
-    //   index++;
-    // })
-    if (paramKey.includes('programId')) {
-      paramKey.splice(paramKey.indexOf('programId'), 1)
+    
+    if (paramKey.includes('solutionId')) {
+      paramKey.splice(paramKey.indexOf('solutionId'), 1)
 
     }
     paramKey.forEach((element, index) => {
       index ? this.queryParamsUrl += '&' + element + '=' + param[element] : this.queryParamsUrl += element + '=' + param[element]
     })
-    // this.queryParamsUrl += '&csv=' + false;
-    //console.logthis.queryParamsUrl)
+   
     this.reportGenerate = true;
     console.log("generate report")
     this.reportsDataFetch();
 
   }
   downloadCsv(id) {
-    if (id === 'school') {
-      this.operationService.getSchoolReport(this.apiBaseUrl + this.reportConfig.schoolReport + this.pageParam['ProgramId'] + "?fromDate=" + this.pageParam['fromDate'] + "&toDate=" + this.pageParam['toDate'] + "&csv=" + true).subscribe(data => {
+    if (id === 'entity') {
+      this.operationService.getEntityReport(this.apiBaseUrl + this.reportConfig.entityReport + this.pageParam['solutionId'] + "?fromDate=" + this.pageParam['fromDate'] + "&toDate=" + this.pageParam['toDate'] + "&csv=" + true).subscribe(data => {
 
       },
         error => {
           this.download(error, id)
-
-          // if (error.status == 200) {
-          //   const blob = new Blob([error.error.text], { type: 'csv' });
-          //   const url = window.URL.createObjectURL(blob);
-          //   let a = document.createElement('a');
-          //   a.href = url;
-          //   a.download = `${id}-Report.csv`;
-          //   document.body.appendChild(a);
-          //   a.click();
-          //   document.body.removeChild(a);
-          //   window.URL.revokeObjectURL(url);
-          // } else {
-          //   this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
-          // }
         });
     }
     else if (id === 'assessor') {
-      this.operationService.getAssessorReport(this.apiBaseUrl + this.reportConfig.assessorReport + this.pageParam['ProgramId'] + "?fromDate=" + this.pageParam['fromDate'] + "&toDate=" + this.pageParam['toDate'] + "&csv=" + true).subscribe(data => {
+      this.operationService.getAssessorReport(this.apiBaseUrl + this.reportConfig.assessorReport + this.pageParam['solutionId'] + "?fromDate=" + this.pageParam['fromDate'] + "&toDate=" + this.pageParam['toDate'] + "&csv=" + true).subscribe(data => {
 
       },
         error => {
-          ////console.logerror.status)
-          // if (error.status == 200) {
-          //   const blob = new Blob([error.error.text], { type: 'csv' });
-          //   const url = window.URL.createObjectURL(blob);
-          //   let a = document.createElement('a');
-          //   a.href = url;
-          //   a.download = `${id}-Report.csv`;
-          //   document.body.appendChild(a);
-          //   a.click();
-          //   document.body.removeChild(a);
-          //   window.URL.revokeObjectURL(url);
-          // } else {
-          //   this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
-          // }
           this.download(error, id)
         });
 
@@ -533,49 +435,28 @@ export class OpsReportComponent implements OnInit {
   }
 
   setSearchParam(index: number = 1, size: number = this.itemsPerPage[0], label) {
-    // if (label === 'school') {
-
-    //   const url = '&page=' + index + '&limit=' + size + '&schoolName=' + this.searchSchoolValue;
-    //   return url;
-    // }
-    // else if (label === 'assessor') {
-    //   const url = '&page=' + index + '&limit=' + size + '&assessorName=' + this.searchAssessorName;
-    //   return url;
-    // }
     let url = '&page=' + index + '&limit=' + size;
-    url = url + (label === 'school' ? '&schoolName=' + this.searchSchoolValue : '&assessorName=' + this.searchAssessorName);
+    url = url + (label === 'entity' ? '&entityName=' + this.searchEntityValue : '&assessorName=' + this.searchAssessorName);
     return url;
 
   }
   pageResponse(event) {
-    // if (event.label === 'school') {
-    this[`${event.label} + PageLimit`] = event.pageLimit;
-    this[`${event.label} + PageIndex`] = event.pageIndex;
-    this.searchParam = this.setSearchParam(this[`${event.label} + PageIndex`] + 1, this[`${event.label} + PageLimit`], event.label);
-    if (event.label === 'school') {
-      this.getSchoolReport();
-
+    this[event.label + 'PageLimit'] = event.pageLimit;
+    this[event.label + 'PageIndex'] = event.pageIndex;
+    console.log(event)
+    this.searchParam = this.setSearchParam(this[event.label + 'PageIndex'] + 1, this[event.label + 'pageLimit'], event.label);
+    if (event.label === 'entity') {
+      this.getEntityReport();
     } else {
       this.getAssessorReport();
 
     }
-    // }
-
-    // else if (event.label === 'assessor') {
-    //   this.assessorPageIndex = event.pageIndex;
-    //   this.assessorPageLimit = event.pageLimit;
-    //   this.searchParam = this.setSearchParam(this.assessorPageIndex + 1, this.assessorPageLimit, 'assessor');
-    //   this.getAssessorReport();
-    // }
-
-
-
   }
   reportsDataFetch() {
     this.utility.loaderShow();
     this.getUserSummary(this.queryParamsUrl);
-    this.searchParam = this.setSearchParam(this.schoolPageIndex + 1, this.schoolPageLimit, 'school');
-    this.getSchoolReport();
+    this.searchParam = this.setSearchParam(this.entityPageIndex + 1, this.entityPageLimit, 'entity');
+    this.getEntityReport();
     this.searchParam = this.setSearchParam(this.assessorPageIndex + 1, this.assessorPageLimit, 'assessor');
     this.getAssessorReport();
   }
@@ -635,27 +516,24 @@ export class OpsReportComponent implements OnInit {
       this.utility.loaderHide();
     },
       error => {
-        //this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
       }
     );
   }
 
-  getSchoolReport(label = 'call') {
-    this.schoolLoading = true;
-    this.operationService.getSchoolReport(this.apiBaseUrl + this.reportConfig.schoolReport + this.queryParamsUrl + this.searchParam).subscribe(data => {
+  getEntityReport(label = 'call') {
+    this.entityLoading = true;
+    this.operationService.getEntityReport(this.apiBaseUrl + this.reportConfig.entityReport + this.queryParamsUrl + this.searchParam).subscribe(data => {
       this.share = data['result'];
       if (label == 'call') {
-        this.schoolReport = this.mapGraphObject(data['result']['sections']);
+        this.entityReport = this.mapGraphObject(data['result']['sections']);
       }
       else {
-        this.schoolReport[0].data = data['result']['sections'][0]['data'];
-        this.schoolReport[0].graphData = this.mapGraphObject(data['result']['sections'][0], 'search')
+        this.entityReport[0].data = data['result']['sections'][0]['data'];
+        this.entityReport[0].graphData = this.mapGraphObject(data['result']['sections'][0], 'search')
       }
-      //  this.schoolGraph=this.schoolReport['graphData'];
-      this.schoolLoading = false;
+      this.entityLoading = false;
 
     }, error => {
-      //this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
     }
     );
   }
@@ -673,16 +551,15 @@ export class OpsReportComponent implements OnInit {
       this.assessorLoading = false;
 
     }, error => {
-      //this.snackBar.open(this.globalConfig.errorMessage, "Ok", { duration: 9000 });
     }
     );
   }
-  searchSchoolIdInApi(searchId) {
+  searchEntityIdInApi(searchId) {
   }
 
   searchVal(id, searchValue) {
-    if (id == 'school') {
-      this.searchSchoolValue = searchValue.target.value;
+    if (id == 'entity') {
+      this.searchEntityValue = searchValue.target.value;
     }
     else if (id == 'assessor') {
       this.searchAssessorName = searchValue.target.value;
@@ -690,25 +567,11 @@ export class OpsReportComponent implements OnInit {
   }
 
   searchInApi(label, value) {
-    // if (label === 'school') {
-    //   this.schoolPageIndex = 1;
-    //   this.searchSchoolValue = value;
-    //   this.searchParam = this.setSearchParam(this.schoolPageIndex, this.schoolPageLimit, 'school');
-    //   this.getSchoolReport('search');
-    // }
-    // else if (label === 'assessor') {
-    //   this.assessorPageIndex = 1;
-    //   this.searchAssessorName = value;
-
-    //   this.searchParam = this.setSearchParam(this.assessorPageIndex, this.assessorPageLimit, 'assessor');
-    //   this.getAssessorReport('search');
-    // }
-
     this[`${label}+PageIndex`] = 1;
     this.searchParam = this.setSearchParam(this[`${label}PageIndex`], this[`${label}PageLimit`], label);
-    if (label === 'school') {
-      this.searchSchoolValue = value
-      this.getSchoolReport('search');
+    if (label === 'entity') {
+      this.searchEntityValue = value
+      this.getEntityReport('search');
     } else {
       this.searchAssessorName = value
       this.getAssessorReport('search');
