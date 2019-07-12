@@ -1,0 +1,65 @@
+<nav class="responsiveNavbar noMarginPadding">
+  <body class=" col-xs-12 noMarginPadding alingCenterline" >
+      <span  *ngIf="!noAssess"class="col-xs-4 alingCenterline noMarginPadding">
+          <button mat-icon-button>
+          <i class="material-icons" (click)="openSideNav()">
+            menu
+              </i>
+              </button>
+      </span>
+    
+    <mat-card-title [ngClass]="{'pageBrand col-xs-4 alingCenterline' : !noAssess , 'col-xs-8  _flexStart' : noAssess }" class="pageBrand col-xs-4 alingCenterline">
+        <img  class="logo" src ={{logo}} >
+      <!-- <strong>{{ 'brandResponsive' | translate }}</strong> -->
+    </mat-card-title>
+
+    <span class="col-xs-4 noMarginPadding _flexEnd">
+
+     <!-- Responsive nav -->
+
+
+        <span *ngIf="!noAssess" class="right _flex-box alingCenterline app-box">
+            <button mat-icon-button (click)="openDropdown()">
+                  <i class="material-icons">apps</i>
+            </button>
+            
+            <div id="overlay" (click)="openDropdown()" *ngIf="showDropdown">
+             <app-container [url]="url" [portal]="portal"></app-container>
+              </div>
+
+
+
+
+        <button mat-icon-button [matMenuTriggerFor]="menu" class=" _cursor-pointer">
+          <i class="material-icons dropdownIcon">
+              person
+              </i>
+        </button>
+      </span>
+
+        <mat-menu #menu="matMenu">
+          <span mat-menu-item class="matmenuIcon">
+            <i class="material-icons">
+              supervised_user_circle
+            </i>
+            <span class="padding">{{currentUser?.email}}</span>
+          </span>
+          <mat-divider></mat-divider>
+          <span mat-menu-item class="matmenuIcon black">
+            <i class="material-icons">
+              done
+            </i>
+            <span class="padding">{{currentUser?.name}}</span>
+          </span>
+          <mat-divider></mat-divider>
+          <span mat-menu-item class="padding" (click)="onSignout()">
+            <span class="bigPadding ">
+              {{'menuDropdown.signOut' | translate}}
+            </span>
+          </span>
+  
+        </mat-menu>
+      </span>
+    
+    </body>
+</nav>

@@ -1,0 +1,39 @@
+.heading{
+   margin-top: 0px;
+   font-size: 18px;
+}
+.btnColor{
+    background-color: var(--primary-color);
+    color :var(--white-color);
+    margin-left: 30px;
+}
+.alingCenterlineParentHeading{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.active{
+    border-radius: 12px; 
+    border:1px solid var(--primary-color); 
+    padding:2px 8px; 
+    background-color: var(--button-background-color); 
+    cursor: pointer;
+    margin-left: 25px;
+}
+.horizontalLine{
+    display:flex;
+    flex-direction: column;
+}
+.noPadding{
+    padding: 0px;
+}
+.noMargin{
+    margin: 0px;
+}
+.Margin{
+    margin: 0px -20px;
+}
+.primaryColor{
+    color: var(--primary-color);
+
+}

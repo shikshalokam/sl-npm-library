@@ -1,0 +1,42 @@
+<div class="_flex-box  _flex-end" *ngIf="paginationFlag">
+
+    <div [formGroup]="pageSize" class="_flex-box">
+
+        <span class="label">Items per page :</span>
+        <mat-form-field class="width" *ngIf="data.input == 'dropdown'">
+          <mat-select [disabled]="!data.editable"  formControlName="{{data.field}}" required >
+              <mat-option *ngFor="let opt of data.options" [value]="opt.value" (click)="setPageLimit(opt.value)" >
+                {{opt.label}}
+              </mat-option>
+          </mat-select>
+        </mat-form-field>
+    <!-- <app-dropdown-field [genericData]="data" [genericForm]="pageSize" (emitResponseType) ="setPageLimit($event)"></app-dropdown-field> -->
+                  
+    </div>
+    <div class="_flex-box">
+        <button mat-icon-button (click)="page('first')" [disabled]="pagination.pageIndex === 0" matTooltip="First Page">
+            <i class="material-icons _icon">
+                first_page
+            </i>
+        </button>
+        <button mat-icon-button (click)="page('back')" [disabled]="pagination.pageIndex === 0" matTooltip="Previous Page">
+            <i class="material-icons _icon">
+                keyboard_arrow_left
+            </i>
+        </button>
+        <div class ="pagLabel ">
+            {{label}}
+        </div>
+        <button mat-icon-button (click)="page('next')" [disabled]="pagination.pageIndex === last" matTooltip="Next Page">
+            <i class="material-icons _icon">
+                keyboard_arrow_right
+            </i>
+        </button>
+        <button mat-icon-button (click)="page('last')" [disabled]="pagination.pageIndex === last" matTooltip="Last Page">
+            <i class="material-icons _icon">
+                last_page
+            </i>
+        </button>
+
+    </div>
+</div>

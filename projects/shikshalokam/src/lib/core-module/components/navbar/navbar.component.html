@@ -1,0 +1,82 @@
+<div *ngIf="url">
+  <nav class="navbar noMarginPadding ">
+
+    <div class="col-sm-6  col-md-6 col-xs-6 col-lg-6 alingCenterline noMarginPadding">
+
+      <img class="logo" src={{logo}} (click)="homePage(url)">
+      <!-- <mat-card-title class="pageBrand">
+          <strong>{{ 'brand' | translate }}</strong>
+        </mat-card-title> -->
+    </div>
+
+    <!-- <div class="col-sm-4 mod ">
+           <mat-card-title style="font-size:18px; color:gray; text-align: center;" >
+            Sikhshalocham Samikhsa 
+              <mat-icon svgIcon="thumbs-up" style="font-size:29px; color: gray;">
+              </mat-icon>
+          </mat-card-title> 
+        </div> -->
+
+
+
+
+    <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+      <span *ngIf="!noAssess" class="right _flex-box alingCenterline">
+
+        
+        <button mat-icon-button (click)="openDropdown()">
+          <i class="material-icons">apps</i>
+        </button>
+
+        <div id="overlay" (click)="openDropdown()" *ngIf="showDropdown">
+          <app-container [url]="url" [portal]="portal"></app-container>
+        </div>
+
+
+
+
+        <span mat-button [matMenuTriggerFor]="menu" class="alingCenterline _cursor-pointer" *ngIf="currentUser">
+          <i class="material-icons brand dropdownIcon">
+            person
+          </i>
+          <!-- <span class="brand ">{{currentUser?.name}}</span> -->
+          <i class="material-icons brand icon">
+            keyboard_arrow_down
+          </i>
+        </span>
+        <mat-menu #menu="matMenu">
+          <span mat-menu-item class="matmenuIcon">
+            <i class="material-icons">
+              supervised_user_circle
+            </i>
+            <span class="padding">{{currentUser?.email}}</span>
+          </span>
+          <mat-divider></mat-divider>
+          <span mat-menu-item class="matmenuIcon black">
+            <i class="material-icons">
+              done
+            </i>
+            <span class="padding">{{currentUser?.name}}</span>
+          </span>
+          <mat-divider></mat-divider>
+          <span mat-menu-item class="padding" (click)="onSignout()">
+            <span class="bigPadding black">
+              {{'menuDropdown.signOut' | translate}}
+            </span>
+          </span>
+        </mat-menu>
+        <!-- <div class="right horizontalLine">
+          <i class="material-icons brand helpIcon">
+            help_outline
+          </i>
+        </div> -->
+      </span>
+
+    </div>
+
+
+  </nav>
+
+
+
+</div>

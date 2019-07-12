@@ -1,0 +1,39 @@
+.fluid-bread {
+    background-color: white;
+}
+
+.breadcrumb {
+    background-color: white;
+    padding: 4px;
+    margin-bottom: 0;
+}
+
+.padding{
+    
+    padding : 0 5px;
+}
+.orderedList{
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+.breadcrumbList{
+   
+    color : var(--dark-blue-color);
+    .breadcrumbLink {
+        color : var(--dark-blue-color);
+        text-decoration: none;
+        font-size: 18px;
+    }
+    
+     
+      .breadcrumbLink:hover   {
+        text-decoration:  none;
+        font-weight:      bold;
+        } 
+     
+    .last{
+        font-weight: bolder;
+        font-size: 18px;
+    }
+}

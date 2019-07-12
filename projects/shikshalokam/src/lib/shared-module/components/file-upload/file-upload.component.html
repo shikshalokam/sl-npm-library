@@ -1,0 +1,31 @@
+<div [formGroup]="genericForm">
+  <div class="col-sm-6 fixSize _halfWidth "> 
+    <label for="image-file-upload" class="custom-file-upload _flex-box  _justify-content-center" >
+        <i class="material-icons " *ngIf="!fileSelected" >
+            add 
+        </i>
+      <img [src]="imgURL" *ngIf="fileSelected" class="imageBox">
+      <div *ngIf="fileSelected"  id="hoverShow1">
+          <p>{{'labels.update'| translate}}</p>
+      </div>
+      <!-- <div>
+        <i class="material-icons paddingContent">
+          cloud_upload
+        </i>
+      </div>
+      <div class="paddingContent">
+        {{'labels.addImage'| translate}}
+      </div> -->
+    </label>
+    <input id="image-file-upload" placeholder="{{genericData.label | camelcase}} "
+      formControlName="{{genericData?.field}}" [required]="genericData.validation.required" #file type="file"
+      (change)="preview(file.files);" accept="{{genericData?.requiredType}}">
+    <!-- <div *ngIf="fileSelected" class="_flexBox _justify-content-space-between selectedImage"> -->
+
+      <!-- <img [src]="imgURL" class="imageBox">
+      <i class="material-icons" (click)="file.files = null ;file.value = null ; fileSelected = false">
+        delete
+      </i> -->
+    <!-- </div> -->
+  </div>
+</div>
