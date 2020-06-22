@@ -1,0 +1,30 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CommonHttpService {
+  constructor(public http: HttpClient) {
+  }
+
+  // common get method 
+  get(apiEndPoint) {
+    return this.http.get(apiEndPoint)
+      .pipe(catchError(this.handleError));
+  }
+
+  // common post method
+  post(apiEndPoint, data) {
+    return this.http.post(apiEndPoint, data)
+      .pipe(catchError(this.handleError));
+  }
+
+  /*-----  To handle the Error page ----- */
+  handleError(error: HttpErrorResponse) {
+    return throwError(error);
+  }
+}
