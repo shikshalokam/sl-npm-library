@@ -1,0 +1,28 @@
+<mat-sidenav-container fullscreen>
+    <mat-sidenav mode="side" #sidenav opened position="start" style="margin-top: 65px;margin-bottom: 40px;">
+        <div class="sidebar-menu">
+            <ul *ngFor="let data of sideMenuData">
+                <li><a (click)="sideClick(data.action)"
+                        [ngClass]="data.action === type ?'selected-nav':'unselected-nav'" [routerLink]="[data.url]"
+                        class="active">
+                        <span class="dashboard-icon">
+                            <mat-icon [ngClass]="data.action === type ?'selected-nav':'unselected-nav'">{{data.icon}}
+                            </mat-icon>
+                        </span>
+                        {{data.name}}</a>
+                </li>
+            </ul>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content style="background-color: white;">
+        <!-- <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button> -->
+        <lib-headers></lib-headers>
+
+        <div class="main-content">
+            <router-outlet></router-outlet>
+        </div>
+        <app-footer></app-footer>
+    </mat-sidenav-content>
+</mat-sidenav-container>
