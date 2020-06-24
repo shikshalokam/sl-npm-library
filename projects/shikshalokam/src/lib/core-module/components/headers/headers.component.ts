@@ -12,8 +12,6 @@ export class HeadersComponent implements OnInit {
   @Input() logindetails: any;
 
   constructor() {
-
-
   }
 
   ngOnInit(): void {
