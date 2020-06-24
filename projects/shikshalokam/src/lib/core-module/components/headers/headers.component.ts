@@ -1,4 +1,4 @@
-import { Component, OnInit,Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'lib-headers',
@@ -9,13 +9,17 @@ export class HeadersComponent implements OnInit {
   username: any;
   @Output() logoutClick = new EventEmitter();
 
-  // @Input() loginUser: any;
+  @Input() logindetails: any;
 
   constructor() {
-    // this.username = this.loginUser.username;
-   }
+
+
+  }
 
   ngOnInit(): void {
+    if (this.logindetails) {
+      this.username = this.logindetails.username;
+    }
   }
 
   notifications() {

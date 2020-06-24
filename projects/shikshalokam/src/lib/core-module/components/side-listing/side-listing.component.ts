@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'lib-side-listing',
   templateUrl: './side-listing.component.html',
-  styleUrls: ['./side-listing.component.css']
+  styleUrls: ['./side-listing.component.scss']
 })
 export class SideListingComponent implements OnInit {
-
-  constructor() { }
+  @Input() sidedata;
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+    console.log('SideListingComponent', this.sidedata);
   }
+
+  // sideClick(data) {
+  //   this.router.navigate(data);
+
+  // }
 
 }

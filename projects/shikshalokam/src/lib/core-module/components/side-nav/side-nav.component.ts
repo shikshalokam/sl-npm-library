@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { MenuData } from '../../constants/menu.interface';
+import { MenuData } from '../../interfaces/menu.interface';
+
 @Component({
   selector: 'lib-side-nav',
   templateUrl: './side-nav.component.html',
