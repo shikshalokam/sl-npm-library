@@ -1,7 +1,7 @@
 <div class="footer">
     <ul class="list">
       <li *ngFor="let link of footerLink; let last=last">
-          <a class="footerName">{{link.name}}
+          <a href="{{link.URL}}" target="_blank" class="footerName">{{link.name}}
           <span *ngIf="!last" class="pipe">|</span>
           </a>
       </li>

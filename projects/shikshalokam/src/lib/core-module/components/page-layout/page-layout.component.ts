@@ -15,13 +15,10 @@ export class PageLayoutComponent implements OnInit {
   ngOnInit(): void {
   }
   clicked(data) {
-    console.log('PageLayoutComponent - clicked');
-    
     this.sideClick(data);
   }
 
   sideClick(data) {
-    console.log('PageLayoutComponent - sideClick', data);
     this.type = data;
     this.sideMenuClick.emit(data);
   }

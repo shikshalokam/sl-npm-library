@@ -7,19 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
   footerLink
+   date = new Date();
   constructor() {
     this.footerLink =[
       {
-        name: "Copyright @2020 Shikshalokam"
+        name: "Copyright @ " + this.date.getFullYear() + " Shikshalokam",
+        URL: 'https://shikshalokam.org/'
       },
       {
-        name: "Terms of Service"
+        name: "Terms of Service",
+        URL: 'https://shikshalokam.org/wp-content/uploads/2019/05/Final-ShikshaLokam-Terms-of-Use-MCM-08052019-Clean-copy-1.html'
       },
       {
-        name: "Privacy Policy"
+        name: "Privacy Policy",
+        URL: 'https://shikshalokam.org/wp-content/uploads/2019/01/data_privacy_policy.html'
       },
       {
-        name: "Contact Us"
+        name: "Contact Us",
+        URL: 'https://shikshalokam.org/contact-us/'
       }
    ];
   }
