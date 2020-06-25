@@ -1,0 +1,15 @@
+<mat-sidenav-container fullscreen>
+    <mat-sidenav mode="side" #sidenav opened position="start" class="c-sidenav">
+        <lib-sidenav-listing (sideNavListClick) = "clicked($event)" [libraryMenuData]="sideMenuData"></lib-sidenav-listing>
+    </mat-sidenav>
+    <mat-sidenav-content style="background-color: white;">
+        <!-- <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button> -->
+        <lib-headers></lib-headers>
+        <div class="main-content">
+            <router-outlet></router-outlet>
+        </div>
+        <lib-footer></lib-footer>
+    </mat-sidenav-content>
+</mat-sidenav-container>

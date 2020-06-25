@@ -1,0 +1,11 @@
+<div class="sidebar-menu">
+    <ul *ngFor="let data of libraryMenuData">
+        <li><a routerLinkActive="active" [routerLink]="[data.url]">
+                <span class="dashboard-icon">
+                    <mat-icon>{{data.icon}}
+                    </mat-icon>
+                </span>
+                {{data.name}}</a>
+        </li>
+    </ul>
+</div>

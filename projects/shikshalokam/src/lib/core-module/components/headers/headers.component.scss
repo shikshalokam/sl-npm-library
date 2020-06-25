@@ -1,0 +1,22 @@
+.main-content {
+  // padding: 20px;
+  padding: 105px 20px 20px 20px;
+}
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+.mat-drawer-side {
+  border: none;
+}
+
+.csidenav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100% !important;
+}
+
+.himage {
+  width: 170px;
+}
