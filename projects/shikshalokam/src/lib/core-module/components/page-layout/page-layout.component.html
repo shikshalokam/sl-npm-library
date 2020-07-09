@@ -3,10 +3,7 @@
         <lib-sidenav-listing (sideNavListClick) = "clicked($event)" [libraryMenuData]="sideMenuData"></lib-sidenav-listing>
     </mat-sidenav>
     <mat-sidenav-content style="background-color: white;">
-        <!-- <button mat-icon-button (click)="sidenav.toggle()">
-            <mat-icon>menu</mat-icon>
-        </button> -->
-        <lib-headers></lib-headers>
+        <lib-headers (sideNavClick) = "toggleMethod()"></lib-headers>
         <div class="main-content">
             <router-outlet></router-outlet>
         </div>

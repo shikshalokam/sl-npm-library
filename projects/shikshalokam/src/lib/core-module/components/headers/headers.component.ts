@@ -10,6 +10,7 @@ export class HeadersComponent implements OnInit {
   @Output() logoutClick = new EventEmitter();
 
   @Input() logindetails: any;
+  @Output() sideNavClick = new EventEmitter();
 
   constructor() {
   }
@@ -26,6 +27,10 @@ export class HeadersComponent implements OnInit {
 
   logout() {
     this.logoutClick.emit('logout');
+  }
+
+  menuClick() {
+    this.sideNavClick.emit('');
   }
 
 }

@@ -6,7 +6,7 @@
   flex: 1 1 auto;
 }
 .mat-drawer-side {
-  border: none;
+  border: none !important;
 }
 
 .csidenav {
@@ -19,4 +19,18 @@
 
 .himage {
   width: 170px;
+}
+
+.c-menu {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .csidenav {
+    position: inherit;
+  }
+  .c-menu {
+    display: block;
+    padding-right: 15px;
+  }
 }

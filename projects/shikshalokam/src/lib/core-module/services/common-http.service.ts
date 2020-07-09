@@ -8,7 +8,11 @@ import { throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class CommonHttpService {
+
+  baseUrl: string;
   constructor(public http: HttpClient) {
+    console.log('CommonHttpService', this.baseUrl);
+    
   }
 
   // common get method 

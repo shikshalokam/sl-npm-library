@@ -25,7 +25,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
+// import { BrowserModule } from '@angular/platform-browser';
 import {
   MatSidenavModule,
 } from '@angular/material/sidenav';
@@ -48,7 +48,7 @@ import { RouterModule } from '@angular/router';
     MatInputModule,
     MatListModule,
     MatDatepickerModule,
-    BrowserModule,
+    // BrowserModule,
     MatSelectModule,
     MatCheckboxModule,
     MatRadioModule,
@@ -78,7 +78,7 @@ import { RouterModule } from '@angular/router';
     MatInputModule,
     MatListModule,
     MatDatepickerModule,
-    BrowserModule,
+    // BrowserModule,
     MatSelectModule,
     MatCheckboxModule,
     MatRadioModule,
