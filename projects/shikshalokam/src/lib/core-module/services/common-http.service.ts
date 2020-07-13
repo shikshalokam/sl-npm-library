@@ -10,14 +10,15 @@ import { throwError } from 'rxjs';
 export class CommonHttpService {
 
   baseUrl: string;
-  constructor(public http: HttpClient) {
-    console.log('CommonHttpService', this.baseUrl);
-    
+  http: HttpClient;
+
+  constructor(http: HttpClient) {
+    this.http = http;
   }
 
   // common get method 
   get(apiEndPoint) {
-    return this.http.get(apiEndPoint)
+    return this.http.get(this.baseUrl + apiEndPoint)
       .pipe(catchError(this.handleError));
   }
 

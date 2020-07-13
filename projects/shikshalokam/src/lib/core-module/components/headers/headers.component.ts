@@ -30,7 +30,7 @@ export class HeadersComponent implements OnInit {
   }
 
   menuClick() {
-    this.sideNavClick.emit('');
+    this.sideNavClick.emit('sideMenuToggle');
   }
 
 }
