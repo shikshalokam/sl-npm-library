@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild , ChangeDetectorRef, OnDestroy} from '@angular/core';
 import { MenuData } from '../../interfaces/menu.interface';
 import { MatSidenav } from '@angular/material/sidenav';
+import {MediaMatcher} from '@angular/cdk/layout';
 
 
 @Component({
@@ -13,7 +14,15 @@ export class PageLayoutComponent implements OnInit {
   @Input() sideMenuData: MenuData[];
   @Output() sideMenuClick = new EventEmitter();
   @ViewChild('sidenav') public sidenav: MatSidenav;
-  constructor() { }
+
+  mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
+
+  constructor(changeDetectorRef: ChangeDetectorRef,media: MediaMatcher) {
+    this.mobileQuery = media.matchMedia('(max-width: 768px)');
+    // this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    // this.mobileQuery.addListener(this._mobileQueryListener);
+   }
 
   ngOnInit(): void {
   }
@@ -31,6 +40,9 @@ export class PageLayoutComponent implements OnInit {
     this.sidenav.toggle();
   }
 
+  // ngOnDestroy(): void {
+  //   this.mobileQuery.removeListener(this._mobileQueryListener);
+  // }
 }
 
 

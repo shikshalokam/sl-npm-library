@@ -34,3 +34,13 @@
     padding-right: 15px;
   }
 }
+
+@media (max-width: 768px) {
+  .c-menu {
+    display: block;
+    padding-right: 15px;
+  }
+  .csidenav {
+    position: inherit;
+  }
+}
