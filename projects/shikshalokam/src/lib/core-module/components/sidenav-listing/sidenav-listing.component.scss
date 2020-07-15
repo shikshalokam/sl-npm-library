@@ -1,5 +1,4 @@
-@import '../../../../assests/scss/variables.scss';
-
+@import "../../../../assests/scss/variables.scss";
 
 .mat-icon {
   color: inherit !important;
@@ -14,11 +13,11 @@
   list-style: none;
 }
 .sidebar-menu ul li {
-  display: block;
+  // display: block;
   margin-bottom: 15px;
 }
 .sidebar-menu ul li a {
-  display: block;
+  // display: block;
   padding: 8px 0px;
   font-weight: 500;
   color: $text-color;
@@ -43,7 +42,18 @@
 .sidebar-menu ul li a span img {
   max-width: 20px;
 }
+.pointer {
+  display: none;
+}
 
+@media only screen and (max-width: 600px) {
+  .pointer {
+    display: block;
+  }
+}
 
-
-
+@media (max-width: 768px) {
+  .pointer {
+    display: block;
+  }
+}
