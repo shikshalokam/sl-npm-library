@@ -1,21 +1,29 @@
-.c-sidenav {
-  margin-top: 65px;
-  margin-bottom: 30px;
-}
+@import "../../../../assests/scss/variables.scss";
+
 .main-content {
   margin-bottom: 50px;
 }
+.profile {
+ display: none;
+}
 
 @media only screen and (max-width: 600px) {
-  .c-sidenav {
-    margin-top: 0px;
-    margin-bottom: 0px;
+  .profile {
+    text-align: center;
+    border-bottom: 1px solid $primary-color;
+    display: block;
+    padding-top: 50px;
   }
 }
 
 @media only screen and (max-width: 768px) {
-  .c-sidenav {
-    margin-top: 0px;
-    margin-bottom: 0px;
+  .profile {
+    text-align: center;
+    border-bottom: 1px solid $primary-color;
+    display: block;
+    padding-top: 50px;
+
   }
 }
+
+

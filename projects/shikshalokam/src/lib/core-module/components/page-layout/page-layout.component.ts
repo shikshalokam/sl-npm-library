@@ -11,7 +11,9 @@ import {MediaMatcher} from '@angular/cdk/layout';
 })
 export class PageLayoutComponent implements OnInit {
   type: any;
+  username: any;
   @Input() sideMenuData: MenuData[];
+  @Input() logindetails: any;
   @Output() sideMenuClick = new EventEmitter();
   @ViewChild('sidenav') public sidenav: MatSidenav;
 
@@ -25,6 +27,9 @@ export class PageLayoutComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    if (this.logindetails) {
+      this.username = this.logindetails.username;
+    }
   }
   clicked(data) {
     this.sideClick(data);
