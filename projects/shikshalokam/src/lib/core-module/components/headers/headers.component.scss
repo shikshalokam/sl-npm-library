@@ -1,8 +1,5 @@
 @import "../../../../assests/scss/variables.scss"; 
-.main-content {
-  // padding: 20px;
-  padding: 105px 20px 20px 20px;
-}
+
 .toolbar-spacer {
   flex: 1 1 auto;
 }
@@ -10,47 +7,6 @@
   border: none !important;
 }
 
-.csidenav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  width: 100% !important;
-}
-
 .himage {
   width: 170px;
-}
-
-.c-menu {
-  display: none;
-}
-.header-icons {
-  display: block;
-}
-
-@media only screen and (max-width: 600px) {
-  .csidenav {
-    position: inherit;
-  }
-  .c-menu {
-    display: block;
-    padding-right: 15px;
-  }
-  .header-icons {
-    display: none;
-  }
-}
-
-@media (max-width: 768px) {
-  .c-menu {
-    display: block;
-    padding-right: 15px;
-  }
-  .csidenav {
-    position: inherit;
-  }
-  .header-icons {
-    display: none;
-  }
 }

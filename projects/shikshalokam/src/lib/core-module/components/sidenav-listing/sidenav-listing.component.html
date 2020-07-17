@@ -1,7 +1,7 @@
 
 <div class="sidebar-menu">
     <ul *ngFor="let data of libraryMenuData">
-        <li [ngClass]="{'pointer':data.name === 'Logout'}" (click)="mdata(data.name)"><a routerLinkActive="active"
+        <li [ngClass]="{'btn-logout':data.name === 'Logout'}" (click)="mdata(data.name)"><a routerLinkActive="active"
                 [routerLink]="[data.url]">
                 <span class="dashboard-icon">
                     <mat-icon>{{data.icon}}

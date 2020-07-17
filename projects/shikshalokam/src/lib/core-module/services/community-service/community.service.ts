@@ -12,6 +12,6 @@ export class CommunityService extends CommonHttpService {
 
   constructor(public http: HttpClient) { 
     super(http);
-    this.baseUrl = BaseConfig.baseURL
+    // this.baseUrl = BaseConfig.baseURL
   }
 }

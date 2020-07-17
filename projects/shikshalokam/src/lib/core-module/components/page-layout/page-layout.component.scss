@@ -6,6 +6,9 @@
 .profile {
  display: none;
 }
+.bg-side-nav {
+  background-color: $white-color;
+}
 
 @media only screen and (max-width: 600px) {
   .profile {

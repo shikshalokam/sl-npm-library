@@ -42,18 +42,4 @@
 .sidebar-menu ul li a span img {
   max-width: 20px;
 }
-.pointer {
-  display: none;
-}
 
-@media only screen and (max-width: 600px) {
-  .pointer {
-    display: block;
-  }
-}
-
-@media (max-width: 768px) {
-  .pointer {
-    display: block;
-  }
-}

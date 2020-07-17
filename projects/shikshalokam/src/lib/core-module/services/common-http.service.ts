@@ -18,7 +18,7 @@ export class CommonHttpService {
 
   // common get method 
   get(apiEndPoint) {
-    return this.http.get(this.baseUrl + apiEndPoint)
+    return this.http.get(apiEndPoint)
       .pipe(catchError(this.handleError));
   }
 

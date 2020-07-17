@@ -18,12 +18,9 @@ export class PageLayoutComponent implements OnInit {
   @ViewChild('sidenav') public sidenav: MatSidenav;
 
   mobileQuery: MediaQueryList;
-  private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef,media: MediaMatcher) {
+  constructor(media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 768px)');
-    // this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    // this.mobileQuery.addListener(this._mobileQueryListener);
    }
 
   ngOnInit(): void {
@@ -44,10 +41,7 @@ export class PageLayoutComponent implements OnInit {
   toggleMethod() {
     this.sidenav.toggle();
   }
-
-  // ngOnDestroy(): void {
-  //   this.mobileQuery.removeListener(this._mobileQueryListener);
-  // }
+ 
 }
 
 
