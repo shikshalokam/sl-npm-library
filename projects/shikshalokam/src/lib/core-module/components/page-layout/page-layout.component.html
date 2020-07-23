@@ -1,12 +1,21 @@
 <mat-sidenav-container fullscreen>
-    <mat-sidenav mode="side" #sidenav opened position="start" class="c-sidenav">
-        <lib-sidenav-listing (sideNavListClick) = "clicked($event)" [libraryMenuData]="sideMenuData"></lib-sidenav-listing>
+    <mat-sidenav [mode]="mobileQuery.matches ? 'over' : 'side'" #sidenav opened position="start" class="c-sidenav">
+        <mat-toolbar class="bg-side-nav ">
+            <!-- <a class="home-button" routerLink="/"> -->
+            <div class="profile">
+                <div>
+                    <img style="height: 50px;" class="app-logo" src="/assets/images/Bodh_LearnerApp -0111.png" />
+                </div>
+                <div>{{username}}</div>
+
+            </div>
+            <!-- </a> -->
+        </mat-toolbar>
+        <lib-sidenav-listing (sideNavListClick)="clicked($event)" [libraryMenuData]="sideMenuData">
+        </lib-sidenav-listing>
     </mat-sidenav>
-    <mat-sidenav-content style="background-color: white;">
-        <!-- <button mat-icon-button (click)="sidenav.toggle()">
-            <mat-icon>menu</mat-icon>
-        </button> -->
-        <lib-headers></lib-headers>
+    <mat-sidenav-content class="bg-side-nav ">
+        <lib-headers (sideNavClick)="toggleMethod()"></lib-headers>
         <div class="main-content">
             <router-outlet></router-outlet>
         </div>

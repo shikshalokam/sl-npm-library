@@ -7,6 +7,7 @@ import { HeadersComponent } from './components/headers/headers.component';
 import { SharedModuleModule } from '../shared-module/shared-module.module';
 import { PageLayoutComponent } from './components/page-layout/page-layout.component';
 import { SideNavListingComponent } from './components/sidenav-listing/sidenav-listing.component';
+import { CommunityService } from './services/community-service/community.service';
 
 
 
@@ -23,7 +24,7 @@ export class CoreModuleModule {
   static forRoot(): ModuleWithProviders<CoreModuleModule> {
     return <ModuleWithProviders>{
       ngModule: CoreModuleModule,
-      providers: [CommonHttpService, KendraServiceService]
+      providers: [CommonHttpService, KendraServiceService, CommunityService]
     };
   }
 }

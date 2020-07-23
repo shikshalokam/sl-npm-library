@@ -1,6 +1,9 @@
-<mat-toolbar class="csidenav">
-    <div style="padding-top: 10px;">
-        <img class="himage"  alt="Angular Logo" src="assets/images/shikshalokam.png" />
+<mat-toolbar class="h-toolbar">
+    <button class="c-menu" mat-icon-button (click)="menuClick()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <div>
+        <img class="himage" alt="Angular Logo" src="assets/images/shikshalokam.png" />
         <!-- <span>
             <mat-form-field class="searchbar">
                 <mat-icon matSuffix>search</mat-icon>
@@ -10,11 +13,11 @@
     </div>
 
     <span class="toolbar-spacer"></span>
-    <button class="b-color" matTooltip="Other Portals" mat-icon-button aria-label="Notifications">
+    <button class="b-color header-icons" matTooltip="Other Portals" mat-icon-button aria-label="Notifications">
         <mat-icon (click)="notifications()">dashboard</mat-icon>
     </button>
 
-    <button class="b-color" [matMenuTriggerFor]="menu" matTooltip="Profile" mat-icon-button aria-label="user">
+    <button class="b-color header-icons" [matMenuTriggerFor]="menu" matTooltip="Profile" mat-icon-button aria-label="user">
         <mat-icon (click)="notifications()">person</mat-icon>
     </button>
 

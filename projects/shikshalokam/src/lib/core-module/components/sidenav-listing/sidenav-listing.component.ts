@@ -15,7 +15,7 @@ export class SideNavListingComponent implements OnInit {
   }
 
 
-  mdata() {
-    this.sideNavListClick.emit('');
+  mdata(data) {
+    this.sideNavListClick.emit(data);
   }
 }
