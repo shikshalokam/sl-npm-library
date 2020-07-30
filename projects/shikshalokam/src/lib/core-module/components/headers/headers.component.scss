@@ -1,10 +1,15 @@
 @import "../../../../assests/scss/variables.scss"; 
 
 .toolbar-spacer {
-  flex: 1 1 auto;
+  // flex: 1 1 auto;
+  padding-left: 10%;
 }
 .mat-drawer-side {
   border: none !important;
+}
+
+.mat-toolbar-single-row {
+  height: 85px !important; 
 }
 
 .himage {
@@ -27,4 +32,38 @@
     display: block !important;
     padding-right: 15px !important;
   }
+}
+
+/* Styles for wrapping the search box */
+
+
+
+/* Bootstrap 4 text input with search icon */
+
+.has-search .form-control {
+  padding-left: 2.375rem;
+ 
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 3rem;
+  text-align: center;
+  pointer-events: none;
+  color: $primary-color;
+  padding-left: 50%;
+}
+
+*:focus {
+  outline: none !important;
+  border: 0 !important;
+}
+
+.form-control {
+  height: calc(1.5em + .75rem + 15px) !important;
+  width: 335%;
 }

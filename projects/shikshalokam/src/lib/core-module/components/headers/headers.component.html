@@ -12,7 +12,13 @@
         </span> -->
     </div>
 
-    <span class="toolbar-spacer"></span>
+    <span class="toolbar-spacer">
+      <div class="has-search header-icons">
+        <span class="fa fa-search form-control-feedback"></span>
+        <input type="text" class="form-control">
+      </div>
+    </span>
+    <div style="padding-left: 52%;">
     <button class="b-color header-icons" matTooltip="Other Portals" mat-icon-button aria-label="Notifications">
         <mat-icon (click)="notifications()">dashboard</mat-icon>
     </button>
@@ -29,5 +35,6 @@
             <span>Logout</span>
         </button>
     </mat-menu>
+  </div>
 
 </mat-toolbar>
