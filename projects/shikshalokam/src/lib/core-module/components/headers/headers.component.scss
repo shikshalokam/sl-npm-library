@@ -40,22 +40,16 @@
 
 /* Bootstrap 4 text input with search icon */
 
-.has-search .form-control {
-  padding-left: 2.375rem;
- 
-}
-
 .has-search .form-control-feedback {
   position: absolute;
   z-index: 2;
-  display: block;
   width: 2.375rem;
   height: 2.375rem;
   line-height: 3rem;
   text-align: center;
   pointer-events: none;
   color: $primary-color;
-  padding-left: 50%;
+  padding-left: 40%;
 }
 
 *:focus {
@@ -65,5 +59,4 @@
 
 .form-control {
   height: calc(1.5em + .75rem + 15px) !important;
-  width: 335%;
 }

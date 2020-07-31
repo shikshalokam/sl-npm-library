@@ -1,30 +1,25 @@
 <mat-toolbar class="h-toolbar">
-    <button class="c-menu" mat-icon-button (click)="menuClick()">
+  <div class="row" style="width: 100%">
+   
+    <div class="col-md-2 col-sm-4 col-lg-2 col-xl-2 row">
+      <button class="c-menu" mat-icon-button (click)="menuClick()">
         <mat-icon>menu</mat-icon>
-    </button>
-    <div>
-        <img class="himage" alt="Angular Logo" src="assets/images/shikshalokam.png" />
-        <!-- <span>
-            <mat-form-field class="searchbar">
-                <mat-icon matSuffix>search</mat-icon>
-                <input type="search" matInput placeholder="Search" />
-            </mat-form-field>
-        </span> -->
+      </button>
+      <img style="width: 170px;" alt="Angular Logo" src="assets/images/shikshalokam.png" />
     </div>
-
-    <span class="toolbar-spacer">
+    <div class="col-md-6 col-sm-6 col-lg-8 col-xl-8 center">
       <div class="has-search header-icons">
         <span class="fa fa-search form-control-feedback"></span>
         <input type="text" class="form-control">
       </div>
-    </span>
-    <div style="padding-left: 52%;">
-    <button class="b-color header-icons" matTooltip="Other Portals" mat-icon-button aria-label="Notifications">
-        <mat-icon (click)="notifications()">dashboard</mat-icon>
+    </div>
+    <div class="col-md-1 col-sm-2 col-lg-1 col-xl-1">
+      <button class="b-color header-icons" matTooltip="Other Portals" mat-icon-button aria-label="Notifications">
+        <mat-icon>dashboard</mat-icon>
     </button>
 
     <button class="b-color header-icons" [matMenuTriggerFor]="menu" matTooltip="Profile" mat-icon-button aria-label="user">
-        <mat-icon (click)="notifications()">person</mat-icon>
+        <mat-icon>person</mat-icon>
     </button>
 
     <mat-menu #menu="matMenu">
@@ -35,6 +30,7 @@
             <span>Logout</span>
         </button>
     </mat-menu>
-  </div>
+    </div>
 
+  </div>
 </mat-toolbar>
