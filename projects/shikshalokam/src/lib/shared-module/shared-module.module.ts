@@ -25,12 +25,18 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {TranslateModule, TranslateLoader, TranslateService} from "@ngx-translate/core";
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 // import { BrowserModule } from '@angular/platform-browser';
 import {
   MatSidenavModule,
 } from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
 
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [],
@@ -63,7 +69,14 @@ import { RouterModule } from '@angular/router';
     MatExpansionModule,
     MatButtonToggleModule,
     MatSidenavModule,
-    RouterModule
+    RouterModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+  })
   ],
   exports: [
     FormsModule, ReactiveFormsModule,
@@ -93,8 +106,14 @@ import { RouterModule } from '@angular/router';
     MatExpansionModule,
     MatButtonToggleModule,
     MatSidenavModule,
-    RouterModule
+    RouterModule,
+    TranslateModule
   ],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
 })
-export class SharedModuleModule { }
+export class SharedModuleModule { 
+  constructor( public translate: TranslateService){
+    translate.addLangs(['en', 'od']);
+    translate.setDefaultLang('en');
+  }
+}
