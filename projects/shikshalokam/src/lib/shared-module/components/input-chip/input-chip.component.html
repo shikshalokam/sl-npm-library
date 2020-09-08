@@ -1,0 +1,22 @@
+<mat-form-field *ngIf="field.visible" class="form-full-width margin-top" [formGroup]="group">
+    <mat-label *ngIf="field?.validation[0]?.name === 'required'" class="required">{{field.label}}</mat-label>
+    <mat-label *ngIf="field?.validation?.length === 0 || field?.validation[0]?.name === 'pattern'">{{field.label}}
+    </mat-label>
+    <mat-chip-list #chipList aria-label="keywords selection">
+      <mat-chip *ngFor="let item of field.options" [selectable]="selectable"
+               [removable]="removable" (removed)="remove(item)">
+        {{item}}
+        <mat-icon style="padding:0px" matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input placeholder="Add Keywords"
+      [formControlName]="field.field"
+      formControlName="solutionKeywords"
+             [matChipInputFor]="chipList"
+             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+             [matChipInputAddOnBlur]="addOnBlur"
+             (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+    <ng-container *ngFor="let validation of field.validation;" ngProjectAs="mat-error">
+        <mat-error *ngIf="group.get(field.field).hasError(validation.name)">{{validation.message}}</mat-error>
+    </ng-container>
+  </mat-form-field>
