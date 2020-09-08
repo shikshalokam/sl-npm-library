@@ -13,6 +13,18 @@
         <input type="text" class="form-control">
       </div>
     </div>
+    <!-- <span class="form-inline">
+      <select 
+          class="form-control" 
+          #selectedLang 
+          (change)="switchLang(selectedLang.value)">
+        <option *ngFor="let language of translate.getLangs()" 
+          [value]="language"
+          [selected]="language === translate.currentLang">
+          {{ language }}
+        </option>
+      </select>
+    </span> -->
     <div class="col-md-1 col-sm-2 col-lg-1 col-xl-1">
       <button class="b-color header-icons" matTooltip="Other Portals" mat-icon-button aria-label="Notifications">
         <mat-icon>dashboard</mat-icon>
