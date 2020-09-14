@@ -1,3 +1,4 @@
+// https://medium.com/@mail.bahurudeen/create-a-dynamic-form-with-configurable-fields-and-validations-using-angular-6-994db56834da
 import {
   ComponentFactoryResolver, ComponentRef, Directive, Input, OnInit,
   ViewContainerRef
@@ -14,6 +15,7 @@ import { MultiSelectComponent } from "../multi-select/multi-select.component";
 import { PasswordComponent } from "../password/password.component";
 import { TextAreaComponent } from "../text-area/text-area.component";
 import { AutoCompleteComponent } from "../auto-complete/auto-complete.component";
+import { InputChipComponent } from '../input-chip/input-chip.component';
 
 
 
@@ -27,7 +29,8 @@ const componentMapper = {
   date: DateComponent,
   radio: RadiobuttonComponent,
   checkbox: CheckboxComponent,
-  multiselect: MultiSelectComponent
+  multiselect: MultiSelectComponent,
+  inputchip: InputChipComponent
 };
 
 @Directive({

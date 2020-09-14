@@ -16,7 +16,7 @@ export class SelectComponent implements OnInit {
   group: FormGroup;
   finaldata: any;
   serverName: any;
-  // selected: any;
+  selected: any;
   myControl = new FormControl();
   filteredOptions: Observable<any[]>;
   constructor() {
@@ -29,8 +29,9 @@ export class SelectComponent implements OnInit {
         startWith(''),
         map(value => this._filter(value))
       );
-    // this.selected = this.field['selectedOption'];
-  
+    this.selected = this.field['value'];
+
+  console.log('ngOnInit selected', this.selected);
   }
 
   public selectHandler(event: MatAutocompleteSelectedEvent): void {

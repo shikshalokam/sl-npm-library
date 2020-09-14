@@ -29,9 +29,7 @@ import {TranslateModule, TranslateLoader, TranslateService} from "@ngx-translate
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 // import { BrowserModule } from '@angular/platform-browser';
-import {
-  MatSidenavModule,
-} from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
 import { AutoCompleteComponent } from './components/auto-complete/auto-complete.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';

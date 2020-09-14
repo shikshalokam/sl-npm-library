@@ -83,4 +83,8 @@ export class DynamicFormComponent implements OnInit {
     });
   }
 
+  clearForm() {
+    this.form.reset();
+  }
+
 }

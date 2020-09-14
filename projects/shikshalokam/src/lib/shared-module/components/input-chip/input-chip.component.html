@@ -1,4 +1,4 @@
-<mat-form-field *ngIf="field.visible" class="form-full-width margin-top" [formGroup]="group">
+<mat-form-field [ngStyle]="{'width.px': field?.width}" *ngIf="field.visible" class="form-full-width margin-top" [formGroup]="group">
     <mat-label *ngIf="field?.validation[0]?.name === 'required'" class="required">{{field.label}}</mat-label>
     <mat-label *ngIf="field?.validation?.length === 0 || field?.validation[0]?.name === 'pattern'">{{field.label}}
     </mat-label>
@@ -10,7 +10,6 @@
       </mat-chip>
       <input placeholder="Add Keywords"
       [formControlName]="field.field"
-      formControlName="solutionKeywords"
              [matChipInputFor]="chipList"
              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
              [matChipInputAddOnBlur]="addOnBlur"

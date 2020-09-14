@@ -13,5 +13,6 @@ export interface Validator {
     editable: boolean,
     value?: any;
     field: string;
+    width?: any;
     validation?: Validator[];
     }

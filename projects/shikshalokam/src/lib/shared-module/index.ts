@@ -8,5 +8,4 @@ export * from './components/multi-select/multi-select.component';
 export * from './components/password/password.component';
 export * from './components/radiobutton/radiobutton.component';
 export * from './components/select/select.component';
-export * from './components/multi-select/multi-select.component';
 export * from  './components/text-area/text-area.component'; 
