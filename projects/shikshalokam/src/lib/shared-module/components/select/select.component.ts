@@ -31,7 +31,6 @@ export class SelectComponent implements OnInit {
       );
     this.selected = this.field['value'];
 
-  console.log('ngOnInit selected', this.selected);
   }
 
   public selectHandler(event: MatAutocompleteSelectedEvent): void {

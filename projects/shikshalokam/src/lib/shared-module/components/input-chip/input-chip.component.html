@@ -2,14 +2,13 @@
     <mat-label *ngIf="field?.validation[0]?.name === 'required'" class="required">{{field.label}}</mat-label>
     <mat-label *ngIf="field?.validation?.length === 0 || field?.validation[0]?.name === 'pattern'">{{field.label}}
     </mat-label>
-    <mat-chip-list #chipList aria-label="keywords selection">
-      <mat-chip *ngFor="let item of field.options" [selectable]="selectable"
+    <mat-chip-list #chipList aria-label="keywords selection"  [formControlName]="field.field">
+      <mat-chip *ngFor="let item of field.value" [selectable]="selectable"
                [removable]="removable" (removed)="remove(item)">
         {{item}}
         <mat-icon style="padding:0px" matChipRemove *ngIf="removable">cancel</mat-icon>
       </mat-chip>
       <input placeholder="Add Keywords"
-      [formControlName]="field.field"
              [matChipInputFor]="chipList"
              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
              [matChipInputAddOnBlur]="addOnBlur"

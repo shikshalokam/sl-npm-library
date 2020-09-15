@@ -30,23 +30,23 @@ export class InputChipComponent implements OnInit {
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
-
     // Add our keyword
     if ((value || '').trim()) {
-      this.field.options.push(value.trim());
+      this.field.value.push(value.trim());
+      this.group.controls[this.field.field].setValue(this.field.value);
     }
 
-    // Reset the input value
+    // // Reset the input value
     if (input) {
       input.value = '';
     }
   }
 
   remove(key): void {
-    const index = this.field.options.indexOf(key);
+    const index = this.field.value.indexOf(key);
 
     if (index >= 0) {
-      this.field.options.splice(index, 1);
+      this.field.value.splice(index, 1);
     }
   }
 
