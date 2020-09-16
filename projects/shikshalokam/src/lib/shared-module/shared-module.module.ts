@@ -88,13 +88,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatButtonToggleModule,
     MatSidenavModule,
     RouterModule,
-    TranslateModule.forRoot({
-      loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
-      }
-  })
+  //   TranslateModule.forRoot({
+  //     loader: {
+  //         provide: TranslateLoader,
+  //         useFactory: HttpLoaderFactory,
+  //         deps: [HttpClient]
+  //     }
+  // })
   ],
   exports: [
     FormsModule, ReactiveFormsModule,
