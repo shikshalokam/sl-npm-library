@@ -8,7 +8,7 @@
         {{item}}
         <mat-icon style="padding:0px" matChipRemove *ngIf="removable">cancel</mat-icon>
       </mat-chip>
-      <input placeholder="Add Keywords"
+      <input placeholder="{{field.label}}"
              [matChipInputFor]="chipList"
              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
              [matChipInputAddOnBlur]="addOnBlur"
