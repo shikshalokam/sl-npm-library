@@ -1,13 +1,20 @@
 
 <div class="sidebar-menu">
     <ul *ngFor="let data of libraryMenuData">
-        <li [ngClass]="{'btn-logout':data.name === 'Logout'}" (click)="mdata(data.name)"><a routerLinkActive="active"
+        <li [ngClass]="{'btn-logout':data.name === 'Logout'}"   matTooltip="{{ data.name}}" (click)="mdata(data.name)">
+            <a routerLinkActive="active"
                 [routerLink]="[data.url]">
                 <span class="dashboard-icon">
                     <mat-icon>{{data.icon}}
                     </mat-icon>
-                </span>
-                {{data.name}}</a>
+                </span> {{ data.name}}
+            </a>
         </li>
+        <div *ngFor ="let sub of data.subMenu">
+        <li style="padding-left: 40px;" matTooltip="{{sub.name}}"><a routerLinkActive="submenu"
+            [routerLink]="[sub.url]">{{sub.name}}</a></li>
+    </div>
     </ul>
 </div>
+
+<!-- https://stackoverflow.com/questions/40082168/a-nested-angular-submenu-doesnt-hide-properly -->

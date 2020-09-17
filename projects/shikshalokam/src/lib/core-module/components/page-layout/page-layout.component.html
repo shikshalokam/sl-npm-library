@@ -1,6 +1,6 @@
 <mat-sidenav-container fullscreen>
     <mat-sidenav [mode]="mobileQuery.matches ? 'over' : 'side'" #sidenav opened position="start" class="c-sidenav">
-        <mat-toolbar class="bg-side-nav ">
+        <mat-toolbar class="bg-side-nav">
             <!-- <a class="home-button" routerLink="/"> -->
             <div class="profile">
                 <div>
@@ -14,7 +14,7 @@
         <lib-sidenav-listing (sideNavListClick)="clicked($event)" [libraryMenuData]="sideMenuData">
         </lib-sidenav-listing>
     </mat-sidenav>
-    <mat-sidenav-content class="bg-side-nav ">
+    <mat-sidenav-content class="bg-side-nav">
         <lib-headers (sideNavClick)="toggleMethod()"></lib-headers>
         <div class="main-content">
             <router-outlet></router-outlet>

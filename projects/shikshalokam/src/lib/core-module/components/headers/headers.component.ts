@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'lib-headers',
@@ -11,14 +12,20 @@ export class HeadersComponent implements OnInit {
 
   @Input() logindetails: any;
   @Output() sideNavClick = new EventEmitter();
+  @Output() languageChange = new EventEmitter();
 
-  constructor() {
+  constructor(public translate: TranslateService) {
   }
 
   ngOnInit(): void {
     if (this.logindetails) {
       this.username = this.logindetails.username;
     }
+  }
+
+  switchLang(lang: string) {
+    this.translate.use(lang);
+    this.languageChange.emit(lang);
   }
 
   notifications() {
