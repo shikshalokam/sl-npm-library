@@ -5,7 +5,7 @@
 }
 
 .sidebar-menu {
-  padding: 50px 30px 20px 0px;
+  padding: 50px 10px 20px 0px;
 }
 .sidebar-menu ul {
   margin: 0;
@@ -18,14 +18,13 @@
 }
 .sidebar-menu ul li a {
   // display: block;
-  padding: 8px 0px;
+  padding: 8px 8px 8px 30px;
   font-weight: 500;
   color: $text-color;
   display: flex;
   align-items: center;
   border-left: 4px solid $white-color !important;
   text-decoration: none;
-  padding-left: 30px;
 }
 // .sidebar-menu ul li a:hover,
 // .sidebar-menu ul li a:focus,

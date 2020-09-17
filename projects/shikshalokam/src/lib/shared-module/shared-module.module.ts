@@ -29,17 +29,35 @@ import {TranslateModule, TranslateLoader, TranslateService} from "@ngx-translate
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 // import { BrowserModule } from '@angular/platform-browser';
-import {
-  MatSidenavModule,
-} from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
+import { AutoCompleteComponent } from './components/auto-complete/auto-complete.component';
+import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { DateComponent } from './components/date/date.component';
+import { DynamicFieldDirective } from './components/dynamic-field/dynamic-field.directive';
+import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
+import { InputComponent } from './components/input/input.component';
+import { MultiSelectComponent } from './components/multi-select/multi-select.component';
+import { PasswordComponent } from './components/password/password.component';
+import { RadiobuttonComponent } from './components/radiobutton/radiobutton.component';
+import { SelectComponent } from './components/select/select.component';
+import { TextAreaComponent } from './components/text-area/text-area.component';
+import { InputChipComponent } from './components/input-chip/input-chip.component';
+
+ 
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
 @NgModule({
-  declarations: [],
+  declarations: [AutoCompleteComponent, CheckboxComponent, DateComponent,
+     DynamicFieldDirective, DynamicFormComponent, InputComponent, TextAreaComponent,
+     SelectComponent,
+     RadiobuttonComponent,
+     PasswordComponent,
+     MultiSelectComponent,
+     InputChipComponent],
   imports: [
     CommonModule,
     FormsModule, ReactiveFormsModule,
@@ -70,13 +88,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatButtonToggleModule,
     MatSidenavModule,
     RouterModule,
-    TranslateModule.forRoot({
-      loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
-      }
-  })
+  //   TranslateModule.forRoot({
+  //     loader: {
+  //         provide: TranslateLoader,
+  //         useFactory: HttpLoaderFactory,
+  //         deps: [HttpClient]
+  //     }
+  // })
   ],
   exports: [
     FormsModule, ReactiveFormsModule,
@@ -107,7 +125,18 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatButtonToggleModule,
     MatSidenavModule,
     RouterModule,
-    TranslateModule
+    TranslateModule,
+    AutoCompleteComponent,
+    CheckboxComponent,
+    DateComponent,
+    DynamicFieldDirective,
+    DynamicFormComponent,
+    InputComponent,
+    TextAreaComponent,
+    SelectComponent,
+    RadiobuttonComponent,
+    PasswordComponent,
+    MultiSelectComponent
   ],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
 })
