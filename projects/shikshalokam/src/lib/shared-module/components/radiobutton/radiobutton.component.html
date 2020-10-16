@@ -1,6 +1,6 @@
 <div class="form-full-width margin-top" [ngStyle]="{'width.px': field?.width}" [formGroup]="group">
-    <label class="radio-label-padding">{{field.label}}:</label>
-    <mat-radio-group style="padding-left: 10px;" [formControlName]="field.field">
+    <label class="col-md-2 radio-label-padding">{{field.label}}:</label>
+    <mat-radio-group [formControlName]="field.field">
         <mat-radio-button style="padding-left: 15px;" *ngFor="let item of field.options"
         [checked]="item.checked" [value]="item">{{item.label}}</mat-radio-button>
     </mat-radio-group>
