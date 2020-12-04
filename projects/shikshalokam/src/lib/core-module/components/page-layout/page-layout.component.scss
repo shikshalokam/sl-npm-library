@@ -1,0 +1,32 @@
+@import "../../../../assests/scss/variables.scss";
+
+.main-content {
+  margin-bottom: 50px;
+}
+.profile {
+ display: none;
+}
+.bg-side-nav {
+  background-color: $white-color;
+}
+
+@media only screen and (max-width: 600px) {
+  .profile {
+    text-align: center;
+    border-bottom: 1px solid $primary-color;
+    display: block;
+    padding-top: 50px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .profile {
+    text-align: center;
+    border-bottom: 1px solid $primary-color;
+    display: block;
+    padding-top: 50px;
+
+  }
+}
+
+
